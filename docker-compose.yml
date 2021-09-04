@@ -1,0 +1,15 @@
+version: '3'
+services: 
+  frontend:
+    build: ./frontend
+    command: npm run dev
+    volumes: 
+      - ./frontend:/frontend
+      - exclude:/frontend/node_modules
+    ports: 
+      - "3000:3000"
+      # this might seem random, but this is to expose svelte-kit HMR port,
+      # if we don't expose it we get stuck in infinite reloading loop.
+      - "24678:24678"
+volumes:
+  exclude:
