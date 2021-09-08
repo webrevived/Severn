@@ -2,7 +2,7 @@
     import Test from '$lib/hey.svelte'
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>11</p>
+<h1>hey</h1>
+<p>10</p>
 
 <Test />

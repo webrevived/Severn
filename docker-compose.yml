@@ -7,9 +7,27 @@ services:
       - ./frontend:/frontend
       - exclude:/frontend/node_modules
     ports: 
-      - "3000:3000"
       # this might seem random, but this is to expose svelte-kit HMR port,
       # if we don't expose it we get stuck in infinite reloading loop.
       - "24678:24678"
+  backend:
+    image: strapi/strapi:3.6.8-node14-alpine
+    volumes: 
+      - ./backend:/srv/app
+    ports:
+      - 8081:1337
+  nginx:
+    image: nginx:1.21.1-alpine
+    depends_on: 
+      - frontend
+      - backend
+    volumes: 
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 8080:80
+    # disabled nginx logging (it's too spammy)
+    logging:
+      driver: none
+
 volumes:
   exclude:
