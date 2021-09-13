@@ -1,8 +1,10 @@
 <script>
     import 'virtual:windi.css'
+    import Footer from '$lib/global/Footer.svelte';
 </script>
 
 <slot />
+<Footer />
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
@@ -19,6 +21,12 @@
         font-weight: 400;
     }
 
+    @font-face {
+        font-family: "Tiempos";
+        src: url("/fonts/TiemposHeadline-Medium.otf") format("opentype");
+        font-weight: 500;
+    }
+    
     @font-face {
         font-family: "Tiempos";
         src: url("/fonts/TiemposHeadline-Semibold.otf") format("opentype");

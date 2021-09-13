@@ -5,6 +5,7 @@ export default defineConfig({
     theme: {
         colors: {
             brown: {
+                1200: '#6D6762',
                 900: '#83612E',
                 600: '#C29653',
             },
