@@ -1,7 +1,8 @@
 <script>
     import Button from '$lib/global/Button.svelte'
+    import ArrowButton from '$lib/global/ArrowButton.svelte'
 </script>
 
-<Button href="/test">
-    <p>Shop Now</p>
+<Button>
+    Shop Premium Candles
 </Button>

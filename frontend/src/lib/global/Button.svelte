@@ -27,7 +27,7 @@
         class="text-1 text-white-100 text-left font-bold gap-2"
         class:outline
         flex="~"
-        w="full max-50"
+        w="min-50"
         h="12.5"
         bg="black-600"
         border="rounded-30px"
