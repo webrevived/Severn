@@ -24,17 +24,17 @@
 {:else}
     <button
         on:click
-        class="text-1 text-white-100 text-left font-bold gap-2"
+        class="text-1 text-white-100 text-left font-bold gap-2 items-center"
         class:outline
         flex="~"
         w="min-50"
-        h="12.5"
+        h="min-12.5"
         bg="black-600"
         border="rounded-30px"
         p="x-8 y-4"
     >
         <slot />
-        <div class="transform translate-y-10/100">
+        <div class="transform translate-y-10/100 h-min">
             <Arrow />
         </div>
     </button>
