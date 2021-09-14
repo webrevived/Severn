@@ -17,7 +17,7 @@
         <div class="w-full h-full bg-src transition transition-transform transform group-hover:scale-120"/>
     </div>
     <h1 class="text-2 text-brown-1200 mb-7px">{category}</h1>
-    <h2 class="heading-3">{title}</h2>
+    <h2 class="heading-3 group-hover:italic">{title}</h2>
     <p class="text-1" text="brown-1200 14px">${_price}</p>
 </a>
 
