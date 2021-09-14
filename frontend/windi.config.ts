@@ -37,7 +37,7 @@ export default defineConfig({
         // Typography
         'heading-1': 'text-3xl font-tiempos font-semibold',
         'heading-2': 'text-2xl font-tiempos font-normal',
-        'heading-3': 'text-lg font-tiempos font-normal',
+        'heading-3': 'text-xl font-tiempos font-normal',
         'text-1': 'text-lg font-lato font-normal leading-1em',
         'text-2': 'text-base font-lato font-normal leading-1em',
     },
