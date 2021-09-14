@@ -1,12 +1,24 @@
 <script>
-    import Button from '$lib/global/Button.svelte'
-    import ArrowButton from '$lib/global/ArrowButton.svelte'
-    import Input from '$lib/global/Form/Input.svelte'
-    import TextArea from '$lib/global/Form/TextArea.svelte'
-
-    let text = ""
-    $: console.log(text)
+    import ItemCard from "$lib/global/ItemCard.svelte";
 </script>
 
-<Input src="/icons/Search.svg" bind:value={text} />
-<TextArea bind:value={text} />
+<div class="flex flex-wrap justify-center md:justify-start gap-4">
+    <ItemCard
+        src = "/images/Candle.png"
+        category = "Premium Candles"
+        title = "Diptyque - Premium Fragrance Candles"
+        price = {11}
+    />
+    <ItemCard
+        src = "/images/Candle.png"
+        category = "Premium Candles"
+        title = "Diptyque - Premium Fragrance Candles"
+        price = {11}
+    />
+    <ItemCard
+        src = "/images/Candle.png"
+        category = "Premium Candles"
+        title = "Diptyque - Premium Fragrance Candles"
+        price = {11}
+    />
+</div>

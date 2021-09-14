@@ -9,6 +9,10 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
     
+    :global(#svelte), :global(html), :global(body) {
+        @apply bg-white-100;
+    }
+
     @font-face {
         font-family: "Tiempos";
         src: url("/fonts/TiemposHeadline-Light.otf") format("opentype");
