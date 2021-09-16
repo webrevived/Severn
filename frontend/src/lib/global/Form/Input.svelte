@@ -7,28 +7,30 @@
 
 {#if src.length > 1}
     <div
-        class="gap-4 justify-center items-center"
+        class="gap-x-4 justify-center items-end"
         flex="~" 
         p="b-1"
         w="full" 
         border="b-1 black-600"
     >  
-        <img class="ml-2 w-5 h-5" {src} alt="">
-        <input 
-            type="text"
-            bind:value
-            class="heading-3 font-$weight placeholder-[#888888]"
-            w="full"
-            outline="none"
-            {id}
-            {placeholder}
-        />
+        <div class="flex w-full items-center gap-x-4">
+            <img class="ml-2 w-5 h-5" {src} alt="">
+            <input 
+                type="text"
+                bind:value
+                class="heading-3 font-$weight placeholder-[#888888] bg-[inherit]"
+                w="full"
+                outline="none"
+                {id}
+                {placeholder}
+            />
+        </div>
     </div>
 {:else}
     <input 
         type="text"
         bind:value
-        class="heading-3 font-$weight placeholder-[#888888]"
+        class="heading-3 font-$weight placeholder-[#888888] bg-[inherit]"
         w="full"
         outline="none"
         border="b-1 black-600"

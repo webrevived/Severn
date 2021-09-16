@@ -1,8 +1,36 @@
 <script>
-    import ItemCard from "$lib/global/ItemCard.svelte";
-    import Button from "$lib/global/Button.svelte";
+    import Heading from '$lib/home/Heading.svelte'
+    import DeliverSmile from '$lib/home/DeliverSmile.svelte'
+    import Explore from '$lib/home/Explore.svelte'
+    import Quotes from '$lib/home/Quotes.svelte'
+    import About from '$lib/home/About.svelte'
+    import BestSeller from '$lib/home/BestSeller.svelte'
+
+    const quotes = [
+        { 
+            rating: 5,
+            quote: "I do not think you will find anything better. I have repurchased this product many times now, it has become a staple in my routine. Definitely recommend and will order again.",
+            auther: "Amanda"
+        },
+        { 
+            rating: 2,
+            quote: "I do not think you will find anything better. I have repurchased this product many times now, it has become a staple in my routine. Definitely recommend and will order again.",
+            auther: "Amanda"
+        },
+        { 
+            rating: 4,
+            quote: "I do not think you will find anything better. I have repurchased this product many times now, it has become a staple in my routine. Definitely recommend and will order again.",
+            auther: "Amanda"
+        },
+    ]
 </script>
 
-<Button>Show me</Button>
-<Button outline>Show me</Button>
+<Heading src="/images/Home_Header.png" />
 
+<main>
+    <DeliverSmile />
+    <BestSeller />
+    <Explore />
+    <Quotes {quotes} />
+    <About />
+</main>

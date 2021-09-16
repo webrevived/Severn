@@ -14,10 +14,13 @@
     {href}
 >
     <div class="w-full h-67.5 overflow-hidden">
-        <div class="w-full h-full bg-src transition transition-transform transform group-hover:scale-120"/>
+        <div 
+            class="w-full h-full bg-src transform group-hover:scale-120"
+            transition="~ transform duration-500"
+        />
     </div>
     <h1 class="text-2 text-brown-1200 mb-7px">{category}</h1>
-    <h2 class="heading-3 group-hover:italic">{title}</h2>
+    <h2 class="heading-3 text-lg group-hover:italic">{title}</h2>
     <p class="text-1" text="brown-1200 14px">${_price}</p>
 </a>
 
