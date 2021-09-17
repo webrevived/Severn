@@ -1,14 +1,14 @@
 
 <script lang="ts">
+    import { cubicInOut } from 'svelte/easing';
+	import { crossfade } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
+    import { onMount } from 'svelte';
     import Button from '$lib/global/Button.svelte'
     import ArrowButton from '$lib/global/ArrowButton.svelte'
     import ItemCard from '$lib/global/ItemCard.svelte'
     import type { Items } from '$lib/interfaces/Items'
 
-    import { cubicInOut } from 'svelte/easing';
-	import { crossfade } from 'svelte/transition';
-	import { flip } from 'svelte/animate';
-    import { onMount } from 'svelte';
     export let category: string
     export let description: string
     export let button: string

@@ -8,8 +8,8 @@
 
 <header 
     flex="~ col"
-    class="relative w-full min-h-213 justify-center bg-header" 
-    p="x-7 md:x-25.5 t-6"
+    class="relative x-container w-full min-h-213 justify-center bg-header" 
+    p="t-6"
     style="--src: url('{src}')"
 >
 

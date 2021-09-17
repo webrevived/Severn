@@ -4,6 +4,8 @@
     import CartIcon from "$lib/global/Navigation/CartIcon.svelte";
     import Search from "$lib/global/Navigation/Search.svelte";
 
+    export let dark = false
+
     const values = {
         search: ''
     }
@@ -17,22 +19,24 @@
     <nav
         grid="~ rows-1 cols-[max-content_1fr_max-content] gap-26"
         class="relative justify-center"
+        class:dark
     >
         <!-- Saven, Severn, Seven???? -->
-        <h1 class="heading-1 text-2xl tracking-[.03em] text-white-100">Seven ®</h1>
+        <h1 class="heading-1 text-2xl tracking-[.03em]" text="white-100 dark:black-600">Seven ®</h1>
     
         <div
             class="hidden md:flex items-center gap-15" 
-            text="white-100"
+            text="white-100 dark:black-600"
         >
             <a class="heading-1 text-lg" href="/">About</a>
             <a class="heading-1 text-lg" href="/">Contact</a>
-            <a class="heading-1 text-lg" href="/">Shop</a>
+            <a class="heading-1 text-lg" href="/shop">Shop</a>
             <a class="heading-1 text-lg whitespace-nowrap" href="/">My Account</a>
         </div>
     
         <div
-            class="flex text-white-100 items-center gap-9"
+            class="flex items-center gap-9"
+            text="white-100 dark:black-600"
         >
             <button on:click={ () => search = !search } class="focus:outline-none">
                 <SearchIcon />

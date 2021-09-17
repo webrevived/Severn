@@ -1,7 +1,7 @@
 <script lang="ts">
     export let id  = ""
     export let src = ""
-    export let placeholder = "ewf"
+    export let placeholder = ""
     export let value: string;
 </script>
 
@@ -18,7 +18,7 @@
             <input 
                 type="text"
                 bind:value
-                class="heading-3 font-$weight placeholder-[#888888] bg-[inherit]"
+                class="heading-3 text-sizing-$size font-$weight placeholder-[#888888] bg-[inherit]"
                 w="full"
                 outline="none"
                 {id}
@@ -30,7 +30,7 @@
     <input 
         type="text"
         bind:value
-        class="heading-3 font-$weight placeholder-[#888888] bg-[inherit]"
+        class="heading-3 text-sizing-$size font-$weight placeholder-[#888888] bg-[inherit]"
         w="full"
         outline="none"
         border="b-1 black-600"
@@ -41,5 +41,9 @@
 <style>
     .font-\$weight {
         font-weight: var(--font-weight, 300);
+    }
+
+    .text-sizing-\$size {
+        font-size: var(--size);
     }
 </style>

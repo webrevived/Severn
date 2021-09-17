@@ -1,57 +1,6 @@
 <script lang="ts">
     import ItemCarosel from "$lib/global/ItemCarosel.svelte";
-    import type { Items } from '$lib/interfaces/Items'
-
-    let items: Items[] = [
-        {
-           src: '/images/Candle.png',
-           category: 'Premium Candles',
-           title: 'Diptyque - Premium Fragranced Candles',
-           price: 11, 
-        },
-        {
-           src: '/images/Candle.png',
-           category: 'Premium Candles',
-           title: 'Curology - Face Wash with Advance Formula',
-           price: 11, 
-        },
-        {
-           src: '/images/Candle.png',
-           category: 'Premium Candles',
-           title: 'Sooth Operator - Mens & Myth Shaving Cream',
-           price: 11, 
-        },
-        {
-           src: '/images/Candle.png',
-           category: 'Premium Candles',
-           title: 'Sooth Operator - Ready Gift for Candle Lovers',
-           price: 11, 
-        },
-        {
-           src: '/images/Candle.png',
-           category: 'Premium Candles',
-           title: 'Diptyque - Premium Fragranced Candles',
-           price: 11, 
-        },
-        {
-           src: '/images/Candle.png',
-           category: 'Premium Candles',
-           title: 'Curology - Face Wash with Advance Formula',
-           price: 11, 
-        },
-        {
-           src: '/images/Candle.png',
-           category: 'Premium Candles',
-           title: 'Sooth Operator - Mens & Myth Shaving Cream',
-           price: 11, 
-        },
-        {
-           src: '/images/Candle.png',
-           category: 'Premium Candles',
-           title: 'Sooth Operator - Ready Gift for Candle Lovers',
-           price: 11, 
-        },
-    ]
+    import { items } from '$lib/FakeApi/Products'
 </script>
 
 <section p="x-5 md:x-25 t-44">

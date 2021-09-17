@@ -40,5 +40,7 @@ export default defineConfig({
         'heading-3': 'text-xl font-tiempos font-normal',
         'text-1': 'text-lg font-lato font-normal leading-1em',
         'text-2': 'text-base font-lato font-normal leading-1em',
+        // Padding
+        'x-container': 'px-7 md:px-25.5'
     },
 })
