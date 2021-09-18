@@ -1,10 +1,11 @@
 <script>
     import 'virtual:windi.css'
+    import { newsTags } from '$lib/stores'
     import Footer from '$lib/global/Footer.svelte';
     import NewsHeader from '$lib/global/NewsHeader.svelte'
 </script>
 
-<NewsHeader tags={["FREE SHIPPING IN THE FLORIDA. ON ALL ORDERS OVER $25", "FAST DELIVERY | 15 DAYS REFUND POLICY"]} />
+<NewsHeader tags={$newsTags} />
 <slot />
 <Footer />
 

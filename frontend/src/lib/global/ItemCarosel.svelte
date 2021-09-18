@@ -1,4 +1,3 @@
-
 <script lang="ts">
     import { cubicInOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
@@ -25,7 +24,6 @@
         const { width: containerWidth, rowGap: gap } = window.getComputedStyle(ItemContainer)
         const itemWidth = 270 + parseInt(gap)
         const totalItems = Math.floor( parseInt(containerWidth) / itemWidth )
-
         SHOW = totalItems < 1 ? 1 : totalItems
     }
     
