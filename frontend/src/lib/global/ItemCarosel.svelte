@@ -11,6 +11,7 @@
     export let category: string
     export let description: string
     export let button: string
+    export let fw = "normal"
 
     export let items: Items[]
     
@@ -54,9 +55,9 @@
 
 <svelte:window on:resize={ onResize } />
 
-<article class="w-full flex flex-col md:flex-row items-center md:items-start gap-x-25" >
-    <div class="flex flex-col min-w-max">
-        <h1 class="heading-1 mb-5">{category}</h1>
+<article class="w-full items-center md:items-start gap-x-25" flex="~ col md:row">
+    <div class="flex flex-col w-full max-w-300px">
+        <h1 class="heading-1 mb-5 font-$fw" style="--fw: {fw ?? 'bold'}">{category}</h1>
         <p class="text-1 text-brown-1200 leading-[150%] max-w-66 mb-18">{description}</p>
         
         <div class="md:grid mb-18">
