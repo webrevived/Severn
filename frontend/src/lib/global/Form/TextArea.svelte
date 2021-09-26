@@ -7,7 +7,7 @@
 
 <textarea
     bind:value
-    class="heading-3 w-full placeholder-[#888888]"
+    class="heading-3 w-full placeholder-[#888888] bg-[inherit]"
     p = "b-2"
     border = "b-1 black-600"
     outline="none"

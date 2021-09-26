@@ -32,20 +32,19 @@
             <HamburgerIcon />
         </button>
 
-        <!-- Saven, Severn, Seven???? -->
         <a 
             class="heading-1 text-2xl tracking-[.03em]" 
             text="white-100 dark:black-600 center md:left"
             grid="-sm:col-start-2 -sm:col-end-3"
             href="/"
-        >Seven ®</a>
+        >Saven ®</a>
     
         <div
             class="hidden md:flex items-center gap-15" 
             text="white-100 dark:black-600"
         >
-            <a class="heading-1 text-lg" href="/">About</a>
-            <a class="heading-1 text-lg" href="/">Contact</a>
+            <a class="heading-1 text-lg" href="/about">About</a>
+            <a class="heading-1 text-lg" href="/contact">Contact</a>
             <a class="heading-1 text-lg" href="/shop">Shop</a>
             <a class="heading-1 text-lg whitespace-nowrap" href="/">My Account</a>
         </div>

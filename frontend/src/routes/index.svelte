@@ -5,6 +5,7 @@
     import Quotes from '$lib/home/Quotes.svelte'
     import About from '$lib/home/About.svelte'
     import BestSeller from '$lib/home/BestSeller.svelte'
+    import Gallary from '$lib/global/Gallary.svelte'
 
     const quotes = [
         { 
@@ -33,4 +34,5 @@
     <Explore />
     <Quotes {quotes} />
     <About />
+    <Gallary --mt="140px" />
 </main>

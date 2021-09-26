@@ -16,11 +16,11 @@
     }
 
     $: if (browser && show) {
-        const svelte: NodeListOf<HTMLElement> = document.querySelectorAll('body, #svelte')
-        svelte.forEach( elm => elm.style.overflowY = "hidden" )
+        const body: HTMLBodyElement = document.querySelector('body')
+        body.style.overflowY = "hidden"
     } else if (browser && !show) {
-        const svelte: NodeListOf<HTMLElement> = document.querySelectorAll('body, #svelte')
-        svelte.forEach( elm => elm.style.overflowY = "scroll" )
+        const body: HTMLBodyElement = document.querySelector('body')
+        body.style.overflowY = "scroll"
     }
 </script>
 

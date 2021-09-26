@@ -10,7 +10,7 @@
     <h1 
         class="heading-2 font-semibold mb-11" 
         text="black-600"
-    >Seven ®</h1>
+    >Saven ®</h1>
 
     <div 
         class="gap-10"
@@ -44,7 +44,7 @@
         </FooterItem>
     </div>
 
-    <p class="FooterText">© 2021 Severn Company. All Rights Reserved.</p>
+    <p class="FooterText">© 2021 Saven Company. All Rights Reserved.</p>
 </footer>
 
 <style>

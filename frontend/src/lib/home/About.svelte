@@ -4,7 +4,7 @@
 </script>
 
 <section 
-    class="gap-24 w-full min-h-167 mb-35 items-center justify-center"
+    class="gap-24 w-full min-h-167 items-center justify-center"
     flex="~ col-reverse md:row"
     p="t-35 md:t-55 x-10 md:x-31"
 >
@@ -13,13 +13,13 @@
         <h1 class="text-1 text-brown-1200">ABOUT SEVERN COMPANY</h1>
     
         <h2 class="heading-1 <md:text-2xl text-black-600 max-w-119 mb-2.5">
-            At Severn, We have Premium
+            At Saven, We have Premium
             Candles along with Self Care
             Products
         </h2>
     
         <p class="text-1 text-brown-1200 max-w-123 leading-[150%] mb-15">
-            Severn Company is know of its premium products and all time positive
+            Saven Company is know of its premium products and all time positive
             reviews by the customers. We founded Servern Company in 2021
             with the idea of providing quality products such as fragranced candles,
             mens and womens self car products.
@@ -30,7 +30,7 @@
         </p>
         
         <div class="flex <md:place-content-center">
-            <Button outline>About Us</Button>
+            <Button href="/about" outline>About Us</Button>
         </div>
     </div>
 
