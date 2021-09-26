@@ -26,13 +26,13 @@
         <h1 class="text-1 text-brown-1200 uppercase">Why We Started</h1>
         <h2 class="heading-1 -sm:text-28px text-black-600 font-normal">Severn is an E-Store for Quality Self Care & Premium Candles</h2>
 
-        <p class="text-1 text-brown-1200">
+        <p class="text-1 text-brown-1200 leading-[150%]">
             We founded Severn in 2021 with an idea of providing high quality self care
             products and premium candles that makes your gathering more beautiful 
             and memorable. 
         </p>
 
-        <p class="text-1 text-brown-1200">
+        <p class="text-1 text-brown-1200 leading-[150%]">
             Our Self Care products are approved by most of the dermotologists all 
             around USA. We trust our products and provide an amazing customer 
             support. Our decision to go green was also what we wanted to make it 

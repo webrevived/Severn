@@ -33,14 +33,14 @@
 
         <FooterItem title = "Customer Care">
             <a class="FooterText" href="/">Contact Us</a>
-            <a class="FooterText" href="/">FAQS</a>
-            <a class="FooterText" href="/">Return & Exchanges</a>
+            <a class="FooterText" href="/faq">FAQS</a>
+            <a class="FooterText" href="/return">Return & Exchanges</a>
             <a class="FooterText" href="/">Customer Support</a>
         </FooterItem>
 
         <FooterItem title = "Miscellaneous">
-            <a class="FooterText" href="/">Terms & Conditions</a>
-            <a class="FooterText" href="/">Privacy Policy</a>
+            <a class="FooterText" href="/terms">Terms & Conditions</a>
+            <a class="FooterText" href="/privacy">Privacy Policy</a>
         </FooterItem>
     </div>
 
