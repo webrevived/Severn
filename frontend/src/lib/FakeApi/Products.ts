@@ -1,6 +1,6 @@
-import type { Items } from '$lib/interfaces/Items'
+import type { ProductItem } from '$lib/api/products'
 
-export let items: Items[] = [
+export let items: ProductItem[] = [
     {
        src: '/images/Candle.png',
        category: 'Premium Candles',

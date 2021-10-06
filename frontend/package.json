@@ -22,5 +22,8 @@
     "vite-plugin-windicss": "^1.4.2",
     "windicss": "^3.1.7"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "fuse.js": "^6.4.6"
+  }
 }

@@ -11,7 +11,6 @@
 > if you wish to rebuild the image (only needed for docker config changes) 
 > then run `docker-compose up --build`
 
-
 # Major Notes
 Currently the backend has an open port and proxy port (this may change)
 * open port (host:1337/api or host:1337/admin)  

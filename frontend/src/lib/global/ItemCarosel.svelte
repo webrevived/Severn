@@ -6,14 +6,14 @@
     import Button from '$lib/global/Button.svelte'
     import ArrowButton from '$lib/global/ArrowButton.svelte'
     import ItemCard from '$lib/global/ItemCard.svelte'
-    import type { Items } from '$lib/interfaces/Items'
+    import type { ProductItem } from '$lib/api/products'
 
     export let category: string
     export let description: string
     export let button: string
     export let fw = "normal"
 
-    export let items: Items[]
+    export let items: ProductItem[]
     
     let SHOW = 1
     let shift = 0

@@ -1,22 +1,8 @@
-
 <script lang="ts">
+    import type { CategoryProps } from '$lib/api/categorys';
     import ItemCarosel from '$lib/global/ItemCarosel.svelte'
-    import { items } from '$lib/FakeApi/Products'
-
-    const categorys = [
-        {
-            category: 'Premium Candles',
-            description: 'These best-smelling candles come in divine fragrances, with notes that\'ll transport you into a different space.',
-            button: 'Shop Premium Candles',
-            items
-        },
-        {
-            category: 'Self Care Products',
-            description: 'Our self care products are well know and being use actively by multiple of dermatologist.',
-            button: 'Self Care Products',
-            items
-        },
-    ]
+    
+    export let categorys: CategoryProps[];
 </script>
 
 <section class="w-full x-container pt-22.5" flex="~ col">
