@@ -8,6 +8,7 @@ export interface BaseCategory extends BaseApiResponse {
     long_title: string,
     long_description: string,
     thumbnail: Media,
+    icon: Media,
 }
 
 interface CategoryProducts extends BaseProducts {
@@ -29,6 +30,16 @@ export interface CategoryProps {
 export const findOneByID: (number) => Promise<CategoriesApi> = async (id: number) => {
     return await fetch(`${HOST}/categories/${id}`)
         .then( res => res.json() )
+        .catch( e => {
+            console.error(e);
+            return null
+        } )
+}
+
+export const findOneByTitle: (string) => Promise<CategoriesApi> = async (title: string) => {
+    return await fetch(`${HOST}/categories?short_title=${title}`)
+        .then( res => res.json() )
+        .then( (result: CategoriesApi[]) => result[0] )
         .catch( e => {
             console.error(e);
             return null

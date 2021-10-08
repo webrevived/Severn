@@ -31,8 +31,8 @@
       "pluginOptions": {}
     },
     "category": {
-      "model": "category",
-      "via": "products"
+      "via": "products",
+      "model": "category"
     },
     "description": {
       "type": "text"

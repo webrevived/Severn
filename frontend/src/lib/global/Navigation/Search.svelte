@@ -3,17 +3,16 @@
     import Input from '$lib/global/Form/Input.svelte'
     import Button from '$lib/global/Button.svelte'
     import { goto } from "$app/navigation";
-
-    export let value: string
-    export let show = false
+    import { searchValue, navToggles } from '$lib/stores'
 
     const onSubmit = () => {
-        if (value?.length <= 0) return
-        goto(`search/${value}`)
+        if ($searchValue?.length <= 0) return
+        $navToggles.search = false
+        goto(`/search/${$searchValue}`)
     }
 </script>
 
-<Dropdown bind:show={show}>
+<Dropdown show={navToggles} key="search">
     <div class="w-full h-full flex flex-col items-center py-14 gap-10">
         <h1 class="heading-2 font-medium text-black-600 text-center">What are you searching for?</h1>
 
@@ -24,7 +23,7 @@
         >
             <Input
                 src = "/icons/Search.svg"
-                bind:value={value} 
+                bind:value={$searchValue} 
                 placeholder="E.g Thanks You Card" 
             />
             

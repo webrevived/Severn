@@ -17,6 +17,7 @@ export interface ProductsApi extends BaseProducts {
 
 // This is what our components expect
 export interface ProductItem {
+    id: number;
     href?: string;
     src: string;
     category: string;

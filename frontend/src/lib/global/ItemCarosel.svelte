@@ -71,7 +71,7 @@
     </div>
 
     <div class="flex flex-wrap gap-5 w-full justify-center md:justify-start" bind:this={ ItemContainer } >
-        {#each _items as item (item.title)}
+        {#each _items as item (item.id)}
             <div 
                 in:receive|local={{key: item.title}} 
                 out:send|local={{key: item.title}} 

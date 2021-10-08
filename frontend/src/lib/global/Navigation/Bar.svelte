@@ -1,33 +1,28 @@
-<script>
+<script lang="ts">
     import SearchIcon from "$lib/global/Navigation/SearchIcon.svelte";
     import CartIcon from "$lib/global/Navigation/CartIcon.svelte";
     import Search from "$lib/global/Navigation/Search.svelte";
+    import Shop from "$lib/global/Navigation/Shop.svelte"
     import HamburgerIcon from "./HamburgerIcon.svelte";
     import MobileBody from "./MobileBody.svelte";
+    import { navToggles } from '$lib/stores'
     
     export let dark = false
-
-    const values = {
-        search: ''
-    }
-
-    let mobile = false
-    let search = false
-    let shop = false
-    let cart = false
+    export let showDropdowns = true
+    const onMouseOver = () => $navToggles.shop = true
 </script>
 
 <div class="relative">
     <nav
         grid="~ rows-1 cols-[max-content_1fr_max-content] gap-0 md:gap-15 lg:gap-26"
         class="relative justify-center"
-        class:dark
+        class:dark={dark}
     >
         <button 
             class="md:hidden"
             text="white-100 dark:black-600"
             grid="col-start-3 col-end-4 row-start-1 row-end-2"
-            on:click={ () => mobile = true }
+            on:click={ () => $navToggles.mobile = true }
         >
             <HamburgerIcon />
         </button>
@@ -42,10 +37,16 @@
         <div
             class="hidden md:flex items-center gap-15" 
             text="white-100 dark:black-600"
+            transition="~ colors duration-150"
         >
             <a class="heading-1 text-lg" href="/about">About</a>
             <a class="heading-1 text-lg" href="/contact">Contact</a>
-            <a class="heading-1 text-lg" href="/shop">Shop</a>
+            <a 
+                class="heading-1 text-lg" 
+                href="/shop"
+                on:mouseenter={showDropdowns ? onMouseOver : null}
+                on:focus
+            >Shop</a>
             <a class="heading-1 text-lg whitespace-nowrap" href="/">My Account</a>
         </div>
     
@@ -54,7 +55,7 @@
             text="white-100 dark:black-600"
             grid="col-start-1 col-end-2 md:col-start-3 md:col-end-4 row-start-1 row-end-2"
         >
-            <button class="hidden md:block focus:outline-none" on:click={ () => search = !search }>
+            <button class="hidden md:block focus:outline-none" on:click={ showDropdowns ? () => { $navToggles.search = true } : null}>
                 <SearchIcon />
             </button>
             <button class="focus:outline-none">
@@ -62,9 +63,12 @@
             </button>
         </div>
     </nav>
-
-    <Search bind:value={values.search} bind:show={search} />  
+    
+    {#if showDropdowns}
+        <Search />
+        <Shop />
+    {/if}
 </div>
 
 <!-- Mobile body doesn't need to be relative to the nav bar for now? -->
-<MobileBody bind:value={ values.search } bind:show={mobile} />
+<MobileBody />

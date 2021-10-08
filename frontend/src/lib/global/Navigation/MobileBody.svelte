@@ -6,19 +6,18 @@
     import Input from '$lib/global/Form/Input.svelte';
     import CloseIcon from './CloseIcon.svelte';
     import SearchIcon from './SearchIcon.svelte';
+    import { navToggles, searchValue } from '$lib/stores'
     
-    export let value: string;
-    export let show = false
 
     const onKeyDown = (e: KeyboardEvent) => {        
-        if (show && e.key != "Escape") return
-        show = false
+        if ($navToggles.mobile && e.key != "Escape") return
+        $navToggles.mobile = false
     }
 
-    $: if (browser && show) {
+    $: if (browser && $navToggles.mobile) {
         const body: HTMLBodyElement = document.querySelector('body')
         body.style.overflowY = "hidden"
-    } else if (browser && !show) {
+    } else if (browser && !$navToggles.mobile) {
         const body: HTMLBodyElement = document.querySelector('body')
         body.style.overflowY = "scroll"
     }
@@ -26,7 +25,7 @@
 
 <svelte:window on:keydown={ onKeyDown } />
 
-{#if show}
+{#if $navToggles.mobile}
     <div
         transition:fade
         pos="fixed top-0 right-0 w-screen h-screen" 
@@ -39,7 +38,7 @@
         <div class="w-full h-full" p="x-7 y-6">
             <div class="w-full flex flex-wrap justify-between" m="b-10.5">
                 <h1 class="heading-2 font-semibold">Seven</h1>
-                <button on:click={ () => show = false }>
+                <button on:click={ () => $navToggles.mobile = false }>
                     <CloseIcon />
                 </button>
             </div>
@@ -55,7 +54,7 @@
             </div>
 
             <div class="flex gap-5 mt-13">
-                <Input bind:value placeholder="E.g Thanks You Card" />
+                <Input bind:value={$searchValue} placeholder="E.g Thanks You Card" />
                 <button class="bg-black-600 rounded-full text-white-100 p-2">
                     <SearchIcon --width = "17px" --height = "17px" />
                 </button>  
