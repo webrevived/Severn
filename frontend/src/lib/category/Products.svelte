@@ -14,7 +14,7 @@
     <h1 class="heading-3" text="center black-600">{category.short_title}</h1>
     <IconHR src="{HOST}{category.icon.url}" />
 
-    <div class="flex flex-wrap justify-center md:justify-start mt-7.5 gap-13">
+    <div class="flex flex-wrap justify-center mt-7.5 gap-13">
         {#each _products as product}
             <Item 
                 src="{HOST}{product.cover.url}" 

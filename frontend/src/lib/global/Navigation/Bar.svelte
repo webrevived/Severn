@@ -8,7 +8,6 @@
     import { navToggles } from '$lib/stores'
     
     export let dark = false
-    export let showDropdowns = true
     const onMouseOver = () => $navToggles.shop = true
 </script>
 
@@ -16,7 +15,8 @@
     <nav
         grid="~ rows-1 cols-[max-content_1fr_max-content] gap-0 md:gap-15 lg:gap-26"
         class="relative justify-center"
-        class:dark={dark}
+        class:dark={dark || $navToggles.shop}
+        class:z-5={$navToggles.shop}
     >
         <button 
             class="md:hidden"
@@ -44,7 +44,7 @@
             <a 
                 class="heading-1 text-lg" 
                 href="/shop"
-                on:mouseenter={showDropdowns ? onMouseOver : null}
+                on:mouseenter={onMouseOver}
                 on:focus
             >Shop</a>
             <a class="heading-1 text-lg whitespace-nowrap" href="/">My Account</a>
@@ -55,7 +55,7 @@
             text="white-100 dark:black-600"
             grid="col-start-1 col-end-2 md:col-start-3 md:col-end-4 row-start-1 row-end-2"
         >
-            <button class="hidden md:block focus:outline-none" on:click={ showDropdowns ? () => { $navToggles.search = true } : null}>
+            <button class="hidden md:block focus:outline-none" on:click={ $navToggles.shop ? null : () => { $navToggles.search = true }}>
                 <SearchIcon />
             </button>
             <button class="focus:outline-none">
@@ -64,10 +64,8 @@
         </div>
     </nav>
     
-    {#if showDropdowns}
-        <Search />
-        <Shop />
-    {/if}
+    <Search />
+    <Shop />
 </div>
 
 <!-- Mobile body doesn't need to be relative to the nav bar for now? -->

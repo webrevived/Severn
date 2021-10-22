@@ -12,10 +12,8 @@
     hoverMode
     on:mouseenter={() => $navToggles.shop = true}
 >
-    <div class="x-container w-full" p="t-6">
-        <NavBar dark showDropdowns={false} />
-
-        <div class="max-w-208 mt-16 flex gap-2.5 text-brown-1200 items-center">
+    <div class="x-container w-full">
+        <div class="max-w-208 mt-32 flex gap-2.5 text-brown-1200 items-center">
             {#await findAll() then categorys}
                 {#each categorys as item, index}
                     {#if index != 0}

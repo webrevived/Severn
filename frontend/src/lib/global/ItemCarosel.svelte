@@ -61,7 +61,7 @@
         <p class="text-1 text-brown-1200 leading-[150%] max-w-66 mb-18">{description}</p>
         
         <div class="md:grid mb-18">
-            <Button>{button}</Button>
+            <Button href="/category/{button}">{button}</Button>
         </div>
 
         <div class="hidden md:flex gap-13.5 self-center">

@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { Writable } from 'svelte/store';
     import type { toggles } from '$lib/stores'
-    import { fly, fade } from 'svelte/transition'
+    import { fly, fade, slide } from 'svelte/transition'
     export let show: Writable<toggles>
     export let key: string
     export let hoverMode = false

@@ -7,11 +7,11 @@
 {#if href.length > 1}
     <a
         {href}
-        class="text-1 font-bold gap-2"
+        class="text-1 font-bold gap-2 items-center"
         class:outline
         flex="~"
-        w="full max-50"
-        h="12.5"
+        w="min-50"
+        h="min-12.5"
         text="white-100 hover:black-600 left"
         bg="black-600 hover:[transparent]"
         border="rounded-30px 2 black-600"
@@ -19,7 +19,7 @@
         transition="~ colors duration-200"
     >
         <slot />
-        <div class="transform translate-y-10/100">
+        <div class="transform translate-y-10/100 h-min">
             <Arrow />
         </div>
     </a>
