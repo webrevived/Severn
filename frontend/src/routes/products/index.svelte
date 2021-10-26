@@ -1,4 +1,7 @@
 <script lang="ts">
+import BackButton from "$lib/products/BackButton.svelte";
+import ProductsIcons from "$lib/products/ProductsIcons.svelte";
+
     import QuantityInput from "$lib/products/QuantityInput.svelte";
     import RadioContainer from "$lib/products/RadioContainer.svelte";
     import RadioItem from "$lib/products/RadioItem.svelte";
@@ -27,5 +30,15 @@
             <RadioItem value={"red"}   {key}>Red</RadioItem>
             <RadioItem value={"black"} {key}>Black</RadioItem>
         </RadioContainer>
+
+        <div>
+            <BackButton />
+        </div>
+
+        <div>
+            <ProductsIcons src="/icons/GiftPack.svg">
+                free gift pack
+            </ProductsIcons>
+        </div>
     </form>
 </main>
