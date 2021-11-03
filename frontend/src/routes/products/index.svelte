@@ -1,13 +1,14 @@
 <script lang="ts">
-import BackButton from "$lib/products/BackButton.svelte";
-import ProductsIcons from "$lib/products/ProductsIcons.svelte";
-
+    import BackButton from "$lib/products/BackButton.svelte";
+    import ProductsIcons from "$lib/products/ProductsIcons.svelte";
     import QuantityInput from "$lib/products/QuantityInput.svelte";
     import RadioContainer from "$lib/products/RadioContainer.svelte";
     import RadioItem from "$lib/products/RadioItem.svelte";
+    import Tabs from "$lib/products/Tabs.svelte";
 
     let quantity = 1
     let colors: string
+    let moreinfo = ""
     let _sets: string
     
     $: sets = parseInt( _sets ?? "1" )
@@ -35,10 +36,14 @@ import ProductsIcons from "$lib/products/ProductsIcons.svelte";
             <BackButton />
         </div>
 
-        <div>
+        <div class="flex gap-6">
             <ProductsIcons src="/icons/GiftPack.svg">
                 free gift pack
             </ProductsIcons>
+        </div>
+
+        <div class="w-full max-w-182 mb-6 place-self-center">
+            <Tabs bind:value={moreinfo} options={["Product Details", "Product Gallery", "Why Our Candles",]} />
         </div>
     </form>
 </main>

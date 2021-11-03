@@ -3,6 +3,7 @@
 	import { crossfade } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
     import { onMount } from 'svelte';
+    import { CramItemCalc } from "$lib/utils/index"
     import Button from '$lib/global/Button.svelte'
     import ArrowButton from '$lib/global/ArrowButton.svelte'
     import ItemCard from '$lib/global/ItemCard.svelte'
@@ -22,9 +23,7 @@
 
     let ItemContainer: HTMLDivElement
     const onResize = () => {
-        const { width: containerWidth, rowGap: gap } = window.getComputedStyle(ItemContainer)
-        const itemWidth = 270 + parseInt(gap)
-        const totalItems = Math.floor( parseInt(containerWidth) / itemWidth )
+        const totalItems = CramItemCalc(ItemContainer)
         SHOW = totalItems < 1 ? 1 : totalItems
     }
     

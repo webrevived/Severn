@@ -8,7 +8,7 @@ export interface BaseProducts extends BaseApiResponse {
     price: number,
     description: string,
     cover: Media,
-    gallery: null[]
+    gallery: Media[]
 }
 
 export interface ProductsApi extends BaseProducts {

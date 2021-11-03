@@ -8,7 +8,7 @@
     })
 </script>
 
-<label class="w-max flex gap-6" p="x-3 y-2.5" border="1px rounded-30px">
+<label class="w-max flex gap-6 h-min" p="x-3 y-2.5" border="1px rounded-30px">
    <button on:click={inc}>
         <img src="/images/IncreaseIcon.svg" alt="">
    </button>

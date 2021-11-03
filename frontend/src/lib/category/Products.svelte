@@ -16,7 +16,8 @@
 
     <div class="flex flex-wrap justify-center mt-7.5 gap-13">
         {#each _products as product}
-            <Item 
+            <Item
+                href="/products/{product.id}"
                 src="{HOST}{product.cover.url}" 
                 category={category.short_title} 
                 title={product.title} 

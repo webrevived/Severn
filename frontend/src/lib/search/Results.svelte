@@ -10,7 +10,8 @@
 {#if items?.length > 0}
     <section class="x-container py-26 gap-13.5" flex="~ wrap" justify="center md:start">
         {#each _items as item}
-            <ItemCard 
+            <ItemCard
+                href = "/products/{item.id}"
                 {...item}
             />
         {/each}
