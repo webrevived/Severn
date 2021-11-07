@@ -8,7 +8,7 @@
 </script>
 
 <input class="appearance-none" type="radio" id="{UID}-form" name={key} {value} {checked}>
-<label class="text-1 text-black-600 px-7.5 py-2.5 font-bold" border="r-1px black-600" for="{UID}-form">
+<label class="text-1 -lg:text-base text-black-600 px-7.5 py-2.5 font-bold" border="r-1px black-600" for="{UID}-form">
     <slot/>
 </label>
 

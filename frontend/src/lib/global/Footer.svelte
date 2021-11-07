@@ -18,21 +18,21 @@
         flex="~ wrap"
     >
         <FooterItem title = "Shop">
-            <a class="FooterText" href="/">Shop all</a>
-            <a class="FooterText" href="/">Premium Candles</a>
-            <a class="FooterText" href="/">Mens Self Care</a>
-            <a class="FooterText" href="/">Womens Self Care</a>
+            <a class="FooterText" href="/shop">Shop all</a>
+            <a class="FooterText" href="/category/Premium Candles">Premium Candles</a>
+            <a class="FooterText" href="/category/Mens Self Care">Mens Self Care</a>
+            <a class="FooterText" href="/category/Womens Self Care">Womens Self Care</a>
         </FooterItem>
 
         <FooterItem title = "About">
             <a class="FooterText" href="/">Our Story</a>
             <a class="FooterText" href="/">My Account</a>
-            <a class="FooterText" href="/">Contact Us</a>
+            <a class="FooterText" href="/contact">Contact Us</a>
             <a class="FooterText" href="/">Register Now</a>
         </FooterItem>
 
         <FooterItem title = "Customer Care">
-            <a class="FooterText" href="/">Contact Us</a>
+            <a class="FooterText" href="/contact">Contact Us</a>
             <a class="FooterText" href="/faq">FAQS</a>
             <a class="FooterText" href="/return">Return & Exchanges</a>
             <a class="FooterText" href="/">Customer Support</a>

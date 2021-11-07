@@ -15,7 +15,7 @@
 </script>
 
 <fieldset 
-    class="w-max flex overflow-hidden" 
+    class="max-w-max flex overflow-hidden" 
     border="1px rounded-30px black-600"
     bind:this={fieldSet}
     on:change={onChange}
