@@ -16,12 +16,10 @@
 
 {#if $show[key]}
     <div
-        in:fly={{ y: -200 }}
-        out:fade|local
-        class="min-h-63.5 bg-white-100 z-4" 
-        pos="absolute -top-6 -left-7 md:-left-25.5 -right-7 md:-right-25.5"
-        on:mouseover
-        on:focus
+        in:fly={{ x: 400 }}
+        out:fade
+        class="md:(w-full max-w-147) h-[calc(100vh-46px)] bg-white-100 z-4" 
+        pos="absolute -top-6 -left-7 md:left-auto -right-7 md:-right-25.5"
     >
         <slot />
     </div>

@@ -1,29 +1,35 @@
 <script lang="ts" context="module">
     import type { Load } from '@sveltejs/kit';
-    export const load: Load = ({ page }) => {
+    import { findAll, fuzzySearch as ProductSearch } from "$lib/api/products"
+
+    export const load: Load = async ({ page }) => {
         const { params } = page
+
+        const products = await findAll()
 
         return {
             props: {
-                ...params
+                ...params,
+                products
             }
         }
     }
 </script>
 
 <script lang="ts">
-    import { fuzzySearch as ProductSearch } from "$lib/api/products";
     import NavBar from '$lib/global/Navigation/Bar.svelte'
     import Input from '$lib/search/Input.svelte'
     import Results from "$lib/search/Results.svelte";
+    import type { ProductsApi } from "$lib/api/products";
     
     export let term: string;
+    export let products: ProductsApi[]
     $: SearchResults = ProductSearch(term)
 </script>
 
 <main>
     <section class="x-container pt-6">
-        <NavBar dark/>
+        <NavBar dark {products}/>
     </section>
     
     <Input {term} />

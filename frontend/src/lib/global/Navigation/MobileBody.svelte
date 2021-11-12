@@ -1,6 +1,5 @@
 <script lang="ts">
     import { fade } from 'svelte/transition'
-    import { browser } from '$app/env'
     import { newsTags } from '$lib/stores'
     import NewsHeader from '$lib/global/NewsHeader.svelte';
     import Input from '$lib/global/Form/Input.svelte';
@@ -12,14 +11,6 @@
     const onKeyDown = (e: KeyboardEvent) => {        
         if ($navToggles.mobile && e.key != "Escape") return
         $navToggles.mobile = false
-    }
-
-    $: if (browser && $navToggles.mobile) {
-        const body: HTMLBodyElement = document.querySelector('body')
-        body.style.overflowY = "hidden"
-    } else if (browser && !$navToggles.mobile) {
-        const body: HTMLBodyElement = document.querySelector('body')
-        body.style.overflowY = "scroll"
     }
 </script>
 

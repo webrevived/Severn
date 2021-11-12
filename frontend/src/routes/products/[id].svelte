@@ -28,7 +28,7 @@
 </script>
 
 <header class="x-container pt-6">
-    <NavBar dark />
+    <NavBar products={all} dark />
 </header>
 
 <main>

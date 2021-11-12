@@ -1,4 +1,20 @@
-<script>
+<script lang="ts" context="module">
+    import type { Load } from '@sveltejs/kit';
+    import { findAll } from "$lib/api/products"
+    import type { ProductsApi } from "$lib/api/products"
+
+    export const load: Load = async () => {
+        const products = await findAll()
+
+        return {
+            props: {
+                products
+            }
+        }
+    }
+</script>
+
+<script lang="ts">
     import Heading from '$lib/home/Heading.svelte'
     import DeliverSmile from '$lib/home/DeliverSmile.svelte'
     import Explore from '$lib/home/Explore.svelte'
@@ -7,6 +23,7 @@
     import BestSeller from '$lib/home/BestSeller.svelte'
     import Gallary from '$lib/global/Gallary.svelte'
 
+    export let products: ProductsApi[]
     const quotes = [
         { 
             rating: 5,
@@ -26,7 +43,7 @@
     ]
 </script>
 
-<Heading src="/images/Home_Header.png" />
+<Heading src="/images/Home_Header.png" {products} />
 
 <main>
     <DeliverSmile />
