@@ -58,7 +58,7 @@
                 on:mouseenter={onMouseOver}
                 on:focus
             >Shop</a>
-            <a class="heading-1 text-lg whitespace-nowrap" href="/">My Account</a>
+            <a class="heading-1 text-lg whitespace-nowrap" href="/account">My Account</a>
         </div>
     
         <div
