@@ -8,9 +8,10 @@
 	<div class="flex flex-col justify-between">
 		<img src="/icons/CC_Icon.svg" alt="Credit Card Icon" class="max-w-60px" />
 		<!-- Card Number -->
-		<span class="text-xl"> *** **** **** {cardData.last} </span>
-		<span
-			>{Object.values(cardData.name).join(' ')} <span class="ml-7">{cardData.exp}</span>
+		<span class="text-1 text-brown-1200 text-2xl"> *** **** **** {cardData.last} </span>
+		<span class="text-1 text-xl text-brown-1200">
+			{Object.values(cardData.name).join(' ')} 
+			<span class="ml-7">{cardData.exp}</span>
 		</span>
 	</div>
 
@@ -23,6 +24,7 @@
 			<span class="text-brown-600">Make Primary</span>
 			<span>Remove</span>
 		{/if}
+		
 		<img src="/icons/Mastercard_icon.svg" alt="Credit Card Icon" class="max-w-60px mt-auto self-end" />
 	</div>
 </div>

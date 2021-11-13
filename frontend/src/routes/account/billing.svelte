@@ -1,8 +1,5 @@
 <script lang="ts">
-	import About from '$lib/about/About.svelte';
-	import Accordian from '$lib/global/Accordian.svelte';
-	import HeaderSection from '../HeaderSection.svelte';
-	import CreditCard from './CreditCard.svelte';
+	import CreditCard from '$lib/billing/CreditCard.svelte';
 
 	/* Secuirty is intersting here */
 	/* TODO: Add Primary & Remove Controls */
@@ -50,21 +47,23 @@
 	const removeCard = () => {};
 </script>
 
-<HeaderSection title="Payment Methods" desc="Add or Remove payment methods for quick checkout" />
 
-<!-- Button Section -->
-<div class="card-grid">
-	{#each mockCardData as card}
-		<CreditCard cardData={card} />
-	{/each}
-</div>
+<section class="x-container">
+	<h1 class="heading-2 font-medium text-black-600">Payment Methods</h1>
+	<p class="text-1 text-brown-1200">
+		Add or Remove payment methods for quick checkout
+	</p>
+
+	<div class="card-grid gap-1.5rem" grid="~ flow-row" m="t-17.5 b-25">
+		{#each mockCardData as card}
+			<CreditCard cardData={card} />
+		{/each}
+	</div>
+</section>
 
 <style>
 	.card-grid {
-		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 1.5rem;
 		grid-auto-rows: 1fr;
-		grid-auto-flow: row;
 	}
 </style>

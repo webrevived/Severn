@@ -42,10 +42,10 @@
 				<Input --size="12px" bind:value={temp.state} />
 			</div>
 
-			<span on:click={saveData} class="text-brown-600 text-lg mt-auto">Save</span>
+			<button on:click={saveData} class="w-max text-brown-600 text-lg mt-auto">Save</button>
 		</div>
 	{:else}
-		<div class="flex flex-col">
+		<div class="flex flex-col text-1 text-brown-1200 gap-3">
 			{#if data.company}
 				<span>{data.company}</span>
 			{/if}
@@ -56,12 +56,12 @@
 		<div class="flex flex-col text-right">
 			{#if data.primary}
 				<span>
-					<img class="inline mr-1" src="/icons/Checkmark.svg" alt="Checkmark Icon" /> Primary</span
-				>
+					<img class="inline mr-1" src="/icons/Checkmark.svg" alt="Checkmark Icon" />Primary
+				</span>
 			{:else}
-				<span class="text-brown-600" on:click={() => disptach('markPrimary', data.id)}>Make Primary</span>
+				<button class="text-brown-600" on:click={() => disptach('markPrimary', data.id)}>Make Primary</button>
 			{/if}
-			<span class="text-brown-600" on:click={() => (editMode = true)}>Edit</span>
+			<button class="w-max text-brown-600 self-end" on:click={() => (editMode = true)}>Edit</button>
 		</div>
 	{/if}
 </div>
