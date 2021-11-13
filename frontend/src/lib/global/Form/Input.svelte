@@ -44,6 +44,6 @@
     }
 
     .text-sizing-\$size {
-        font-size: var(--size, 21px);
+        font-size: var(--size, 16px);
     }
 </style>
