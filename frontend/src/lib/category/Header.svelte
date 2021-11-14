@@ -1,13 +1,16 @@
 <script lang="ts">
     import type { CategoriesApi } from "$lib/api/categorys";
+    import type { ProductsApi } from "$lib/api/products";
     import { HOST } from '$lib/api/index'
     import NavBar from '$lib/global/Navigation/Bar.svelte'
+    
     export let category: CategoriesApi
+    export let products: ProductsApi[]
 </script>
 
 <header class="w-full relative bg-white-300" flex="~ col-reverse md:row" justify="between">
     <div class="z-1 x-container py-6 w-full absolute top-0 left-0">    
-        <NavBar dark />
+        <NavBar dark {products} />
     </div>
     
     <div class="mx-7 md:mx-25.5 py-20 md:py-55 flex flex-col gap-5">

@@ -1,12 +1,30 @@
-<script>
+<script lang="ts" context="module">
+    import type { Load } from '@sveltejs/kit';
+    import { findAll } from "$lib/api/products"
+    import type { ProductsApi } from "$lib/api/products"
+
+    export const load: Load = async () => {
+        const products = await findAll()
+
+        return {
+            props: {
+                products
+            }
+        }
+    }
+</script>
+
+<script lang="ts">
 	import Button from '$lib/global/Button.svelte';
 	import Input from '$lib/global/Form/Input.svelte';
 	import Header from '$lib/global/HeaderHR.svelte';
 	import Bar from '$lib/global/Navigation/Bar.svelte';
+
+	export let products: ProductsApi[]
 </script>
 
 <header class="x-container pt-6">
-	<Bar dark />
+	<Bar {products} dark />
 </header>
 
 <main>

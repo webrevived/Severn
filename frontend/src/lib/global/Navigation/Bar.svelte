@@ -3,12 +3,23 @@
     import CartIcon from "$lib/global/Navigation/CartIcon.svelte";
     import Search from "$lib/global/Navigation/Search.svelte";
     import Shop from "$lib/global/Navigation/Shop.svelte"
+    import Cart from "$lib/global/Navigation/Cart.svelte"
     import HamburgerIcon from "./HamburgerIcon.svelte";
     import MobileBody from "./MobileBody.svelte";
     import { navToggles } from '$lib/stores'
+    import { browser } from "$app/env";
+    import type { ProductsApi } from "$lib/api/products";
     
     export let dark = false
     const onMouseOver = () => $navToggles.shop = true
+    export let products: ProductsApi[]
+
+    $: if ( browser && ($navToggles.mobile || $navToggles.cart) ) {
+        window.scrollTo({ top: 0 })
+        document.body.style.overflowY = "hidden"
+    } else if ( browser ) {
+        document.body.style.overflowY = "scroll"
+    }
 </script>
 
 <div class="relative">
@@ -58,7 +69,7 @@
             <button class="hidden md:block focus:outline-none" on:click={ $navToggles.shop ? null : () => { $navToggles.search = true }}>
                 <SearchIcon />
             </button>
-            <button class="focus:outline-none">
+            <button class="focus:outline-none"  on:click={ $navToggles.shop ? null : () => { $navToggles.cart = true }}>
                 <CartIcon />
             </button>
         </div>
@@ -66,6 +77,7 @@
     
     <Search />
     <Shop />
+    <Cart {products} />
 </div>
 
 <!-- Mobile body doesn't need to be relative to the nav bar for now? -->

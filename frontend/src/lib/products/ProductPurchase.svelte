@@ -6,6 +6,7 @@
     import GoBack from '$lib/products/BackButton.svelte'
     import ProductsIcon from "$lib/products/ProductsIcons.svelte"
     import { HOST } from '$lib/api/index'
+    import { cartItems } from "$lib/stores"
     import type { ProductsApi } from '$lib/api/products'
     export let product: ProductsApi
 
@@ -18,6 +19,13 @@
     let colors: string
 
     $: sets = parseInt( _sets ?? "1" )
+
+    const addToCart = () => {
+        cartItems.update( cart => [
+            ...cart, 
+            { uid: Math.floor(Math.random()*16777215).toString(16), id: product.id, quantity } 
+        ] )
+    }
 </script>
 
 <section class="x-container pt-10 lg:(px-40 pt-25)">
@@ -76,7 +84,7 @@
                     <QuantityInput bind:value={quantity} />
                 </div>
                 <div class="w-full grid">
-                    <Button>Continue to Checkout</Button>
+                    <Button on:click={ addToCart }>Add to Cart</Button>
                 </div>
             </div>
 
