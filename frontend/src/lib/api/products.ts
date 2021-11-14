@@ -25,22 +25,40 @@ export interface ProductItem {
     price: number;
 }
 
+interface Cache {
+    dump: ProductsApi[]
+    lastUpdated: number
+} 
+
+const productsCache: Cache = {
+    dump: null,
+    lastUpdated: null
+}
+
+const checkCache = async () => {
+    const cacheDuration = Date.now() - (productsCache.lastUpdated ?? 0)
+    if (cacheDuration >= 3600000) {
+        productsCache.dump = await fetch(`${HOST}/products`)       
+            .then( res => res.json() )
+            .catch( e => {
+                console.error(e);
+                return null
+            } )
+
+        productsCache.lastUpdated = Date.now()
+    }
+}
+
 export const findOneByID: (number) => Promise<ProductsApi> = async (id: number) => {
-    return await fetch(`${HOST}/products/${id}`)
-        .then( res => res.json() )
-        .catch( e => {
-            console.error(e);
-            return null
-        } )
+    await checkCache()
+    const product = productsCache.dump.find( item => item.id === id )
+
+    return product
 }
 
 export const findAll: () => Promise<ProductsApi[]> = async () => {
-    return await fetch(`${HOST}/products`)       
-        .then( res => res.json() )
-        .catch( e => {
-            console.error(e);
-            return null
-        } )
+    await checkCache()    
+    return productsCache.dump
 }
 
 export const fuzzySearch: (string) => Promise<ProductsApi[]> = async (search: string) => {
@@ -54,4 +72,4 @@ export const fuzzySearch: (string) => Promise<ProductsApi[]> = async (search: st
    return fuse
             .search(search)
             .map( result => result.item )
-} 
+}

@@ -1,25 +1,7 @@
-<script lang="ts" context="module">
-    import type { Load } from '@sveltejs/kit';
-    import { findAll } from "$lib/api/products"
-    import type { ProductsApi } from "$lib/api/products"
-
-    export const load: Load = async () => {
-        const products = await findAll()
-
-        return {
-            props: {
-                products
-            }
-        }
-    }
-</script>
-
 <script lang="ts">
     import NavBar from '$lib/global/Navigation/Bar.svelte'
     import Content from '$lib/terms&privacy/Content.svelte';
     import Header from "$lib/global/HeaderHR.svelte";
-
-    export let products: ProductsApi[]
     const contents = [
         {
             title: 'Content Usage',
@@ -38,7 +20,7 @@
 
 <main class="pb-7.5">
     <section class="x-container pt-6">
-        <NavBar dark {products} />
+        <NavBar dark />
     </section>
 
     <Header title = "Privacy Policy">

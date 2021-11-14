@@ -9,10 +9,11 @@
     import { navToggles } from '$lib/stores'
     import { browser } from "$app/env";
     import type { ProductsApi } from "$lib/api/products";
+    import { session } from "$app/stores";
     
     export let dark = false
     const onMouseOver = () => $navToggles.shop = true
-    export let products: ProductsApi[]
+    let products: ProductsApi[] = $session.products
 
     $: if ( browser && ($navToggles.mobile || $navToggles.cart) ) {
         window.scrollTo({ top: 0 })

@@ -1,11 +1,9 @@
 <script lang="ts">
-    import type { ProductsApi } from '$lib/api/products';
     import Button from '$lib/global/Button.svelte'
     import NavBar from '$lib/global/Navigation/Bar.svelte';
     import Feedback from '$lib/home/Feedback.svelte';
 
     export let src: string;
-    export let products: ProductsApi[]
 </script>
 
 <header 
@@ -15,7 +13,7 @@
     style="--src: url('{src}')"
 >
 
-    <NavBar {products} />
+    <NavBar  />
 
     <div 
         class="max-w-129.5 h-full justify-center" 

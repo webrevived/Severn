@@ -27,30 +27,40 @@ export interface CategoryProps {
     items: ProductItem[]
 }
 
-export const findOneByID: (number) => Promise<CategoriesApi> = async (id: number) => {
-    return await fetch(`${HOST}/categories/${id}`)
-        .then( res => res.json() )
-        .catch( e => {
-            console.error(e);
-            return null
-        } )
+interface Cache {
+    dump: CategoriesApi[];
+    lastUpdated: number;
 }
 
+const categoryCache: Cache = {
+    dump: null,
+    lastUpdated: null
+}
+
+const checkCache = async () => {
+    const duration = Date.now() - (categoryCache.lastUpdated ?? 0)
+    if (duration >= 360000) {
+        categoryCache.dump = await fetch(`${HOST}/categories`)       
+            .then( res => res.json() )
+            .catch( e => {
+                console.error(e);
+                return null
+            } )
+            
+        categoryCache.lastUpdated = Date.now()
+    }
+}
+
+export const findOneByID: (number) => Promise<CategoriesApi> = async (id: number) => {
+    await checkCache()
+    return categoryCache.dump.find( item => item.id === id )
+}
 export const findOneByTitle: (string) => Promise<CategoriesApi> = async (title: string) => {
-    return await fetch(`${HOST}/categories?short_title=${title}`)
-        .then( res => res.json() )
-        .then( (result: CategoriesApi[]) => result[0] )
-        .catch( e => {
-            console.error(e);
-            return null
-        } )
+    await checkCache()
+    return categoryCache.dump.find( item => item.short_title === title )
 }
 
 export const findAll: () => Promise<CategoriesApi[]> = async () => {
-    return await fetch(`${HOST}/categories`)       
-        .then( res => res.json() )
-        .catch( e => {
-            console.error(e);
-            return null
-        } )
+    await checkCache()
+    return categoryCache.dump
 }

@@ -1,16 +1,10 @@
 <script lang="ts" context="module">
     import type { Load } from '@sveltejs/kit';
-    import { findAll, fuzzySearch as ProductSearch } from "$lib/api/products"
-
-    export const load: Load = async ({ page }) => {
-        const { params } = page
-
-        const products = await findAll()
-
+    export const load: Load = async ( { page, fetch } ) => {
         return {
             props: {
-                ...params,
-                products
+                term: page.params.term,
+                results: fetch( `/api/search/${page.params.term}` ).then( res => res.json() )
             }
         }
     }
@@ -20,23 +14,23 @@
     import NavBar from '$lib/global/Navigation/Bar.svelte'
     import Input from '$lib/search/Input.svelte'
     import Results from "$lib/search/Results.svelte";
-    import type { ProductsApi } from "$lib/api/products";
+    import type { ProductsApi } from "$lib/api/products"
     
     export let term: string;
-    export let products: ProductsApi[]
-    $: SearchResults = ProductSearch(term)
+    export let results: Promise<ProductsApi[]>
 </script>
 
 <main>
     <section class="x-container pt-6">
-        <NavBar dark {products}/>
+        <NavBar dark />
     </section>
-    
-    <Input {term} />
 
-    {#await SearchResults}
-        <Results items={null} />
+    <Input {term} />
+    
+    {#await results}
+        <h1 class="heading-1 text-black-600">Loading...</h1>
     {:then items}
         <Results {items}/>
     {/await}
+
 </main>
