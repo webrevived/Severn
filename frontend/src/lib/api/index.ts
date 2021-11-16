@@ -42,4 +42,9 @@ export interface BaseApiResponse {
     updated_at: string,
 }
 
+// This is a work around a SvelteKit Endpoints can't 
+// use interfaces for EndpointOutput Typing, All this does
+// is convert a Interface to a type
+export type Typify<T> = { [K in keyof T]: Typify<T[K]> };
+
 export const HOST = "http://localhost:8081"
