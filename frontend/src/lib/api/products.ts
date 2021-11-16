@@ -1,7 +1,8 @@
+import Fuse from 'fuse.js'
+import { checkCache } from "$lib/api/index"
 import type { BaseCategory } from '$lib/api/categorys'
 import type { BaseApiResponse, Media } from '$lib/api/index'
-import { HOST } from '$lib/api/index'
-import Fuse from 'fuse.js'
+import type { Cache } from "$lib/api/index"
 
 export interface BaseProducts extends BaseApiResponse {
     title: string,
@@ -25,39 +26,21 @@ export interface ProductItem {
     price: number;
 }
 
-interface Cache {
-    dump: ProductsApi[]
-    lastUpdated: number
-} 
 
-const productsCache: Cache = {
+const productsCache: Cache<ProductsApi> = {
     dump: null,
     lastUpdated: null
 }
 
-const checkCache = async () => {
-    const cacheDuration = Date.now() - (productsCache.lastUpdated ?? 0)
-    if (cacheDuration >= 3600000) {
-        productsCache.dump = await fetch(`${HOST}/products`)       
-            .then( res => res.json() )
-            .catch( e => {
-                console.error(e);
-                return null
-            } )
-
-        productsCache.lastUpdated = Date.now()
-    }
-}
-
 export const findOneByID: (number) => Promise<ProductsApi> = async (id: number) => {
-    await checkCache()
+    await checkCache(productsCache, "/products")
     const product = productsCache.dump.find( item => item.id === id )
 
     return product
 }
 
 export const findAll: () => Promise<ProductsApi[]> = async () => {
-    await checkCache()    
+    await checkCache(productsCache, "/products")  
     return productsCache.dump
 }
 

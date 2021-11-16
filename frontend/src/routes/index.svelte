@@ -1,3 +1,15 @@
+<script lang="ts" context="module">
+    import type { Review } from '$lib/api/severnReviews';
+    import type { Load } from '@sveltejs/kit';
+    export const load: Load = async ({ fetch }) => {
+        const quotes: Review[] = await fetch("/api/quotes").then( res => res.json() )
+
+        return {
+            props: { quotes }
+        }
+    }
+</script>
+
 <script lang="ts">
     import Heading from '$lib/home/Heading.svelte'
     import DeliverSmile from '$lib/home/DeliverSmile.svelte'
@@ -6,24 +18,8 @@
     import About from '$lib/home/About.svelte'
     import BestSeller from '$lib/home/BestSeller.svelte'
     import Gallary from '$lib/global/Gallary.svelte'
-  
-    const quotes = [
-        { 
-            rating: 5,
-            quote: "I do not think you will find anything better. I have repurchased this product many times now, it has become a staple in my routine. Definitely recommend and will order again.",
-            auther: "Amanda"
-        },
-        { 
-            rating: 2,
-            quote: "I do not think you will find anything better. I have repurchased this product many times now, it has become a staple in my routine. Definitely recommend and will order again.",
-            auther: "Amanda"
-        },
-        { 
-            rating: 4,
-            quote: "I do not think you will find anything better. I have repurchased this product many times now, it has become a staple in my routine. Definitely recommend and will order again.",
-            auther: "Amanda"
-        },
-    ]
+
+    export let quotes: Review[];
 </script>
 
 <Heading src="/images/Home_Header.png" />

@@ -47,4 +47,23 @@ export interface BaseApiResponse {
 // is convert a Interface to a type
 export type Typify<T> = { [K in keyof T]: Typify<T[K]> };
 
+export interface Cache<T> {
+    dump: T[]
+    lastUpdated: number
+}
+
+export const checkCache = async <T>(cache: Cache<T>, endpoint: string, interval = 3600000) => {
+    const cacheDuration = Date.now() - (cache.lastUpdated ?? 0)
+    if (cacheDuration >= interval) {
+        cache.dump = await fetch(`${HOST}${endpoint}`)       
+            .then( res => res.json() )
+            .catch( e => {
+                console.error(e);
+                return null
+            } )
+
+        cache.lastUpdated = Date.now()
+    }
+}
+
 export const HOST = "http://localhost:8081"
