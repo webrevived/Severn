@@ -1,5 +1,6 @@
 import type { ProductsApi, ProductItem } from '$lib/api/products'
 import type { CategoriesApi, CategoryProps } from '$lib/api/categorys'
+import { HOST } from '$lib/api/index'
 
 type CategoryToProps = (CategoriesApi) => CategoryProps
 export const TransformCategoryToProps: CategoryToProps = (cate: CategoriesApi) => ({
@@ -12,7 +13,7 @@ export const TransformCategoryToProps: CategoryToProps = (cate: CategoriesApi) =
 type ProductsToItem = (ProductsApi, CategoriesApi) => ProductItem
 export const TransformProductsToItem: ProductsToItem = (prod: ProductsApi, cate: CategoriesApi) => ({
     id: prod.id,
-    src: `http://localhost:8081${prod.cover.url}`,
+    src: `${HOST}${prod.cover.url}`,
     category: cate.short_title,
     title: prod.title,
     price: prod.price

@@ -26,8 +26,8 @@
         >
             <h1 class="text-1 text-white-100">NATURE-INSPIRED SKINCARE FOR MEN</h1>
             <h2 class="heading-1 text-white-100 mb-2.5">Self Love is an Action, And It’s Time to Act</h2>
-            <div>
-                <Button>Shop Now</Button>
+            <div class="w-full max-w-max">
+                <Button href="/shop">Shop Now</Button>
             </div>
         </div>
     </div>

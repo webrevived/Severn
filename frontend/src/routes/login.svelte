@@ -28,7 +28,7 @@
 				<Button>Login Now</Button>
 			</div>
 		
-			<a class="text-base font-semibold border-b-1 mx-auto block max-w-max" href="/signup">Create an account</a>
+			<a class="text-base font-semibold border-b-1 mx-auto block max-w-max" href="/register">Create an account</a>
 		</div>
 	</section>
 </main>

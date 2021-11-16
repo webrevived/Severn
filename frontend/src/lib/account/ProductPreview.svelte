@@ -1,4 +1,10 @@
 <script lang="ts">
+	import { HOST } from "$lib/api/index"
+	import { session } from "$app/stores"
+
+	// tempory product selection for image url
+	const product = $session.products[0]	
+
 	/* TODO: Parse data */
 
 	type Status = 'processing' | 'shipped' | 'delivered' | 'refunded';
@@ -12,7 +18,7 @@
 <!-- TODO: Add order again button for dilevred products -->
 
 <div class="flex">
-	<img src="/images/Candle.png" alt="Candle product" class="max-w-45" />
+	<img src="{HOST}{product.cover.url}" alt="Candle product" class="max-w-45" />
 
 	<div class="flex flex-col w-full py-5 px-8">
 		<span class="text-1 text-black-600 mb-2.5">{date}</span>

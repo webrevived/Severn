@@ -25,10 +25,10 @@
         </FooterItem>
 
         <FooterItem title = "About">
-            <a class="FooterText" href="/">Our Story</a>
-            <a class="FooterText" href="/">My Account</a>
+            <a class="FooterText" href="/about">Our Story</a>
+            <a class="FooterText" href="/account">My Account</a>
             <a class="FooterText" href="/contact">Contact Us</a>
-            <a class="FooterText" href="/">Register Now</a>
+            <a class="FooterText" href="/register">Register Now</a>
         </FooterItem>
 
         <FooterItem title = "Customer Care">

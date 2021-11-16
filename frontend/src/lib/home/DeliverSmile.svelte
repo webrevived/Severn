@@ -35,7 +35,7 @@
     </h2>
 
     <div class="z-2">
-        <Button outline>
+        <Button href="/shop" outline>
             Shop Now
         </Button>
     </div>

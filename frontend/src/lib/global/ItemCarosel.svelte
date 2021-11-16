@@ -12,6 +12,7 @@
     export let category: string
     export let description: string
     export let button: string
+    export let href: string = `/category/${button}`
     export let fw = "normal"
 
     export let items: ProductItem[]
@@ -60,7 +61,7 @@
         <p class="text-1 text-brown-1200 leading-[150%] max-w-66 mb-18">{description}</p>
         
         <div class="md:grid mb-18">
-            <Button href="/category/{button}">{button}</Button>
+            <Button {href}>{button}</Button>
         </div>
 
         <div class="hidden md:flex gap-13.5 self-center">
@@ -76,7 +77,7 @@
                 out:send|local={{key: item.title}} 
                 animate:flip = {{ duration: 1000 }}
             >
-                <ItemCard {...item} />
+                <ItemCard {...item} href="/products/{item.id}" />
             </div>
         {/each}
     </div>
