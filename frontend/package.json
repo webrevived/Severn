@@ -24,6 +24,7 @@
   },
   "type": "module",
   "dependencies": {
+    "cookie": "^0.4.1",
     "fuse.js": "^6.4.6",
     "svelte-local-storage-store": "^0.2.6"
   }

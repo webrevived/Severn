@@ -42,7 +42,7 @@
 		>Payment Methods</a>
 		<a 
 			class="pb-0.5"
-			href="/signout"
+			href="/account/signout"
 		>Sign out</a>
 	</nav>
 

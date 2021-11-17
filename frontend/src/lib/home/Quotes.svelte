@@ -1,7 +1,6 @@
 <script lang="ts">
     import Rating from '$lib/home/Rating.svelte';
     import QuotesIndex from './QuotesIndex.svelte';
-    import { onMount } from 'svelte';
     import type { Review } from '$lib/api/severnReviews'
     
     const getIndex = (shift: number, arr: Review[]) => {

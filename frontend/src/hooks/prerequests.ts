@@ -1,7 +1,6 @@
-import type { GetSession, Handle } from "@sveltejs/kit";
+import type { Handle } from "@sveltejs/kit";
 
-export const handle: Handle = async ({ request, resolve }) => {
-
+export const prerequests: Handle = async ({ request, resolve }) => {
     if ( !request.path.includes("/api") ) {
         const toJson = (res: Response) => res.json()
         const [products, categorys] = await Promise.all([
@@ -13,17 +12,5 @@ export const handle: Handle = async ({ request, resolve }) => {
         request.locals.categorys = categorys
     }
 
-    const response = await resolve(request)
-
-    return {
-        ...response
-    }
-
-}
-
-export const getSession: GetSession = (request) => {    
-    return {
-        products: request.locals.products,
-        categorys: request.locals.categorys,
-    }
+    return await resolve(request)
 }
