@@ -3,6 +3,8 @@
 	import Input from '$lib/global/Form/Input.svelte';
 	import Header from '$lib/global/HeaderHR.svelte';
 	import Bar from '$lib/global/Navigation/Bar.svelte';
+	import { session } from "$app/stores"
+	import { goto } from '$app/navigation';
 
 	const inputs = {
 		email: "",
@@ -15,6 +17,9 @@
 			headers: { "Content-Type": "application/json", },
 			body: JSON.stringify( inputs ),
 		}).then( res => res.json() )
+
+		$session.user = login
+		goto('/account/')
 	}
 </script>
 

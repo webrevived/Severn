@@ -1,3 +1,24 @@
+<script lang="ts" context="module">
+	import type { Load } from "@sveltejs/kit";
+
+	export const load: Load = ({ session, page }) => {
+		console.log(page.path);
+		if ( session.user && (page.path === "/account" || page.path === "/account/") ) {
+			return {
+				status: 300,
+				redirect: '/account/orders'
+			}
+		} else if ( session.user ) {
+			return { status: 200 }
+		} else {
+			return {
+				status: 300,
+				redirect: '/login'
+			}
+		}
+	}
+</script>
+
 <script lang="ts">
 	import Header from '$lib/global/HeaderHR.svelte';
 	import Bar from '$lib/global/Navigation/Bar.svelte';

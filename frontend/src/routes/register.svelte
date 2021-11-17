@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { session } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import Button from '$lib/global/Button.svelte';
 	import Checkbox from '$lib/global/Form/Checkbox.svelte';
 	import Input from '$lib/global/Form/Input.svelte';
@@ -21,7 +23,8 @@
 			body: JSON.stringify( inputs ),
 		}).then( res => res.json() )
 
-		console.log(result);
+		$session.user = result
+		goto("/account/")
 	}
 </script>
 
