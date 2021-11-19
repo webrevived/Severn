@@ -21,6 +21,11 @@ export const post: RequestHandler<Record<string, any>, Inputs, any> = async (req
         body: JSON.stringify( body )
     }).then( res => res.json() )
 
+    if ( login.error ) return {
+        status: login.statusCode,
+        body: login
+    }
+    
     return {
         status: 200,
         headers: {

@@ -9,7 +9,7 @@ export const get: RequestHandler<Record<string, any>, unknown, any> = () => {
                 sameSite: "lax",
                 maxAge: 0,
                 path: "/",
-            })
+            }),
         }
     }
 }

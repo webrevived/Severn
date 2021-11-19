@@ -2,7 +2,6 @@
 	import type { Load } from "@sveltejs/kit";
 
 	export const load: Load = ({ session, page }) => {
-		console.log(page.path);
 		if ( session.user && (page.path === "/account" || page.path === "/account/") ) {
 			return {
 				status: 300,

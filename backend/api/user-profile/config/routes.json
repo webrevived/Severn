@@ -18,6 +18,14 @@
     },
     {
       "method": "GET",
+      "path": "/user-profiles/me",
+      "handler": "user-profile.me",
+      "config": {
+        "policies": ["plugins::users-permissions.isAuthenticated"]
+      }
+    },
+    {
+      "method": "GET",
       "path": "/user-profiles/:id",
       "handler": "user-profile.findOne",
       "config": {

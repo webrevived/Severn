@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "11/17/2021 12:24:28 AM"
+    "x-generation-date": "11/17/2021 11:15:56 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -23,7 +23,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:1337",
+      "url": "http://localhost:8081",
       "description": "Development server"
     },
     {
@@ -2113,6 +2113,63 @@
             }
           }
         ]
+      }
+    },
+    "/user-profiles/me": {
+      "get": {
+        "deprecated": false,
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "User-profile"
+        ],
+        "parameters": []
       }
     },
     "/email/": {

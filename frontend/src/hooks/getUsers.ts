@@ -10,6 +10,8 @@ export const getUser: Handle = async ({ request, resolve }) => {
         .then( res => res.json() )
     
     if (!res.error) request.locals.user = res
+
+    console.log(res);
     
     return await resolve(request)
 }
