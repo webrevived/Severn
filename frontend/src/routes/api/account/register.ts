@@ -24,19 +24,20 @@ export const post: RequestHandler<Record<string, any>, Inputs, any> = async (req
         body: JSON.stringify( body )
     }).then( res => res.json() )
 
-    const user = register.user
-    
-    if (user) {
-        const profile = await fetch(`${HOST}/user-profiles/`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${register.jwt}`,
-            },
-            body: JSON.stringify({ first: req.body.first, last: req.body.last, user: user.id })
-        }).then( res => res.json() )
-
+    if ( register.error ) return {
+        status: register.statusCode,
+        body: register
     }
+    
+    const user = register.user
+    const profile = await fetch(`${HOST}/user-profiles/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${register.jwt}`,
+        },
+        body: JSON.stringify({ first: req.body.first, last: req.body.last, user: user.id })
+    }).then( res => res.json() )
 
     return {
         status: 200,
@@ -48,6 +49,6 @@ export const post: RequestHandler<Record<string, any>, Inputs, any> = async (req
                 path: "/",
             })
         },
-        body: { ok: "confirmed" }
+        body: { ok: "confirmed", user: { ...user, profile } }
     }
 }

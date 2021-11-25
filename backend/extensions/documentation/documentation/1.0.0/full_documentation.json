@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "11/17/2021 11:15:56 PM"
+    "x-generation-date": "11/22/2021 2:54:42 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -23,7 +23,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8081",
+      "url": "http://localhost:1337",
       "description": "Development server"
     },
     {
@@ -2113,63 +2113,6 @@
             }
           }
         ]
-      }
-    },
-    "/user-profiles/me": {
-      "get": {
-        "deprecated": false,
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "foo": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "User-profile"
-        ],
-        "parameters": []
       }
     },
     "/email/": {
@@ -4930,7 +4873,6 @@
           "user": {
             "required": [
               "id",
-              "username",
               "email"
             ],
             "properties": {
@@ -5069,7 +5011,6 @@
             "items": {
               "required": [
                 "id",
-                "username",
                 "email"
               ],
               "properties": {
@@ -5155,7 +5096,6 @@
       "UsersPermissionsUser": {
         "required": [
           "id",
-          "username",
           "email"
         ],
         "properties": {
@@ -5251,7 +5191,6 @@
       },
       "NewUsersPermissionsUser": {
         "required": [
-          "username",
           "email"
         ],
         "properties": {

@@ -18,6 +18,20 @@
 	$: isValidEmail = isEmail.test( inputs.email )
 	$: valid = ResponseMessage.length === 0 && isValidPassword === 3 && isValidEmail
 
+	$: if (inputs.email.length > 0 && !isValidEmail) {
+		ResponseMessage = "Invalid Email ie (JohnDoe@gmail.com)"
+	} else if ( inputs.password.length > 0 && isValidPassword != 3 ) {
+		if (isValidPassword === 0) {
+			ResponseMessage = "Password must not contain spaces"
+		} else if ( isValidPassword === 1 ) {
+			ResponseMessage = "Password must contain atleast one number"
+		} else if ( isValidPassword === 2 ) {
+			ResponseMessage = "Password must contain atleast one special character"
+		}
+	} else {
+		ResponseMessage = ""
+	}
+
 	const onSubmit = async () => {
 		// don't submit if form is not valid
 		if (!valid) return
@@ -54,23 +68,11 @@
 			<div class="mb-12.5 items-center justify-between" flex="~ col md:row">
 				<h2 class="heading-2 font-semibold">Login</h2>
 
-				{#if (inputs.email.length > 0 || inputs.password.length > 0) && !valid}	
-					<div>
-						<img src="" alt="">
+				{#if ResponseMessage.length > 0}	
+					<div class="flex space-x-2.5">
+						<img src="/icons/error-icon.svg" alt="">
 						<p class="heading-3 font-medium" text="lg brown-900">
-							{#if ResponseMessage.length > 0}
-								{ResponseMessage}
-							{:else if inputs.email.length > 0 && !isValidEmail}
-								Invalid Email Format, (Valid format - JohnDoe@email.com)
-							{:else if inputs.password.length > 0}
-								{#if isValidPassword === 0}
-									Password must not contain spaces
-								{:else if isValidPassword === 1}
-									Password must contain atleast one numerical character
-								{:else if isValidPassword === 2}
-									Password must contain atleast one special character
-								{/if}				
-							{/if}
+							{ResponseMessage}
 						</p>
 					</div>
 				{/if}

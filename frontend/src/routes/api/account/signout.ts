@@ -3,6 +3,7 @@ import type { RequestHandler } from "@sveltejs/kit";
 
 export const get: RequestHandler<Record<string, any>, unknown, any> = () => {
     return {
+        status: 200,
         headers: {
             "Set-Cookie": cookie.serialize("token", "deleted", {
                 httpOnly: true,
