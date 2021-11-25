@@ -1,13 +1,10 @@
 <script lang="ts">
-    import { cubicInOut } from 'svelte/easing';
-	import { crossfade } from 'svelte/transition';
-	import { flip } from 'svelte/animate';
-    import { onMount } from 'svelte';
-    import { CramItemCalc } from "$lib/utils/index"
     import Button from '$lib/global/Button.svelte'
     import ArrowButton from '$lib/global/ArrowButton.svelte'
     import ItemCard from '$lib/global/ItemCard.svelte'
     import type { ProductItem } from '$lib/api/products'
+    import { tweened } from "svelte/motion";
+    import { expoInOut } from "svelte/easing"
 
     export let category: string
     export let description: string
@@ -16,44 +13,31 @@
     export let fw = "normal"
 
     export let items: ProductItem[]
+    let shift = tweened(0, { duration: 250, easing: expoInOut })
+    $: transform = $shift * (270 + 20)
+
+    let OuterContainer: HTMLDivElement
+    let InnerContainer: HTMLDivElement
     
-    let SHOW = 1
-    let shift = 0
-
-    $: _items = Array.from( { length: SHOW > items.length ? items.length : SHOW }, (_, i) => items[i + shift] )
-
-    let ItemContainer: HTMLDivElement
-    const onResize = () => {
-        const totalItems = CramItemCalc(ItemContainer)
-        SHOW = totalItems < 1 ? 1 : totalItems
+    let isShifting = false
+    const inc = async () => {
+        if ( !isShifting && Math.ceil($shift) !== 0 ) {
+            isShifting = true
+            await shift.update( value => Math.round( value ) + 1 )
+            isShifting = false
+        }
     }
     
-    onMount( onResize )
-
-    const inc = () => shift += (shift + SHOW) < items.length ? 1 : 0
-    const dec = () => shift -= shift >= 1 ? 1 : 0
-
-	const [send, receive] = crossfade({
-		duration: d => Math.sqrt(d * 200),
-
-		fallback(node, params) {
-			const style = getComputedStyle(node);
-			const transform = style.transform === 'none' ? '' : style.transform;
-
-			return {
-                delay: params.delay,
-				duration: 150,
-				easing: cubicInOut,
-				css: (t, u) => `
-					transform: ${transform} translateY(${u * 50}%);
-					opacity: ${t}
-				`
-			};
-		}
-	});
+    const dec = async () => {
+        const outer = OuterContainer.getBoundingClientRect()
+        const inner = InnerContainer.getBoundingClientRect()
+        if( !isShifting && inner.right > outer.right ) {
+            isShifting = true
+            await shift.update( value => Math.round(value) - 1 )
+            isShifting = false
+        }
+    }
 </script>
-
-<svelte:window on:resize={ onResize } />
 
 <article class="w-full items-center md:items-start gap-x-25" flex="~ col md:row">
     <div class="flex flex-col w-full max-w-300px">
@@ -65,25 +49,27 @@
         </div>
 
         <div class="hidden md:flex gap-13.5 self-center">
-            <ArrowButton on:click={dec} flipped />
-            <ArrowButton on:click={inc} />
+            <ArrowButton on:click={inc} flipped />
+            <ArrowButton on:click={dec} />
         </div>
     </div>
 
-    <div class="flex flex-wrap gap-5 w-full justify-center md:justify-start" bind:this={ ItemContainer } >
-        {#each _items as item (item.id)}
-            <div 
-                in:receive|local={{key: item.title}} 
-                out:send|local={{key: item.title}} 
-                animate:flip = {{ duration: 1000 }}
-            >
-                <ItemCard {...item} href="/products/{item.id}" />
-            </div>
-        {/each}
+    <div class="w-270px md:w-full overflow-hidden" bind:this={ OuterContainer }>
+        <div 
+            class="w-max flex gap-5 flex-grow" 
+            style="transform: translateX({transform}px);" 
+            bind:this={ InnerContainer }
+        >
+            {#each items as item}
+                <div>
+                    <ItemCard {...item} href="/products/{item.id}" />
+                </div>
+            {/each}
+        </div>
     </div>
 
     <div class="flex md:hidden justify-center gap-13.5 w-full self-center mt-10">
-        <ArrowButton on:click={dec} flipped />
-        <ArrowButton on:click={inc} />
+        <ArrowButton on:click={inc} flipped />
+        <ArrowButton on:click={dec} />
     </div>
 </article>
