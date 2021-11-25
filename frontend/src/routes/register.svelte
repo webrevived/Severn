@@ -10,9 +10,9 @@
 	import Bar from '$lib/global/Navigation/Bar.svelte';
 	import { CheckPassword, isEmail } from "$lib/utils/validation"
 	import * as bcryptjs from "bcryptjs"
+	import Spinner from '$lib/global/Spinner.svelte';
 	const { hash } = bcryptjs
 	
-
 	const inputs = {
 		first: "",
 		last: "",
@@ -45,15 +45,18 @@
 		ResponseMessage = ""
 	}
 
+	let loading = false
 	const onSubmit = async () => {
 		if (!valid) return
 
 		const body = JSON.stringify( { ...inputs } )
+		loading = true
 		const result = await fetch("/api/account/register", {
 			method: "POST",
 			headers: { 'Content-Type': 'application/json' },
 			body,
 		}).then( res => res.json() )
+		loading = false
 
 		if (result.ok) {
 			$session.user = result
@@ -85,6 +88,10 @@
 						<p class="heading-3 font-medium" text="lg brown-900">
 							{ResponseMessage}
 						</p>
+					</div>
+				{:else if loading}
+					<div class="w-15 h-15">
+						<Spinner />
 					</div>
 				{/if}
 			</div>

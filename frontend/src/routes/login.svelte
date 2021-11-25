@@ -7,6 +7,7 @@
 	import { isEmail, CheckPassword } from "$lib/utils/validation"
 	import { session } from "$app/stores";
 	import { goto } from '$app/navigation';
+	import Spinner from '$lib/global/Spinner.svelte';
 
 	const inputs = {
 		email: "",
@@ -32,15 +33,18 @@
 		ResponseMessage = ""
 	}
 
+	let loading = false
 	const onSubmit = async () => {
 		// don't submit if form is not valid
 		if (!valid) return
 
+		loading = true
 		const login = await fetch("/api/account/login", {
 			method: "POST",
 			headers: { "Content-Type": "application/json", },
 			body: JSON.stringify( inputs ),
 		}).then( res => res.json() )
+		loading = false
 
 		if (login.error) {
 			if (login.statusCode === 400) {
@@ -74,6 +78,10 @@
 						<p class="heading-3 font-medium" text="lg brown-900">
 							{ResponseMessage}
 						</p>
+					</div>
+				{:else if loading}
+					<div class="w-15 h-15">
+						<Spinner />
 					</div>
 				{/if}
 			</div>
