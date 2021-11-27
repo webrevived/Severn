@@ -21,7 +21,7 @@
 	{:else}
 		<div class="flex flex-col gap-7 mt-10">
 			{#each activeOrders as _}
-				<div class="border-1 rounded-lg p-5">
+				<div class="border-1 rounded-lg sm:p-5">
 					<ProductPreview />
 				</div>
 			{/each}

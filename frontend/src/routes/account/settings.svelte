@@ -44,10 +44,10 @@
 	<h1 class="heading-2 font-medium text-black-600">Account Settings</h1>
 	<p class="text-1 text-brown-1200">Change your addresses or password (if necessary) before placing an order</p>
 
-	<div class="inputs flex flex-col gap-8 grid grid-cols-2 mt-17.5">
+	<div class="inputs gap-8 grid grid-cols-1 mt-17.5 sm:grid-cols-2">
 		<Input bind:value={mockUserData.email} placeholder="Email Address" />
 		<Input bind:value={mockUserData.phone} placeholder="Password" />
-	
+		
 		<Input value="" placeholder="Current Password" />
 		<Input value="" placeholder="New Password" />
 	</div>
@@ -58,7 +58,7 @@
 
 	<h2 class="text-xl font-semibold mt-15">Shipping Address</h2>
 	
-	<div class="flex gap-6 my-10">
+	<div class="flex flex-col gap-6 my-10 sm:flex-row">
 		{#each mockAddress as address (address.primary)}
 			<AddressCard data={address} on:markPrimary={markPrimary} />
 		{/each}
