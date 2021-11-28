@@ -3,13 +3,13 @@
 	export let cardData;
 </script>
 
-<div class="border-1 rounded-xl flex justify-between p-5 h-250px flex-grow">
+<div class="border-1 rounded-xl flex justify-between p-2 h-250px flex-grow sm:p-5">
 	<!-- Top Section Of Card -->
 	<div class="flex flex-col justify-between">
 		<img src="/icons/CC_Icon.svg" alt="Credit Card Icon" class="max-w-60px" />
 		<!-- Card Number -->
 		<span class="text-1 text-brown-1200 text-2xl"> *** **** **** {cardData.last} </span>
-		<span class="text-1 text-xl text-brown-1200">
+		<span class="text-1">
 			{Object.values(cardData.name).join(' ')} 
 			<span class="ml-7">{cardData.exp}</span>
 		</span>
