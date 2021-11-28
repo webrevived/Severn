@@ -1,24 +1,16 @@
 <script lang="ts">
-    import RadioContainer from '$lib/products/RadioContainer.svelte'
-    import RadioItem from '$lib/products/RadioItem.svelte'
     import Button from "$lib/global/Button.svelte"
     import QuantityInput from "$lib/products/QuantityInput.svelte"
     import GoBack from '$lib/products/BackButton.svelte'
     import ProductsIcon from "$lib/products/ProductsIcons.svelte"
+    import Dropdown from '$lib/products/Dropdown.svelte'
     import { HOST } from '$lib/api/index'
     import { cartItems } from "$lib/stores"
     import type { ProductsApi } from '$lib/api/products'
     export let product: ProductsApi
 
-    // discount value - (change this to some var from strapi at some point)
-    const discount = 50
-    $: freeShippingAmount = Math.floor(discount - product.price)
-
     let quantity = 1
-    let _sets: string
     let colors: string
-
-    $: sets = parseInt( _sets ?? "1" )
 
     const addToCart = () => {
         cartItems.update( cart => [
@@ -62,24 +54,12 @@
             </div>
         </div>
 
-        <form class="mt-6.25 buying-area" on:submit|preventDefault>
-            <p class="text-2 text-black-600 mb-2.5">No of Quantity</p>
-            <RadioContainer bind:value={_sets} let:key>
-                <RadioItem value="1" {key} checked>Set of 1</RadioItem>
-                <RadioItem value="2" {key}>Set of 2</RadioItem>
-                <RadioItem value="4" {key}>Set of 4</RadioItem>
-                <RadioItem value="8" {key}>Set of 8</RadioItem>
-            </RadioContainer>
+        <form class="mt-6.25 buying-area" on:submit|preventDefault>            
+            <p class="text-2 text-black-600 mb-2.5">Free Gift Pack Envelope Color</p>
+            <Dropdown bind:value={colors} list={{ "Pink": "pink", "Red": "red", "Black": "black" }} />
 
-            <p class="text-2 text-black-600 mt-8 mb-2.5">Free Gift Pack Envelope Color</p>
-            <RadioContainer bind:value={colors} let:key>
-                <RadioItem value={"none"}  {key} checked>None</RadioItem>
-                <RadioItem value={"pink"}  {key}>Pink</RadioItem>   
-                <RadioItem value={"red"}   {key}>Red</RadioItem>
-                <RadioItem value={"black"} {key}>Black</RadioItem>
-            </RadioContainer>
-
-            <div class="w-full flex items-center mt-12">
+            <p class="text-2 text-black-600 mt-12 mb-2.5">No of Quantity</p>
+            <div class="w-full flex flex-col md:(flex-row items-center) gap-y-5">
                 <div class="mr-5">
                     <QuantityInput bind:value={quantity} />
                 </div>
@@ -94,13 +74,6 @@
                     <img src="/images/Paypal-Logo.png" alt="PayPal Logo">
                 </Button>
             </div>
-
-            <!-- change calculation to total price in cart and not just product price -->
-            {#if freeShippingAmount > 0}
-                <div class="w-full mt-8 pb-4" border="b-1px black-600">
-                    <p class="heading-3 text-lg text-center">You are ${freeShippingAmount} away from free shipping</p>
-                </div>
-            {/if}
         </form>
 
     </div>

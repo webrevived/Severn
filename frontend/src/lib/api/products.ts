@@ -1,8 +1,7 @@
 import Fuse from 'fuse.js'
-import { checkCache } from "$lib/api/index"
 import type { BaseCategory } from '$lib/api/categorys'
 import type { BaseApiResponse, Media } from '$lib/api/index'
-import type { Cache } from "$lib/api/index"
+import { HOST } from "$lib/api"
 
 export interface BaseProducts extends BaseApiResponse {
     title: string,
@@ -12,8 +11,16 @@ export interface BaseProducts extends BaseApiResponse {
     gallery: Media[]
 }
 
+export interface ProductReviews extends BaseApiResponse {
+    user: { id: number, name: string };
+    product: number;
+    review: string;
+    rating: number;
+}
+
 export interface ProductsApi extends BaseProducts {
     category: BaseCategory,
+    prouct_reviews: ProductReviews[]
 }
 
 // This is what our components expect
@@ -26,22 +33,12 @@ export interface ProductItem {
     price: number;
 }
 
-
-const productsCache: Cache<ProductsApi> = {
-    dump: null,
-    lastUpdated: null
-}
-
 export const findOneByID: (number) => Promise<ProductsApi> = async (id: number) => {
-    await checkCache(productsCache, "/products")
-    const product = productsCache.dump.find( item => item.id === id )
-
-    return product
+    return fetch(`${HOST}/products/${id}`).then( res => res.json() )
 }
 
 export const findAll: () => Promise<ProductsApi[]> = async () => {
-    await checkCache(productsCache, "/products")  
-    return productsCache.dump
+    return fetch(`${HOST}/products`).then( res => res.json() )
 }
 
 export const fuzzySearch: (string) => Promise<ProductsApi[]> = async (search: string) => {

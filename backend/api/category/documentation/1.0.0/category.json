@@ -632,6 +632,12 @@
                     "type": "string"
                   }
                 },
+                "prouct_reviews": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "published_at": {
                   "type": "string"
                 },

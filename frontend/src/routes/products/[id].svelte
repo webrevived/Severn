@@ -19,6 +19,7 @@
     import OtherProducts from "$lib/products/OtherProducts.svelte";
     import ProductFeatures from "$lib/products/Features.svelte"
     import ProductPurchase from "$lib/products/ProductPurchase.svelte"
+    import Reviews from "$lib/products/Reviews.svelte";
     import NavBar from '$lib/global/Navigation/Bar.svelte'
     import { session } from "$app/stores"
     import type { ProductsApi } from '$lib/api/products'
@@ -35,4 +36,5 @@
     <ProductPurchase {product} />
     <ProductFeatures {product} />
     <OtherProducts products={all} />
+    <Reviews {product} />
 </main>

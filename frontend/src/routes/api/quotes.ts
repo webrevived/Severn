@@ -7,6 +7,6 @@ export const get: RequestHandler<Record<string, any>, unknown, Typify<Review[]>>
     
     return {
         status: 200,
-        body: quotes
+        body: quotes,
     }
 }

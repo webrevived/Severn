@@ -1,5 +1,4 @@
-import { checkCache } from "$lib/api/index"
-import type { Cache } from "$lib/api/index"
+import { HOST } from "$lib/api/index"
 import type { BaseApiResponse } from "$lib/api/index"
 
 export interface Review extends BaseApiResponse  {
@@ -8,12 +7,6 @@ export interface Review extends BaseApiResponse  {
     rating: number;
 }
 
-const cache: Cache<Review> = {
-    dump: null,
-    lastUpdated: null
-}
-
-export const findAll = async () => {
-    await checkCache(cache, "/severn-reviews")
-    return cache.dump
+export const findAll = async (): Promise<Review[]> => {
+    return await fetch(`${HOST}/severn-reviews`).then( res => res.json() )
 }
