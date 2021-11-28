@@ -5,7 +5,7 @@
     import ProductsIcon from "$lib/products/ProductsIcons.svelte"
     import Dropdown from '$lib/products/Dropdown.svelte'
     import { HOST } from '$lib/api/index'
-    import { cartItems } from "$lib/stores"
+    import { cartItems, navToggles } from "$lib/stores"
     import type { ProductsApi } from '$lib/api/products'
     export let product: ProductsApi
 
@@ -13,6 +13,7 @@
     let colors: string
 
     const addToCart = () => {
+        $navToggles.cart = true
         cartItems.update( cart => [
             ...cart, 
             { uid: Math.floor(Math.random()*16777215).toString(16), id: product.id, quantity } 

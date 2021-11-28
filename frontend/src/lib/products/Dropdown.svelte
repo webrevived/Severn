@@ -18,7 +18,7 @@
 
 <div class="w-max">
     <ClickOutside on:clickoutside={ onClickOutside }>
-        <div class="relative z-4">
+        <div class="relative z-3">
             <!-- form -->
             <div 
                 class="text-1 text-black-600 font-bold min-w-276px w-min cursor-pointer" 
