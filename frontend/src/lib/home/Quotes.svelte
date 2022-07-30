@@ -3,12 +3,13 @@
     import QuotesIndex from './QuotesIndex.svelte';
     import type { Review } from '$lib/api/severnReviews'
     
+    export let quotes: Review[];
+
     const getIndex = (shift: number, arr: Review[]) => {
         if (shift >= 0) return shift % arr.length
         return (arr.length + (shift % arr.length)) % arr.length
 	}
 
-    export let quotes: Review[]
     let index = 0
     $: selected = quotes[getIndex(index, quotes)]
 

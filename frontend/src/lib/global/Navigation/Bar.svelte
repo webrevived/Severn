@@ -3,17 +3,14 @@
     import CartIcon from "$lib/global/Navigation/CartIcon.svelte";
     import Search from "$lib/global/Navigation/Search.svelte";
     import Shop from "$lib/global/Navigation/Shop.svelte"
-    import Cart from "$lib/global/Navigation/Cart.svelte"
     import HamburgerIcon from "./HamburgerIcon.svelte";
     import MobileBody from "./MobileBody.svelte";
     import { navToggles } from '$lib/stores'
     import { browser } from "$app/env";
-    import type { ProductsApi } from "$lib/api/products";
-    import { session } from "$app/stores";
     
     export let dark = false
     const onMouseOver = () => $navToggles.shop = true
-    let products: ProductsApi[] = $session.products
+    // let products: ProductsApi[] = $session.products
 
     $: if ( browser && ($navToggles.mobile || $navToggles.cart) ) {
         window.scrollTo({ top: 0 })
@@ -78,7 +75,7 @@
     
     <Search />
     <Shop />
-    <Cart {products} />
+    <!-- <Cart {products} /> -->
 </div>
 
 <!-- Mobile body doesn't need to be relative to the nav bar for now? -->

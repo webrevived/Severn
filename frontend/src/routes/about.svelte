@@ -16,5 +16,7 @@
     <About />
     <Message />
     <Why />
-    <Products />
+
+    <!-- TODO: Add back in -->
+    <!-- <Products /> -->
 </main>

@@ -1,20 +1,75 @@
 <script lang="ts">
-    import NavBar from '$lib/global/Navigation/Bar.svelte'
-    import Products from '$lib/shop/Products.svelte'
-    import Deals from '$lib/shop/Deals.svelte'
-    import { session } from '$app/stores';
-    import { TransformCategoryToProps } from '$lib/api/transforms'
-    import type { CategoryProps } from '$lib/api/categorys'
+	import Products from '$lib/shop/Products.svelte';
+	import dataAccess from '$lib/data-access';
+	import NavBar from '$lib/global/Navigation/Bar.svelte';
+	import Deals from '$lib/shop/Deals.svelte';
+	import ShopHeader from '$lib/shop/ShopHeader.svelte';
+	import type { Category } from '@chec/commerce.js/types/category';
+	import type { Product } from '@chec/commerce.js/types/product';
+	import { useQuery } from '@sveltestack/svelte-query';
+	import { categoriesStore } from '$lib/stores/collection.store';
 
-    let _categorys: CategoryProps[] = $session.categorys.map( TransformCategoryToProps );
-    const categorys = _categorys.filter( prop => prop.items.length > 0 )
+	interface Collection {
+		category: Category;
+		products: Product[];
+	}
+
+	const fetchProductsByCategory = async (): Promise<Collection[]> => {
+		let collection: Collection[] = [];
+		let categories: Category[];
+		
+		if ($categoriesStore.status === 'sucess') {
+			categories = $categoriesStore.data;
+		} else {
+			categories = (await dataAccess.products.getAllCategories({ depth: 1 })).data;
+		}
+
+		await Promise.all(
+			categories.map(async (category) => {
+				const products = await dataAccess.products.getAllProducts({
+					category_slug: category.slug,
+					limit: 10,
+					sortBy: 'created'
+				});
+
+				collection = [...collection, { category, products: products.data }];
+			})
+		);
+
+		return collection;
+	};
+
+	const collectionQuery = useQuery('collections', async () => {
+		return fetchProductsByCategory();
+	});
+
+	// let _categorys: CategoryProps[] = $session.categorys.map(TransformCategoryToProps);
+	// const categorys = _categorys.filter((prop) => prop.items.length > 0);
 </script>
 
 <main>
-    <section class="x-container pt-6">
-        <NavBar dark />
-    </section>
+	<section class="x-container pt-6">
+		<NavBar dark />
+	</section>
 
-    <Products {categorys} />
-    <Deals />
+	<ShopHeader />
+
+	{#if $collectionQuery.isLoading}
+		<h2>Loading..</h2>
+	{:else if $collectionQuery.isSuccess}
+		{#each $collectionQuery.data as collection (collection.category.name)}
+			<Products
+				category={[
+					{
+						button: { text: `Shop ${collection.category.name}`, href: `/category/${collection.category.slug}` },
+						category: collection.category.name,
+						description: collection.category.description,
+						products: collection.products
+					}
+				]}
+			/>
+		{/each}
+	{/if}
+
+	<Deals />
 </main>

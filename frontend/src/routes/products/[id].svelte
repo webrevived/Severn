@@ -1,38 +1,35 @@
+<!-- TODO: Change to svelte query for caching. -->
 <script lang="ts" context="module">
-    import type { Load } from "@sveltejs/kit";
-    
-    export const load: Load = async ({ page, fetch }) => {
-        const { params } = page
-        const id = parseInt(params.id)
-        
-        if ( isNaN(id) ) return { status: 404, error: new Error( "Product ID needs to be number" ) }
-        const product = await fetch(`/api/products/${id}`).then( res => res.json() )
-        if ( product === null ) return { status: 404, error: new Error(`No Product found by the id of ${id}`) }
-        
-        return {
-            props: { product }
-        }
-    }
+	import { getProduct } from '$lib/data-access/products.api';
+
+	export const load: Load = async ({ params }) => {
+		const productPermaLink: string = params.id;
+
+		const product = await getProduct(productPermaLink);
+
+		return {
+			props: {
+				productPermaLink,
+				product
+			}
+		};
+	};
 </script>
 
 <script lang="ts">
-    import OtherProducts from "$lib/products/OtherProducts.svelte";
-    import ProductFeatures from "$lib/products/Features.svelte"
-    import ProductPurchase from "$lib/products/ProductPurchase.svelte"
-    import NavBar from '$lib/global/Navigation/Bar.svelte'
-    import { session } from "$app/stores"
-    import type { ProductsApi } from '$lib/api/products'
-    
-    export let product: ProductsApi
-    let all: ProductsApi[] = $session.products
+	import NavBar from '$lib/global/Navigation/Bar.svelte';
+	import type { ProductsApi } from '$lib/api/products';
+	import ProductPurchase from '$lib/products/ProductPurchase.svelte';
+	import type { Load } from '@sveltejs/kit';
+	import type { Product } from '@chec/commerce.js/types/product';
+
+	export let product: Product;
 </script>
 
 <header class="x-container pt-6">
-    <NavBar dark />
+	<NavBar dark />
 </header>
 
 <main>
-    <ProductPurchase {product} />
-    <ProductFeatures {product} />
-    <OtherProducts products={all} />
+	<ProductPurchase {product} />
 </main>
