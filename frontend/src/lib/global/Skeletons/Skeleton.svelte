@@ -2,15 +2,16 @@
 	type SkeletonStyle = 'rect' | 'circle';
 	type AnimationStyle = 'pulse' | 'wave';
 
-	export let style: SkeletonStyle = 'rect';
+	export let borderRadius: string = 'auto';
 	export let width: string = '200px';
 	export let height: string = '200px';
 	export let animation: AnimationStyle = 'wave';
 </script>
 
 <div
-	class="skeleton style--{style} animation--{animation}"
+	class="skeleton animation--{animation}"
 	style="--width:{width}; --height:{height};"
+	style:border-radius={borderRadius}
 />
 
 <style lang="scss">
@@ -21,11 +22,6 @@
 		border-radius: 4px;
 		overflow: hidden;
 		background-color: rgba(156, 156, 156, 0.13);
-	}
-	.style {
-		&--circle {
-			border-radius: 50%;
-		}
 	}
 	.animation--pulse {
 		background: rgb(73, 73, 73);

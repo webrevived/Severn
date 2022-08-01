@@ -1,10 +1,18 @@
 <script lang="ts" context="module">
-	export const load: Load = ({ params }) => {
+	export const load: Load = async ({ params }) => {
 		const categorySlug: string = params.slug;
+		const category = await dataAccess.products.getCategoryBySlug(categorySlug);
+
+		if (!category)
+			return {
+				error: new Error('Sorry, this category does not exist.'),
+				status: 404
+			};
 
 		return {
 			props: {
-				categorySlug
+				categorySlug,
+				category
 			}
 		};
 	};
@@ -16,35 +24,33 @@
 	import Products from '$lib/category/Products.svelte';
 	import type { Product } from '@chec/commerce.js/types/product';
 	import type { Load } from '@sveltejs/kit';
-import { categoriesStore, CategoryWithAssets } from '$lib/stores/collection.store';
+	import type { CategoryWithAssets } from '$lib/stores/collection.store';
+	import dataAccess from '$lib/data-access/index';
+	import { useQuery } from '@sveltestack/svelte-query';
+	import ItemCardSkeleton from '$lib/global/Skeletons/ItemCardSkeleton.svelte';
 
 	export let categorySlug: string;
-	let products: Product[] = [];
-	
-	let catagoryData: CategoryWithAssets;
+	export let category: CategoryWithAssets;
 
-	const fetchProducts = async () => {
-		try {
-			const { data: productsResponse, meta } = await commerece.products.getProductsByCategorySlug(
-				categorySlug
-			);
-
-			if (!productsResponse?.length) return;
-			products = productsResponse;
-		} catch (error) {
-			console.debug(error);
-		}
-	};
-
-	$: if ($categoriesStore.data?.length) catagoryData = $categoriesStore.data.find((category) => category.slug == categorySlug);
-	fetchProducts();
+	const productsQuery = useQuery(['products', categorySlug], () => {
+		return commerece.products.getProductsByCategorySlug(categorySlug);
+	});
 </script>
 
 <Header
-	title={categorySlug}
-	description="Organize your special event with our high quality premium candles
-to make your event memorable."
-	thumbnailSrc={catagoryData.assets?.[0].url}
+	title={category.name}
+	description={category.description}
+	thumbnailSrc={category.assets?.[0].url}
 />
 
-<Products {products} />
+{#if $productsQuery.isLoading}
+	<div class="x-container flex flex-col gap-7.5 py-17.5">
+		<div class="flex flex-wrap mt-7.5 gap-13">
+			{#each Array(10) as _}
+				<ItemCardSkeleton />
+			{/each}
+		</div>
+	</div>
+{:else}
+	<Products products={$productsQuery.data.data} />
+{/if}

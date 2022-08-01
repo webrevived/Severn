@@ -8,7 +8,7 @@
 </script>
 
 <div class="flex flex-col mt-7.5 px-10 gap-5">
-    <div class="w-full flex justify-between pb-5 px-5 mb-5" border="b-1 black brown-1200">
+    <div class="w-full flex justify-between pb-5 mb-5" border="b-1 black brown-1200">
         <h1 class="heading-3 text-black-600">Sub Total</h1>
         <p class="text-1 text-xl text-black-600">${$_total.toFixed(2)}</p>
     </div>
@@ -16,7 +16,7 @@
     <Button outline>
         Pay with <img src="/images/PayPal-Logo.png" alt="PayPal">
     </Button>
-    <Button>Continue to Checkout</Button>
+    <Button href="/checkout">Continue to Checkout</Button>
 
     <a class="w-max self-center text-2 text-brown-900 font-bold mb-7.5 underline" href="/shop">Shop More Products</a>
 </div>

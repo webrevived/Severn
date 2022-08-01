@@ -26,12 +26,15 @@
   "type": "module",
   "dependencies": {
     "@chec/commerce.js": "^2.8.0",
+    "@felte/validator-zod": "^1.0.10",
     "@sveltestack/svelte-query": "^1.6.0",
     "@types/chec__commerce.js": "^2.8.5",
     "bcryptjs": "^2.4.3",
     "broadcast-channel": "^4.14.0",
     "cookie": "^0.4.1",
+    "felte": "^1.2.2",
     "fuse.js": "^6.4.6",
-    "svelte-local-storage-store": "^0.2.6"
+    "svelte-local-storage-store": "^0.2.6",
+    "zod": "^3.17.10"
   }
 }

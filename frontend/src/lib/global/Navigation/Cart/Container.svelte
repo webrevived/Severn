@@ -27,7 +27,7 @@
     <!-- overlay -->
     <div 
         transition:fade|local
-        pos="fixed top-0 right-0 w-screen h-screen" 
+        pos="fixed top-0 left-0 right-0 w-screen h-screen" 
         class="z-3 bg-black-600/30"
         on:click = {() => $show[key] = false}
         on:mouseenter={ hoverMode ? () => { $show[key] = false } : null }

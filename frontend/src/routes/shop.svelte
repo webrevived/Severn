@@ -8,6 +8,7 @@
 	import type { Product } from '@chec/commerce.js/types/product';
 	import { useQuery } from '@sveltestack/svelte-query';
 	import { categoriesStore } from '$lib/stores/collection.store';
+	import CategoryItemsSkeleton from '$lib/global/Skeletons/CategoryItemsSkeleton.svelte';
 
 	interface Collection {
 		category: Category;
@@ -17,7 +18,7 @@
 	const fetchProductsByCategory = async (): Promise<Collection[]> => {
 		let collection: Collection[] = [];
 		let categories: Category[];
-		
+
 		if ($categoriesStore.status === 'sucess') {
 			categories = $categoriesStore.data;
 		} else {
@@ -54,14 +55,20 @@
 
 	<ShopHeader />
 
-	{#if $collectionQuery.isLoading}
-		<h2>Loading..</h2>
+	{#if $collectionQuery.status === 'loading'}
+		<section class="w-full x-container flex flex-col gap-10 pb-22">
+			<CategoryItemsSkeleton />
+			<CategoryItemsSkeleton />
+		</section>
 	{:else if $collectionQuery.isSuccess}
 		{#each $collectionQuery.data as collection (collection.category.name)}
 			<Products
 				category={[
 					{
-						button: { text: `Shop ${collection.category.name}`, href: `/category/${collection.category.slug}` },
+						button: {
+							text: `Shop ${collection.category.name}`,
+							href: `/category/${collection.category.slug}`
+						},
 						category: collection.category.name,
 						description: collection.category.description,
 						products: collection.products

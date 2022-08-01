@@ -7,6 +7,7 @@
     import MobileBody from "./MobileBody.svelte";
     import { navToggles } from '$lib/stores'
     import { browser } from "$app/env";
+import Cart from "./Cart.svelte";
     
     export let dark = false
     const onMouseOver = () => $navToggles.shop = true
@@ -75,7 +76,7 @@
     
     <Search />
     <Shop />
-    <!-- <Cart {products} /> -->
+    <Cart />
 </div>
 
 <!-- Mobile body doesn't need to be relative to the nav bar for now? -->

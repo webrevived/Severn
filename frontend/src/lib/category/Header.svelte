@@ -1,6 +1,4 @@
 <script lang="ts">
-	import type { CategoriesApi } from '$lib/api/categorys';
-	import { HOST } from '$lib/api/index';
 	import NavBar from '$lib/global/Navigation/Bar.svelte';
 
 	export let title: string;
@@ -14,17 +12,17 @@
 	</div>
 
 	<div class="header-wrap">
-		<div class="mx-7 md:mx-25.5 py-20 md:py-55 flex flex-col gap-5">
-			<h1 class="capitalize text-50px text-black-600 heading-1">
+		<div class="mx-7 flex justify-end py-10 md:mx-25.5 md:flex flex-col gap-5">
+			<h1 class="capitalize text-67px text-black-600 font-normal font-tiempos">
 				{title}
 			</h1>
-			<p class="text-1 text-brown-1200">
+			<p class="text-xl text-brown-1200">
 				{description}
 			</p>
-		</div>
+		</div> 
 
 		<img
-			class="min-w-0 max-w-full h-350px md:h-auto object-cover w-full max-h-600px"
+			class="header-image min-w-0 max-w-full h-350px md:h-auto object-cover w-full max-h-600px"
 			src={thumbnailSrc}
 			alt={title}
 		/>
@@ -33,7 +31,11 @@
 
 <style lang="scss">
 	.header-wrap {
+		width: 100%;
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr 0.9fr;
+	}
+	.header-image {
+		height: 100%;
 	}
 </style>

@@ -13,21 +13,15 @@
 
 <main class="x-container flex flex-col gap-7.5 py-17.5">
 	<div class="flex flex-wrap mt-7.5 gap-13">
-		{#if products.length}
-			{#each products as product}
-				<Item
-					href="/products/{product.permalink}"
-					src={product.image?.url}
-					category={'3 Wick'}
-					title={product.name}
-					price={product.price.raw}
-				/>
-			{/each}
-		{:else}
-			{#each Array(10) as skeleton}
-				<ItemCardSkeleton />
-			{/each}
-		{/if}
+		{#each products as product}
+			<Item
+				href="/products/{product.permalink}"
+				src={product.image?.url}
+				category={'3 Wick'}
+				title={product.name}
+				price={product.price.raw}
+			/>
+		{/each}
 	</div>
 
 	<div class="flex w-full justify-center">
