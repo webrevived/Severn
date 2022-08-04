@@ -26,3 +26,9 @@
 		<img src="/images/DecreaseIcon.svg" alt="" />
 	</button>
 </div>
+
+<style>
+	button img {
+		min-width: 10px;
+	}
+</style>

@@ -35,12 +35,12 @@ export default defineConfig({
     },
     shortcuts: {
         // Typography
-        'heading-1': 'text-3xl font-tiempos font-semibold',
+        'heading-1': 'text-3xl font-tiempos font-400 leading-1em',
         'heading-2': 'text-2xl font-tiempos font-normal',
         'heading-3': 'text-xl font-tiempos font-normal',
-        'text-1': 'text-lg font-lato font-normal leading-1em',
+        'text-1': 'text-lg font-lato font-normal leading-1.5em',
         'text-2': 'text-base font-lato font-normal leading-1em',
         // Padding
-        'x-container': 'px-7 md:px-25.5'
+        'x-container': 'px-3 md:px-25.5',
     },
 })

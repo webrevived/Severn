@@ -15,6 +15,7 @@ export const getAllProducts = async (params?: AllProductsParams) => {
 	return products;
 };
 
+
 /**
  * Get all products by a category slug
  *

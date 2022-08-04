@@ -1,27 +1,17 @@
 <script lang="ts">
-	import { navToggles, cartItems, CartItem } from '$lib/stores';
-	import Container from '$lib/global/Navigation/Cart/Container.svelte';
-	import TopBar from '$lib/global/Navigation/Cart/TopBar.svelte';
-	import ItemsList from '$lib/global/Navigation/Cart/ItemsList.svelte';
-	import BottomBar from '$lib/global/Navigation/Cart/BottomBar.svelte';
-	import EmptyCart from '$lib/global/Navigation/Cart/EmptyCart.svelte';
-	import { useMutation, useQuery } from '@sveltestack/svelte-query';
 	import dataAccess from '$lib/data-access';
+	import BottomBar from '$lib/global/Navigation/Cart/BottomBar.svelte';
+	import Container from '$lib/global/Navigation/Cart/Container.svelte';
+	import EmptyCart from '$lib/global/Navigation/Cart/EmptyCart.svelte';
+	import ItemsList from '$lib/global/Navigation/Cart/ItemsList.svelte';
+	import TopBar from '$lib/global/Navigation/Cart/TopBar.svelte';
+	import { navToggles } from '$lib/stores';
+	import { useQuery } from '@sveltestack/svelte-query';
 
 	const cartQuery = useQuery('cart', async () => {
 		return dataAccess.cart.getCart();
 	});
 
-	/**
-	 * Handle event dispatcher 'cartAction' which will invalidate the
-	 * cart query and refresh the cart.
-	 */
-	const handleCartAction = () => {
-		// $cartQuery.refetch();
-	};
-
-
-	$: if ($navToggles.cart) $cartQuery.refetch();
 </script>
 
 <Container show={navToggles} key="cart">
@@ -32,7 +22,7 @@
 			<h2>Loading...</h2>
 		{:else if $cartQuery.isSuccess}
 			{#if $cartQuery.data.total_items > 0}
-				<ItemsList items={$cartQuery.data.line_items} on:cartAction={handleCartAction} />
+				<ItemsList items={$cartQuery.data.line_items} />
 				<BottomBar total={$cartQuery.data.subtotal.raw} />
 			{:else}
 				<EmptyCart />

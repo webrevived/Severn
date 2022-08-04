@@ -3,9 +3,9 @@
 </script>
 
 <section
-	class="gap-24 w-full min-h-167 items-center justify-center"
+	class="container gap-12 w-full min-h-167 items-center justify-center overflow-x-hidden"
 	flex="~ col-reverse md:row"
-	p="t-35 md:t-55 x-10 md:x-31"
+	p="t-35 md:t-55"
 >
 	<div class="flex flex-col gap-5 text-center md:text-left">
 		<h1 class="text-1 text-brown-1200">ABOUT SEVERN COMPANY</h1>
@@ -30,27 +30,22 @@
 	</div>
 
 	<div class="relative min-w-320px h-75 md:h-587px">
-		<img
-			id="spinning"
-			class="absolute right-1/2 md:right-0"
-			src="/images/About_Title.png"
-			alt=""
-		/>
+		<img id="spinning" class="absolute right-1/2 md:right-0" src="/images/About_Title.png" alt="" />
 
 		<img class="w-full h-full object-cover" src="/images/About_Thumbnail.png" alt="" />
 	</div>
 </section>
 
 <style>
-    #spinning {
-        animation: spin 4s infinite linear;
-    }
-    @keyframes spin {
-        from {
-            transform: translate(50%, -50%) rotate(0deg)
-        }
-        to {
-            transform: translate(50%, -50%) rotate(359deg)
-        }
-    }
+	#spinning {
+		animation: spin 4s infinite linear;
+	}
+	@keyframes spin {
+		from {
+			transform: translate(50%, -50%) rotate(0deg);
+		}
+		to {
+			transform: translate(50%, -50%) rotate(359deg);
+		}
+	}
 </style>

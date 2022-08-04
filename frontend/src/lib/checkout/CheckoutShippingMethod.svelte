@@ -15,7 +15,7 @@
 		{#each shippingMethods as method, i}
 			<div class="flex justify-between border-b border-brown-1200 pb-3">
 				<div class="flex gap-3">
-					<input type="radio" name={method.description} value={method.id} class="w-4" />
+					<input checked={i == 0} type="radio" name='shipping_method' value={method.id} class="w-4" />
 					<h4>{method.description}</h4>
 				</div>
 

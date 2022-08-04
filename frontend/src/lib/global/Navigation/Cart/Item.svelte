@@ -12,13 +12,13 @@
 	export let item: LineItem;
 	let isRemovingItem: boolean = false;
 
-	const dispatch = createEventDispatcher();
+	const queryClient = useQueryClient();
 
 	const remove = async () => {
 		try {
 			isRemovingItem = true;
 			const removeResponse = await dataAccess.cart.removeFromCart(item.id);
-			await useQueryClient().invalidateQueries<Cart>('cart');
+			await queryClient.invalidateQueries<Cart>('cart');
 
 			console.debug(`[CART] - Removed item ${item.id} from cart`, removeResponse);
 		} catch (error) {
@@ -30,7 +30,7 @@
 </script>
 
 <div
-	class="min-h-30 item-layout items-center"
+	class="item min-h-30 item-layout items-center"
 	class:isRemovingItem
 	grid="~ cols-[120px_auto] rows-[auto_auto_auto] gap-x-7.5"
 >
@@ -75,5 +75,15 @@
 			'img info'
 			'img title'
 			'img controls';
+	}
+
+	@media only screen and (max-width: 425px) {
+		.item img {
+			width: 100px;
+			height: 100px;
+		}
+		.item {
+			gap: 8px;
+		}
 	}
 </style>

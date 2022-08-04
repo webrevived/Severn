@@ -1,5 +1,6 @@
 <script>
 	import 'virtual:windi.css';
+	import '$lib/styles/global.scss';
 	import { newsTags } from '$lib/stores';
 	import Footer from '$lib/global/Footer.svelte';
 	import NewsHeader from '$lib/global/NewsHeader.svelte';

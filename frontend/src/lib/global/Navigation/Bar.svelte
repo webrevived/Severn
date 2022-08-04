@@ -1,24 +1,15 @@
 <script lang="ts">
-    import SearchIcon from "$lib/global/Navigation/SearchIcon.svelte";
     import CartIcon from "$lib/global/Navigation/CartIcon.svelte";
     import Search from "$lib/global/Navigation/Search.svelte";
-    import Shop from "$lib/global/Navigation/Shop.svelte"
+    import SearchIcon from "$lib/global/Navigation/SearchIcon.svelte";
+    import Shop from "$lib/global/Navigation/Shop.svelte";
+    import { navToggles } from '$lib/stores';
+    import Cart from "./Cart.svelte";
     import HamburgerIcon from "./HamburgerIcon.svelte";
     import MobileBody from "./MobileBody.svelte";
-    import { navToggles } from '$lib/stores'
-    import { browser } from "$app/env";
-import Cart from "./Cart.svelte";
     
     export let dark = false
     const onMouseOver = () => $navToggles.shop = true
-    // let products: ProductsApi[] = $session.products
-
-    $: if ( browser && ($navToggles.mobile || $navToggles.cart) ) {
-        window.scrollTo({ top: 0 })
-        document.body.style.overflowY = "hidden"
-    } else if ( browser ) {
-        document.body.style.overflowY = "scroll"
-    }
 </script>
 
 <div class="relative">

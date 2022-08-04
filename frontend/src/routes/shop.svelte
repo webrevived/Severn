@@ -43,9 +43,6 @@
 	const collectionQuery = useQuery('collections', async () => {
 		return fetchProductsByCategory();
 	});
-
-	// let _categorys: CategoryProps[] = $session.categorys.map(TransformCategoryToProps);
-	// const categorys = _categorys.filter((prop) => prop.items.length > 0);
 </script>
 
 <main>
@@ -63,17 +60,15 @@
 	{:else if $collectionQuery.isSuccess}
 		{#each $collectionQuery.data as collection (collection.category.name)}
 			<Products
-				category={[
-					{
-						button: {
-							text: `Shop ${collection.category.name}`,
-							href: `/category/${collection.category.slug}`
-						},
-						category: collection.category.name,
-						description: collection.category.description,
-						products: collection.products
-					}
-				]}
+				category={{
+					button: {
+						text: `Shop ${collection.category.name}`,
+						href: `/category/${collection.category.slug}`
+					},
+					category: collection.category.name,
+					description: collection.category.description,
+					products: collection.products
+				}}
 			/>
 		{/each}
 	{/if}

@@ -8,11 +8,11 @@
 >
     <h2 
         class="mb-9px" 
-        text="brown-1200 18px" 
+        text="white-100 18px" 
         font="tiempos medium"
     >{title}</h2>
     
-    <hr class="text-brown-1200">
+    <hr class="text-brown-1200 opacity-40">
     
     <slot />
 </div>

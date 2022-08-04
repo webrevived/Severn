@@ -1,7 +1,8 @@
 <script lang="ts">
+    import type { toggles } from '$lib/stores';
     import type { Writable } from 'svelte/store';
-    import type { toggles } from '$lib/stores'
-    import { fly, fade } from 'svelte/transition'
+    import { fade } from 'svelte/transition';
+
     export let show: Writable<toggles>
     export let key: string
     export let hoverMode = false
@@ -16,8 +17,8 @@
 
 {#if $show[key]}
     <div
-        in:fly={{ y: -200 }}
-        out:fade|local
+        in:fade={{duration: 200}}
+        out:fade|local={{duration: 200}}
         class="min-h-63.5 bg-white-100 z-4" 
         pos="absolute -top-6 -left-7 md:-left-25.5 -right-7 md:-right-25.5"
         on:mouseover

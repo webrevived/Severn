@@ -4,7 +4,7 @@
 </script>
 
 <div 
-    class="flex flex-wrap gap-5 text-1 items-center justify-center"
+    class="feedback flex flex-wrap gap-5 text-1 items-center justify-center"
     p="x-10 md:x-20 lg:x-40 y-7"
     text="brown-1200 center"
     bg="white-300"
@@ -13,3 +13,11 @@
     <Rating {rating} />
     <p>based on the recent 100+ reviews</p>
 </div>
+
+<style>
+    @media only screen and (max-width: 768px) {
+        .feedback {
+        }
+    }
+</style>
+

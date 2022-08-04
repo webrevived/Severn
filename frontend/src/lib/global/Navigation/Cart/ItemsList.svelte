@@ -6,10 +6,18 @@
 	export let items: LineItem[];
 </script>
 
-<div class="flex flex-col w-full px-10 pt-10 gap-y-7.5">
+<div class="item-wrap flex flex-col w-full px-10 pt-10 gap-y-7.5">
 	{#each items as item (item.id)}
 		<div animate:flip={{ duration: 200 }}>
 			<Item on:cartAction {item} />
 		</div>
 	{/each}
 </div>
+
+<style>
+	@media only screen and (max-width: 425px) {
+		.item-wrap {
+			padding: 1em;
+		}
+	}
+</style>

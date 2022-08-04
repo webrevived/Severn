@@ -7,21 +7,23 @@
 	import { navToggles } from '$lib/stores';
 	import type { Product } from '@chec/commerce.js/types/product';
 	import { useQueryClient } from '@sveltestack/svelte-query';
+	import Features from './Features.svelte';
+	import MobileProductSlider from './MobileProductSlider.svelte';
+	import ProductDetails from './ProductDetails.svelte';
 
 	export let product: Product;
-	const discount = 50;
 
 	let quantity = 1;
 	let isAddingToCart: boolean = false;
 
-	// discount value - (change this to some var from strapi at some point)
-	$: freeShippingAmount = Math.floor(discount - product.price.raw);
+	const queryClient = useQueryClient();
 
 	const addToCart = async () => {
 		isAddingToCart = true;
+
 		try {
 			const cart = await dataAccess.cart.addToCart({ productId: product.id, quantity });
-			await useQueryClient().invalidateQueries('cart');
+			await queryClient.invalidateQueries();
 
 			$navToggles.cart = true;
 			console.debug(`[CART] - Added item ${product.id} to cart`, cart);
@@ -43,16 +45,24 @@
 	};
 </script>
 
-<section class="x-container pt-10 lg:(px-40 py-25)">
-	<GoBack />
+<div class="w-full mt-5 product-areas container">
+	<section class="header-container">
+		<div class="go-back">
+			<GoBack />
+		</div>
 
-	<div class="w-full mt-5 product-areas">
+		<div class="mobile-slider">
+			<MobileProductSlider images={product.assets.map((image) => image.url)} />
+		</div>
+
 		<div class="image-container">
 			{#each product.assets as asset}
 				<img class="w-full h-250px lg:h-478px img-1 object-cover" src={asset.url} alt="" />
 			{/each}
 		</div>
+	</section>
 
+	<section class="product-container pt-12">
 		<div class="details">
 			<div class="text-black-600 information">
 				<h1 class="text-1 text-brown-1200">{categoriesToString(product.categories)}</h1>
@@ -66,63 +76,32 @@
 					{@html product.description ?? "This item doesn't seem to have a description"}
 				</p>
 
-				<div class="flex -lg:flex-wrap gap-17.5 mt-12.5">
-					<ProductsIcon src="/icons/GiftPack.svg">free gift pack</ProductsIcon>
+				<div class="flex gap-10 mt-12.5 <sm:gap-5">
+					<ProductsIcon src="/icons/GiftPack.svg">free gift</ProductsIcon>
 					<ProductsIcon src="/icons/HighQuality.svg">high quality</ProductsIcon>
 					<ProductsIcon src="/icons/FastShipping.svg">fast shipping</ProductsIcon>
-					<ProductsIcon src="/icons/Support.svg">24/7 support</ProductsIcon>
+					<ProductsIcon src="/icons/Support.svg">USA support</ProductsIcon>
 				</div>
 			</div>
 
 			<form class="buying-area" on:submit|preventDefault>
-				<!-- <p class="text-2 text-black-600 mb-2.5">No of Quantity</p>
-				<RadioContainer bind:value={_sets} let:key>
-					<RadioItem value="1" {key} checked>Set of 1</RadioItem>
-					<RadioItem value="2" {key}>Set of 2</RadioItem>
-					<RadioItem value="4" {key}>Set of 4</RadioItem>
-					<RadioItem value="8" {key}>Set of 8</RadioItem>
-				</RadioContainer>
-
-				<p class="text-2 text-black-600 mt-8 mb-2.5">Free Gift Pack Envelope Color</p>
-				<RadioContainer bind:value={colors} let:key>
-					<RadioItem value={'none'} {key} checked>None</RadioItem>
-					<RadioItem value={'pink'} {key}>Pink</RadioItem>
-					<RadioItem value={'red'} {key}>Red</RadioItem>
-					<RadioItem value={'black'} {key}>Black</RadioItem>
-				</RadioContainer> -->
-
-				<div class="w-full flex items-center mt-12">
-					<div class="mr-5">
-						<QuantityInput on:quantityInc={() => quantity++} on:quantityDec={() => quantity--} />
-					</div>
-					<div class="w-full grid">
-						<Button on:click={addToCart} arrow={!isAddingToCart}>
-							{#if !isAddingToCart}
-								Add to Cart
-							{:else}
-								Loading...
-							{/if}
-						</Button>
-					</div>
-				</div>
-
-				<!-- change calculation to total price in cart and not just product price -->
-				{#if freeShippingAmount > 0}
-					<div class="w-full mt-8 pb-4" border="b-1px black-600">
-						<p class="heading-3 text-lg text-center">
-							You are ${freeShippingAmount} away from free shipping
-						</p>
-					</div>
-				{/if}
+				<QuantityInput on:quantityInc={() => quantity++} on:quantityDec={() => quantity--} />
+				<Button minWidth="0px" on:click={addToCart} isLoading={isAddingToCart} width="100%"
+					>Add to Cart
+				</Button>
 			</form>
 		</div>
-	</div>
-</section>
+	</section>
+</div>
 
+<!-- <div class="m-auto pt-10 pb-20 px-4">
+	<Features {product} />
+</div> -->
 <style lang="scss">
 	.details {
 		position: sticky;
 		top: 2rem;
+		height: min-content;
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
@@ -139,16 +118,94 @@
 		gap: 2rem;
 	}
 
-	@media only screen and (max-width: 1024px) {
-		.image-container {
-			height: 400px;
+	.mobile-slider {
+		display: none;
+	}
 
+	.container {
+		max-width: 1200px;
+		padding: 2rem 0;
+		margin: 0 auto;
+	}
+
+	.header-container,
+	.product-container {
+		padding: 0 1rem;
+	}
+	.product-container {
+		padding-top: 3rem;
+	}
+	.header-container {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.buying-area {
+		display: flex;
+		justify-items: center;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	@media only screen and (max-width: 1024px) {
+		.header-container {
+			padding-right: 0rem;
+		}
+
+		.image-container {
 			img {
-				height: 400px
+				display: block;
+				min-height: 300px;
+				min-width: 300px;
 			}
 		}
 		.product-areas {
+			grid-template-columns: auto 1fr;
+		}
+	}
+
+	@media only screen and (max-width: 780px) {
+		.product-areas {
+			gap: 1rem;
+		}
+		.image-container {
+			img {
+				min-height: 250px;
+				min-width: 250px;
+			}
+		}
+	}
+
+	@media only screen and (max-width: 720px) {
+		.mobile-slider {
+			display: block;
+		}
+
+		.header-container {
+			padding-right: 0rem;
+		}
+
+		.image-container {
+			display: none;
+		}
+
+		.go-back {
+			padding-left: 1rem;
+		}
+		.product-areas {
 			grid-template-columns: 1fr;
+			grid-template-rows: 1fr;
+		}
+	}
+
+	@media only screen and (max-width: 475px) {
+		.header-container {
+			padding-left: 0;
+			padding-right: 0;
+		}
+		.product-container {
+			padding: 1rem;
 		}
 	}
 </style>

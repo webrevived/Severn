@@ -1,42 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-
-	// Dumb code to scale an image down automatically without loosing image origin
-	const imageScale = (node: HTMLDivElement, value: number = 1) => {
-		node.style.all = ''; // clear all inline-styles before computing
-		const { width, height } = window.getComputedStyle(node);
-
-		node.style.width = `${parseInt(width) * value}px`;
-		node.style.height = `${parseInt(height) * value}px`;
-	};
-
-	// key: breakpoint (in pixels), value: scale weight (in percentage)
-	const scale = { 1280: 1, 1024: 0.613 };
-	const getScale: () => number = () => {
-		const width = window.innerWidth;
-
-		const result = Object.keys(scale)
-			.map((key) => parseInt(key))
-			.sort((a, b) => a - b)
-			.reduce((prev, curr) => (width >= curr ? curr : prev));
-
-		return scale[result];
-	};
-
-	let imgCache: NodeListOf<HTMLDivElement>;
-	const resize = () => {
-		// We don't need to grab all the images everytime we resize only on first load
-		if (imgCache === null || imgCache === undefined)
-			imgCache = document.querySelectorAll('.scale-img');
-
-		const value = getScale();
-		imgCache.forEach((node) => imageScale(node, value));
-	};
-
-	onMount(() => resize());
 </script>
 
-<svelte:window on:resize={resize} />
 
 <section class="relative mt-$mt mb-30 min-h-225 gap-6.25" flex="~ col" align="items-center">
 	<img id="spinning" class="w-max h-max mb-2.5" src="/images/Gallary_Circle.png" alt="" />

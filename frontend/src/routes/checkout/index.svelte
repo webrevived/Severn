@@ -1,22 +1,6 @@
-<script lang="ts">
-	import CheckoutBottomTotal from '$lib/checkout/CheckoutBottomTotal.svelte';
-	import CheckoutProducts from '$lib/checkout/CheckoutProducts.svelte';
-	import CheckoutShippingAddress from '$lib/checkout/CheckoutShippingAddress.svelte';
-	import CheckoutShippingMethod from '$lib/checkout/CheckoutShippingMethod.svelte';
-	import ContactInformation from '$lib/checkout/ContactInformation.svelte';
-	import dataAccess from '$lib/data-access';
+<script context="module" lang="ts">
 	import commerce from '$lib/data-access/commerce';
-	import Button from '$lib/global/Button.svelte';
-	import type { Cart } from '@chec/commerce.js/types/cart';
-	import type { CheckoutToken } from '@chec/commerce.js/types/checkout-token';
-	import type { Price } from '@chec/commerce.js/types/price';
 	import type { Load } from '@sveltejs/kit';
-	import { useQuery } from '@sveltestack/svelte-query';
-	import { createForm } from 'felte';
-	import { validator } from '@felte/validator-zod';
-	import * as zod from 'zod';
-
-	let token: string;
 
 	type CheckoutWithPrice = CheckoutToken & {
 		tax: { amount: Price; included_in_price: boolean };
@@ -25,24 +9,57 @@
 		total_with_tax: Price;
 	};
 
-	const checkoutQuery = useQuery(
-		'cart',
-		async () => {
-			const cart = await dataAccess.cart.getCart();
-			if (token) {
-				const checkout = (await commerce.checkout.getToken(token)) as CheckoutWithPrice;
-				return { cart, checkout };
+	export const load: Load = async ({ session }) => {
+		const cart = await commerce.cart.retrieve(session.cartId);
+		const checkout = (await commerce.checkout.generateToken(cart.id, {
+			type: 'cart'
+		})) as CheckoutWithPrice;
+
+		return {
+			props: {
+				cart,
+				checkout
 			}
+		};
+	};
+</script>
 
-			const checkout = (await commerce.checkout.generateToken(cart.id, {
-				type: 'cart'
-			})) as CheckoutWithPrice;
+<script lang="ts">
+	import CheckoutBottomTotal from '$lib/checkout/CheckoutBottomTotal.svelte';
+	import CheckoutProducts from '$lib/checkout/CheckoutProducts.svelte';
+	import CheckoutShippingAddress from '$lib/checkout/CheckoutShippingAddress.svelte';
+	import CheckoutShippingMethod from '$lib/checkout/CheckoutShippingMethod.svelte';
+	import ContactInformation from '$lib/checkout/ContactInformation.svelte';
+	import dataAccess from '$lib/data-access';
+	import Button from '$lib/global/Button.svelte';
+	import type { Cart } from '@chec/commerce.js/types/cart';
+	import type { CheckoutToken } from '@chec/commerce.js/types/checkout-token';
+	import type { Price } from '@chec/commerce.js/types/price';
+	import { useQuery } from '@sveltestack/svelte-query';
+	import { createForm } from 'felte';
+	import { validator } from '@felte/validator-zod';
+	import * as zod from 'zod';
+	import { browser } from '$app/env';
+	import { onMount } from 'svelte';
 
-			token = checkout.id;
-			return { cart, checkout };
-		},
-		{ staleTime: 30 * 1000 }
-	);
+	let token: string;
+	export let cart: Cart;
+	export let checkout: CheckoutWithPrice;
+
+	// const cartQuery = useQuery('cart', async () => {
+	// 	return dataAccess.cart.getCart();
+	// });
+
+	/* 	const getCheckoutData = async () => {
+		const cart = await dataAccess.cart.getCart();
+		const checkout = (await commerce.checkout.generateToken(cart.id, {
+			type: 'cart'
+		})) as CheckoutWithPrice;
+
+		return { cart, checkout };
+	}; */
+
+	// const checkoutQuery = useQuery('checkout', getCheckoutData, { staleTime: 30 * 1000 });
 
 	const schema = zod.object({
 		email: zod.string().email('Must be a valid email. example@gmail.com'),
@@ -71,7 +88,7 @@
 		}
 	});
 
-	const captureCheckout = async () => {
+	/* 	const captureCheckout = async () => {
 		if (!$checkoutQuery.isSuccess) return;
 
 		const capture = await commerce.checkout.capture($checkoutQuery.data.checkout.id, {
@@ -90,7 +107,7 @@
 				postal_zip_code: $data.zip
 			},
 			fulfillment: {
-				shipping_method: 'ship_8XO3wpNNN5YAzQ',
+				shipping_method: 'ship_8XO3wpNNN5YAzQ'
 			},
 			payment: {
 				gateway: 'test_gateway',
@@ -105,11 +122,10 @@
 		});
 
 		return capture;
-	};
-
+	}; */
 </script>
 
-{#if $checkoutQuery.isLoading}
+<!-- {#if $checkoutQuery.isLoading}
 	<h2>Loading..</h2>
 {:else if $checkoutQuery.isSuccess}
 	<main class="checkout max-w-[1200px] m-auto py-20">
@@ -125,13 +141,7 @@
 				<ContactInformation {errors} />
 				<CheckoutShippingAddress {errors} />
 				<CheckoutShippingMethod shippingMethods={$checkoutQuery.data.checkout.shipping_methods} />
-				<Button arrow={!$isSubmitting}>
-					{#if $isSubmitting}
-						Loading...
-					{:else}
-						Place Order
-					{/if}
-				</Button>
+				<Button isLoading={$isSubmitting}>Place Order</Button>
 			</form>
 		</div>
 
@@ -147,17 +157,16 @@
 	</main>
 {:else if $checkoutQuery.isError}
 	<h4>Error...</h4>
-{/if}
-
+{/if} -->
 <style lang="scss">
-	.checkout {
-		position: relative;
-		display: grid;
-		grid-template-columns: 1fr 0.9fr;
-	}
-	.details {
-		height: min-content;
-		position: sticky;
-		top: 1rem;
-	}
+	// .checkout {
+	// 	position: relative;
+	// 	display: grid;
+	// 	grid-template-columns: 1fr 0.9fr;
+	// }
+	// .details {
+	// 	height: min-content;
+	// 	position: sticky;
+	// 	top: 1rem;
+	// }
 </style>

@@ -6,14 +6,16 @@
 	import About from '$lib/home/About.svelte';
 	import BestSeller from '$lib/home/BestSeller.svelte';
 	import Gallary from '$lib/global/Gallary.svelte';
+	import BestSellersNew from '$lib/home/BestSellers-New.svelte';
 </script>
 
 <Heading src="/images/Home_Header.png" />
-
 <main>
 	<DeliverSmile />
 	<!-- <BestSeller /> -->
-	<Explore />
+	<BestSellersNew />
+	<!-- <Explore /> -->
+	<About />
 	<Quotes
 		quotes={[
 			{
@@ -32,12 +34,10 @@
 				id: 1,
 				published_at: '10/12/2022',
 				rating: 5,
-				quote:
-					'Lorem, ipsum dolor sit amet consectetur adipisicing elit.  ',
+				quote: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.  ',
 				updated_at: 'Updated'
 			}
 		]}
 	/>
-	<About />
 	<Gallary --mt="140px" />
 </main>

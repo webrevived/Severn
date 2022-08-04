@@ -10,17 +10,15 @@
 		products: Product[];
 	}
 
-	export let category: Category[];
+	export let category: Category;
 </script>
 
 <section class="w-full x-container flex flex-col pb-22">
-	{#each category as category}
-		<ItemCarosel
-			button={category.button.text}
-			href={category.button.href}
-			category={category.category}
-			description={category.description}
-			items={category.products}
-		/>
-	{/each}
+	<ItemCarosel
+		button={category.button.text}
+		href={category.button.href}
+		category={category.category}
+		description={category.description}
+		items={category.products}
+	/>
 </section>
