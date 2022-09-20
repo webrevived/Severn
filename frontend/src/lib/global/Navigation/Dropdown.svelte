@@ -7,13 +7,7 @@
     export let key: string
     export let hoverMode = false
 
-    const onKeyDown = (e: KeyboardEvent) => {        
-        if (e.key != "Escape") return
-        $show[key] = false
-    }
 </script>
-
-<svelte:window on:keydown={ onKeyDown } />
 
 {#if $show[key]}
     <div
@@ -21,7 +15,8 @@
         out:fade|local={{duration: 200}}
         class="min-h-63.5 bg-white-100 z-4" 
         pos="absolute -top-6 -left-7 md:-left-25.5 -right-7 md:-right-25.5"
-        on:mouseover
+        on:mouseenter
+        on:mouseleave
         on:focus
     >
         <slot />

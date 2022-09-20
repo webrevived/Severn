@@ -8,9 +8,10 @@
 	afterNavigate(() => {
 		$navToggles.shop = false;
 	});
+
 </script>
 
-<Dropdown show={navToggles} key="shop" hoverMode on:mouseenter={() => ($navToggles.shop = true)}>
+<Dropdown show={navToggles} key="shop" hoverMode on:mouseenter on:mouseleave >
 	<div class="x-container w-full">
 		<div class="max-w-208 mt-32 flex gap-2.5 text-brown-1200 items-center">
 			{#if $categoriesStore.status === 'sucess'}

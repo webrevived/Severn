@@ -19,7 +19,6 @@
 		text="white-100 hover:black-600 left"
 		bg="black-600 hover:[transparent]"
 		border="rounded-30px 2 black-600"
-		p="x-8 y-4"
 		transition="~ colors duration-200"
 	>
 		{#if isLoading}
@@ -47,7 +46,6 @@
 		text="white-100 hover:black-600 left"
 		bg="black-600 hover:[transparent]"
 		border="rounded-30px 2 black-600"
-		p="x-8 y-4"
 		transition="~ colors duration-200"
 		style:width
 	>
@@ -70,6 +68,7 @@
 		outline: none;
 		-webkit-appearance: none;
 		appearance: none;
+		padding: 0.5rem 2rem;
 	}
 	.outline {
 		@apply bg-[transparent] hover:bg-black-600 text-black-600 hover:text-white-100;

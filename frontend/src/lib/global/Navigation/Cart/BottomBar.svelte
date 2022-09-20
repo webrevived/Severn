@@ -17,7 +17,6 @@
 		Pay with <img src="/images/PayPal-Logo.png" alt="PayPal" />
 	</Button>
 	<Button href="/checkout">Continue to Checkout</Button>
-
 	<a class="w-max self-center text-2 text-brown-900 font-bold mb-7.5 underline" href="/shop"
 		>Shop More Products</a
 	>

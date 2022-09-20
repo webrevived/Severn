@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@sveltejs/kit": "next",
+    "@types/stripe": "^8.0.417",
     "prettier": "~2.2.1",
     "prettier-plugin-svelte": "^2.2.0",
     "svelte": "^3.34.0",
@@ -27,6 +28,7 @@
   "dependencies": {
     "@chec/commerce.js": "^2.8.0",
     "@felte/validator-zod": "^1.0.10",
+    "@stripe/stripe-js": "^1.35.0",
     "@sveltestack/svelte-query": "^1.6.0",
     "@types/chec__commerce.js": "^2.8.5",
     "bcryptjs": "^2.4.3",
@@ -35,6 +37,7 @@
     "felte": "^1.2.2",
     "fuse.js": "^6.4.6",
     "gsap": "^3.10.4",
+    "stripe": "^10.10.0",
     "svelte-local-storage-store": "^0.2.6",
     "zod": "^3.17.10"
   }

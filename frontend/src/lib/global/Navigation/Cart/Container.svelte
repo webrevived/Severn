@@ -17,8 +17,8 @@
 
 {#if $show[key]}
 	<div
-		in:fly={{ x: 50, opacity: 0, duration: 500 }}
-		out:fly={{ x: 50, duration: 500 }}
+		in:fly|local={{ x: 50, opacity: 0, duration: 500 }}
+		out:fly|local={{ x: 50, duration: 500 }}
 		class="md:(w-full max-w-147) bg-white-100 z-4 fixed top-0 right-0 h-full slideout z-20 sm:(w-full max-w-[550px])"
 	>
 		<slot />

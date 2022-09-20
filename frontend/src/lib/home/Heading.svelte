@@ -14,10 +14,12 @@
 >
 	<NavBar />
 
-	<div class="max-w-129.5 h-full justify-center" flex="~ grow col">
-		<div class="heading-wrapper gap-2.5" flex="~ col">
+	<div class="heading-wrapper max-w-129.5 h-full justify-center" flex="~ grow col">
+		<div class=" gap-2.5" flex="~ col">
 			<h1 class="text-1 text-white-100">NATURE-INSPIRED SKINCARE FOR MEN</h1>
-			<h2 class="heading-1 font-400 text-white-100 mb-2.5 text-[50px] leading-snug italic">Handcrafted candels & self care products made in the USA</h2>
+			<h2 class="heading-1 font-400 text-white-100 mb-2.5 text-[50px] leading-snug italic">
+				Handcrafted candels & self care products made in the USA
+			</h2>
 			<div class="w-full max-w-max">
 				<Button href="/shop">Shop Now</Button>
 			</div>
@@ -36,16 +38,39 @@
 	.bg-header {
 		background: var(--src) no-repeat;
 		background-size: cover;
+		background-position: 70%;
+		background-color: #b1a28d;
 	}
-	@media only screen and (max-width: 768px) {
+
+	.feedback {
+		width: 80%;
+	}
+
+	@media only screen and (max-width: 1024px) {
+		.heading-wrapper {
+			justify-content: start;
+			margin-top: 5rem;
+		}
 		.feedback {
-            left: 0;
-            right: 0;
-            transform: none;
+			width: 80%;
+		}
+	}
+
+	@media only screen and (max-width: 768px) {
+		.bg-header {
+			background-size: 200%;
+			background-position: 100%;
+			background-position-y: 75%;
+		}
+		.feedback {
+			left: 0;
+			right: 0;
+			transform: none;
+			width: 100%;
 		}
 		.heading-wrapper {
 			h2 {
-				font-size: 35px
+				font-size: 35px;
 			}
 		}
 	}

@@ -2,18 +2,19 @@
 	import commerce from '$lib/data-access/commerce';
 	import type { Load } from '@sveltejs/kit';
 
-	type CheckoutWithPrice = CheckoutToken & {
-		tax: { amount: Price; included_in_price: boolean };
-		total: Price;
-		total_due: Price;
-		total_with_tax: Price;
-	};
-
 	export const load: Load = async ({ session }) => {
 		const cart = await commerce.cart.retrieve(session.cartId);
-		const checkout = (await commerce.checkout.generateToken(cart.id, {
-			type: 'cart'
-		})) as CheckoutWithPrice;
+		let checkout: CheckoutWithPrice;
+		try {
+			checkout = (await commerce.checkout.generateToken(cart.id, {
+				type: 'cart'
+			})) as CheckoutWithPrice;
+		} catch (error) {
+			return {
+				error: new Error("You can't checkout yet silly, your cart is empty... :("),
+				status: 442
+			};
+		}
 
 		return {
 			props: {
@@ -25,73 +26,82 @@
 </script>
 
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import CheckoutBottomTotal from '$lib/checkout/CheckoutBottomTotal.svelte';
 	import CheckoutProducts from '$lib/checkout/CheckoutProducts.svelte';
 	import CheckoutShippingAddress from '$lib/checkout/CheckoutShippingAddress.svelte';
 	import CheckoutShippingMethod from '$lib/checkout/CheckoutShippingMethod.svelte';
 	import ContactInformation from '$lib/checkout/ContactInformation.svelte';
-	import dataAccess from '$lib/data-access';
 	import Button from '$lib/global/Button.svelte';
+	import ErrorModal from '$lib/global/modal/ErrorModal.svelte';
+	import type { checkoutStore, CheckoutWithPrice } from '$lib/stores/checkout-order.store';
 	import type { Cart } from '@chec/commerce.js/types/cart';
-	import type { CheckoutToken } from '@chec/commerce.js/types/checkout-token';
-	import type { Price } from '@chec/commerce.js/types/price';
-	import { useQuery } from '@sveltestack/svelte-query';
-	import { createForm } from 'felte';
 	import { validator } from '@felte/validator-zod';
-	import * as zod from 'zod';
-	import { browser } from '$app/env';
+	import { createForm } from 'felte';
 	import { onMount } from 'svelte';
+	import * as zod from 'zod';
+	import type {
+		Appearance,
+		PaymentMethod,
+		Stripe as StripeType,
+		StripeElements
+	} from '@stripe/stripe-js';
+	import { element } from 'svelte/internal';
 
-	let token: string;
 	export let cart: Cart;
 	export let checkout: CheckoutWithPrice;
 
-	// const cartQuery = useQuery('cart', async () => {
-	// 	return dataAccess.cart.getCart();
-	// });
+	let errorModal: boolean;
 
-	/* 	const getCheckoutData = async () => {
-		const cart = await dataAccess.cart.getCart();
-		const checkout = (await commerce.checkout.generateToken(cart.id, {
-			type: 'cart'
-		})) as CheckoutWithPrice;
+	/** Stripe Card Elements*/
+	let elements: StripeElements;
+	/** Stripe client secret returned from payment capture*/
+	let clientSecret: string;
+	let stripe: StripeType;
 
-		return { cart, checkout };
-	}; */
+	const getClientSecret = async () => {
+		const response = await fetch('/api/checkout', {
+			method: 'POST',
+			body: JSON.stringify({
+				sir: false
+			})
+		});
 
-	// const checkoutQuery = useQuery('checkout', getCheckoutData, { staleTime: 30 * 1000 });
+		const result = await response.json();
+		if (!result?.clientSecret) return;
 
-	const schema = zod.object({
-		email: zod.string().email('Must be a valid email. example@gmail.com'),
-		first_name: zod.string().min(1, 'First name is required'),
-		last_name: zod.string().min(1, 'Last name is required'),
-		street: zod.string().min(1, 'Street is required'),
-		street_2: zod.string().optional(),
-		city: zod.string().min(1, 'City is required'),
-		state: zod.string().min(1, 'State is required'),
-		zip: zod.string().min(1, 'Zip is required'),
-		country: zod.string().default('US')
-	});
+		return result.clientSecret;
+	};
 
-	const { form, errors, data, isSubmitting } = createForm<zod.infer<typeof schema>>({
-		extend: validator({ schema }),
-		onSubmit: async (values) => {
-			console.log(values);
-			// const response = await captureCheckout();
-			// console.log(response);
-		},
-		onError: async (error) => {
-			console.log('Form submit error', error);
-		},
-		onSuccess: () => {
-			console.log('Form sucess');
-		}
-	});
+	const initalize = async () => {
+		const _clientSecret = await getClientSecret();
 
-	/* 	const captureCheckout = async () => {
-		if (!$checkoutQuery.isSuccess) return;
+		const publicApiKey =
+			'pk_test_51IcuFiCSxYE2vN3ep4QThULYBVzBfcJcKkYSEJrQSTWyxjxkzTfWDLKm6eZWB47o8U4kWGy2LmsEDYEkgMAcje5H00enMWZzN1';
 
-		const capture = await commerce.checkout.capture($checkoutQuery.data.checkout.id, {
+		// @ts-ignore
+		const _stripe = Stripe(publicApiKey) as StripeType;
+
+		stripe = _stripe;
+
+		/* TODO: Return some error, stripe isn't working */
+		if (!_clientSecret) return;
+
+		clientSecret = _clientSecret;
+
+		const appearance: Appearance = {
+			theme: 'stripe',
+			labels: 'floating'
+		};
+
+		elements = _stripe.elements({ appearance, clientSecret });
+
+		const paymentElements = elements.create('payment');
+		paymentElements.mount('#payment-element');
+	};
+
+	const captureCheckout = async (params: { paymentMethod: string }) => {
+		const capture = await commerce.checkout.capture(checkout.id, {
 			customer: {
 				email: $data.email,
 				firstname: $data.first_name,
@@ -110,63 +120,151 @@
 				shipping_method: 'ship_8XO3wpNNN5YAzQ'
 			},
 			payment: {
-				gateway: 'test_gateway',
-				card: {
-					number: '4242 4242 4242 4242',
-					expiry_month: '01',
-					expiry_year: '2023',
-					cvc: '123',
-					postal_zip_code: '94103'
+				gateway: 'gway_LwjXKQGKrd7r53',
+				stripe: {
+					payment_method_id: params.paymentMethod
 				}
 			}
 		});
 
 		return capture;
-	}; */
+	};
+
+	const handleOrder = async () => {
+		const response = await stripe.createPaymentMethod({
+			payment_method: 'card',
+		});
+
+		if (response.error) {
+			console.error(response.error);
+			return;
+		}
+
+		try {
+			const checkout = await captureCheckout({ paymentMethod: response.paymentMethod.id });
+
+			console.log(checkout);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const schema = zod.object({
+		email: zod.string().email('Must be a valid email. example@gmail.com'),
+		first_name: zod.string().min(1, 'First name is required'),
+		last_name: zod.string().min(1, 'Last name is required'),
+		street: zod.string().min(1, 'Street is required'),
+		street_2: zod.string().optional(),
+		city: zod.string().min(1, 'City is required'),
+		state: zod.string().min(1, 'State is required'),
+		zip: zod.string().min(1, 'Zip is required'),
+		country: zod.string().default('US')
+	});
+
+	const { form, errors, data, isSubmitting } = createForm<zod.infer<typeof schema>>({
+		initialValues: {
+			city: 'Longwood',
+			country: 'US',
+			email: 'adam@webrevived.com',
+			first_name: 'Adam',
+			last_name: 'Ghowiba',
+			state: 'Florida',
+			street: '1020 Waverly Dr.',
+			zip: '32714'
+		},
+		extend: validator({ schema }),
+		onSubmit: async (values) => {
+			const response = await handleOrder();
+
+			console.log(response);
+		},
+		onError: async (error) => {
+			console.log('Form submit error', error);
+		},
+		onSuccess: async (values: zod.infer<typeof schema>, context) => {
+			// $checkoutStore = {
+			// 	cart,
+			// 	checkout,
+			// 	customer: {
+			// 		email: values.email,
+			// 		firstName: values.first_name,
+			// 		lastName: values.last_name,
+			// 		shippingAddress: {
+			// 			city: values.city,
+			// 			state: values.state,
+			// 			street: values.street,
+			// 			zip: values.zip
+			// 		},
+			// 		shippingMethod: 'Domestic'
+			// 	}
+			// };
+			// goto('/checkout/success');
+		}
+	});
+
+	onMount(() => {
+		initalize();
+	});
 </script>
 
-<!-- {#if $checkoutQuery.isLoading}
-	<h2>Loading..</h2>
-{:else if $checkoutQuery.isSuccess}
-	<main class="checkout max-w-[1200px] m-auto py-20">
-		<div class="border-r border-grey-600 px-5">
-			<header class="flex justify-center w-full mb-10">
-				<h2 class="text-3xl heading-2 font-semibold flex items-start">
-					Saven
-					<span class="text-xl"> ®</span>
-				</h2>
-			</header>
+<svelte:head>
+	<script src="https://js.stripe.com/v3/"></script>
+</svelte:head>
 
-			<form use:form method="post" class="flex flex-col gap-10">
-				<ContactInformation {errors} />
-				<CheckoutShippingAddress {errors} />
-				<CheckoutShippingMethod shippingMethods={$checkoutQuery.data.checkout.shipping_methods} />
-				<Button isLoading={$isSubmitting}>Place Order</Button>
-			</form>
-		</div>
+<main class="checkout max-w-[1200px] m-auto py-20">
+	{#if errorModal}
+		<ErrorModal on:close={() => (errorModal = false)} />
+	{/if}
 
-		<div class="details px-5 flex flex-col gap-5">
-			<CheckoutProducts lineItems={$checkoutQuery.data.cart.line_items} />
-			<hr />
-			<CheckoutBottomTotal
-				tax={$checkoutQuery.data.checkout.tax.amount.formatted_with_symbol}
-				subtotal={$checkoutQuery.data.checkout.total_due.formatted_with_symbol}
-				total={$checkoutQuery.data.checkout.total_due.formatted_with_symbol}
-			/>
-		</div>
-	</main>
-{:else if $checkoutQuery.isError}
-	<h4>Error...</h4>
-{/if} -->
+	<div class="border-r border-grey-600 px-5">
+		<header class="flex justify-center w-full mb-10">
+			<h2 class="text-3xl heading-2 font-semibold flex items-start">
+				Saven
+				<span class="text-xl"> ®</span>
+			</h2>
+		</header>
+
+		<form use:form method="post" class="flex flex-col gap-10">
+			<ContactInformation {errors} />
+			<CheckoutShippingAddress {errors} />
+			<CheckoutShippingMethod shippingMethods={checkout.shipping_methods} />
+
+			<div class="payment">
+				<h3 class="heading-3 font-semibold">Payment Information</h3>
+				<div id="payment-element">
+					<!--Stripe.js injects the Payment Element-->
+				</div>
+			</div>
+			<div id="payment-message" class="hidden" />
+			<Button isLoading={$isSubmitting}>Place Order</Button>
+		</form>
+	</div>
+
+	<div class="details px-5 flex flex-col gap-5">
+		<CheckoutProducts lineItems={cart.line_items} />
+		<hr />
+		<CheckoutBottomTotal
+			tax={checkout.tax.amount.formatted_with_symbol}
+			subtotal={checkout.total_due.formatted_with_symbol}
+			total={checkout.total_due.formatted_with_symbol}
+		/>
+	</div>
+</main>
+
 <style lang="scss">
-	// .checkout {
-	// 	position: relative;
-	// 	display: grid;
-	// 	grid-template-columns: 1fr 0.9fr;
-	// }
-	// .details {
-	// 	height: min-content;
-	// 	position: sticky;
-	// 	top: 1rem;
-	// }
+	.checkout {
+		position: relative;
+		display: grid;
+		grid-template-columns: 1fr 0.9fr;
+	}
+	.details {
+		height: min-content;
+		position: sticky;
+		top: 1rem;
+	}
+	.payment {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+	}
 </style>
