@@ -72,9 +72,13 @@
 
 		elements = stripeConstructor.elements({ appearance });
 
-		const cardNumberElement = elements.create('cardNumber', { showIcon: true, iconStyle: 'solid' });
-		const cardCvcElement = elements.create('cardCvc');
-		const cardExpElement = elements.create('cardExpiry');
+		const cardNumberElement = elements.create('cardNumber', {
+			showIcon: true,
+			iconStyle: 'solid',
+			style: { base: { fontSize: '16px' } }
+		});
+		const cardCvcElement = elements.create('cardCvc', { style: { base: { fontSize: '16px' } } });
+		const cardExpElement = elements.create('cardExpiry', { style: { base: { fontSize: '16px' } } });
 
 		cardNumberElement.mount('#card-number');
 		cardCvcElement.mount('#card-cvc');
