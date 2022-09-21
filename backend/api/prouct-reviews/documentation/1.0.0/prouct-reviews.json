@@ -1,18 +1,19 @@
 {
   "paths": {
-    "/products": {
+    "/prouct-reviews": {
       "get": {
         "deprecated": false,
-        "description": "Find all the products's records",
+        "description": "Find all the prouct-reviews's records",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "Retrieve prouct-reviews document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Products"
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
                   }
                 }
               }
@@ -51,7 +52,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Prouct-reviews"
         ],
         "parameters": [
           {
@@ -194,79 +195,16 @@
       },
       "post": {
         "deprecated": false,
-        "description": "Create a new products record",
+        "description": "Create a new prouct-reviews record",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Products"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "summary": "",
-        "tags": [
-          "Products"
-        ],
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewProducts"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/products/count": {
-      "get": {
-        "deprecated": false,
-        "description": "Retrieve the number of products documents",
-        "responses": {
-          "200": {
-            "description": "Retrieve products document(s)",
+            "description": "Retrieve prouct-reviews document(s)",
             "content": {
               "application/json": {
                 "schema": {
                   "properties": {
-                    "count": {
-                      "type": "integer"
+                    "foo": {
+                      "type": "string"
                     }
                   }
                 }
@@ -306,22 +244,36 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Prouct-reviews"
         ],
-        "parameters": []
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewProuct-reviews"
+              }
+            }
+          }
+        }
       }
     },
-    "/products/{id}": {
+    "/prouct-reviews/count": {
       "get": {
         "deprecated": false,
-        "description": "Find one products record",
+        "description": "Retrieve the number of prouct-reviews documents",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "Retrieve prouct-reviews document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Products"
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
@@ -359,7 +311,64 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Prouct-reviews"
+        ],
+        "parameters": []
+      }
+    },
+    "/prouct-reviews/{id}": {
+      "get": {
+        "deprecated": false,
+        "description": "Find one prouct-reviews record",
+        "responses": {
+          "200": {
+            "description": "Retrieve prouct-reviews document(s)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Prouct-reviews"
         ],
         "parameters": [
           {
@@ -376,14 +385,18 @@
       },
       "put": {
         "deprecated": false,
-        "description": "Update a single products record",
+        "description": "Update a single prouct-reviews record",
         "responses": {
           "200": {
-            "description": "Retrieve products document(s)",
+            "description": "Retrieve prouct-reviews document(s)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Products"
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
@@ -421,7 +434,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Prouct-reviews"
         ],
         "requestBody": {
           "description": "",
@@ -429,7 +442,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewProducts"
+                "$ref": "#/components/schemas/NewProuct-reviews"
               }
             }
           }
@@ -449,10 +462,10 @@
       },
       "delete": {
         "deprecated": false,
-        "description": "Delete a single products record",
+        "description": "Delete a single prouct-reviews record",
         "responses": {
           "200": {
-            "description": "deletes a single products based on the ID supplied",
+            "description": "deletes a single prouct-reviews based on the ID supplied",
             "content": {
               "application/json": {
                 "schema": {
@@ -495,7 +508,7 @@
         },
         "summary": "",
         "tags": [
-          "Products"
+          "Prouct-reviews"
         ],
         "parameters": [
           {
@@ -514,7 +527,7 @@
   },
   "components": {
     "schemas": {
-      "Products": {
+      "Prouct-reviews": {
         "required": [
           "id"
         ],
@@ -522,69 +535,43 @@
           "id": {
             "type": "string"
           },
-          "title": {
-            "type": "string"
-          },
-          "price": {
-            "type": "number"
-          },
-          "cover": {
+          "user": {
             "required": [
               "id",
-              "name",
-              "hash",
-              "mime",
-              "size",
-              "url",
-              "provider"
+              "email"
             ],
             "properties": {
               "id": {
                 "type": "string"
               },
-              "name": {
+              "username": {
                 "type": "string"
               },
-              "alternativeText": {
-                "type": "string"
-              },
-              "caption": {
-                "type": "string"
-              },
-              "width": {
-                "type": "integer"
-              },
-              "height": {
-                "type": "integer"
-              },
-              "formats": {
-                "type": "object"
-              },
-              "hash": {
-                "type": "string"
-              },
-              "ext": {
-                "type": "string"
-              },
-              "mime": {
-                "type": "string"
-              },
-              "size": {
-                "type": "number"
-              },
-              "url": {
-                "type": "string"
-              },
-              "previewUrl": {
+              "email": {
                 "type": "string"
               },
               "provider": {
                 "type": "string"
               },
-              "provider_metadata": {
-                "type": "object"
+              "password": {
+                "type": "string"
               },
-              "related": {
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmationToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string"
+              },
+              "profile": {
                 "type": "string"
               },
               "created_by": {
@@ -595,7 +582,7 @@
               }
             }
           },
-          "category": {
+          "product": {
             "required": [
               "id"
             ],
@@ -603,29 +590,32 @@
               "id": {
                 "type": "string"
               },
-              "short_title": {
+              "title": {
                 "type": "string"
               },
-              "short_description": {
+              "price": {
+                "type": "number"
+              },
+              "cover": {
                 "type": "string"
               },
-              "long_description": {
+              "category": {
                 "type": "string"
               },
-              "thumbnail": {
+              "description": {
                 "type": "string"
               },
-              "long_title": {
-                "type": "string"
-              },
-              "products": {
+              "gallery": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
               },
-              "icon": {
-                "type": "string"
+              "prouct_reviews": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "published_at": {
                 "type": "string"
@@ -638,112 +628,12 @@
               }
             }
           },
-          "description": {
+          "review": {
             "type": "string"
           },
-          "gallery": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name",
-                "hash",
-                "mime",
-                "size",
-                "url",
-                "provider"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "alternativeText": {
-                  "type": "string"
-                },
-                "caption": {
-                  "type": "string"
-                },
-                "width": {
-                  "type": "integer"
-                },
-                "height": {
-                  "type": "integer"
-                },
-                "formats": {
-                  "type": "object"
-                },
-                "hash": {
-                  "type": "string"
-                },
-                "ext": {
-                  "type": "string"
-                },
-                "mime": {
-                  "type": "string"
-                },
-                "size": {
-                  "type": "number"
-                },
-                "url": {
-                  "type": "string"
-                },
-                "previewUrl": {
-                  "type": "string"
-                },
-                "provider": {
-                  "type": "string"
-                },
-                "provider_metadata": {
-                  "type": "object"
-                },
-                "related": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "prouct_reviews": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "user": {
-                  "type": "string"
-                },
-                "product": {
-                  "type": "string"
-                },
-                "review": {
-                  "type": "string"
-                },
-                "rating": {
-                  "type": "integer"
-                },
-                "published_at": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
+          "rating": {
+            "type": "integer",
+            "default": 5
           },
           "published_at": {
             "type": "string",
@@ -751,25 +641,20 @@
           }
         }
       },
-      "NewProducts": {
+      "NewProuct-reviews": {
         "properties": {
-          "title": {
+          "user": {
             "type": "string"
           },
-          "price": {
-            "type": "number"
-          },
-          "category": {
+          "product": {
             "type": "string"
           },
-          "description": {
+          "review": {
             "type": "string"
           },
-          "prouct_reviews": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+          "rating": {
+            "type": "integer",
+            "default": 5
           },
           "published_at": {
             "type": "string",
@@ -785,9 +670,5 @@
       }
     }
   },
-  "tags": [
-    {
-      "name": "Products"
-    }
-  ]
+  "tags": []
 }

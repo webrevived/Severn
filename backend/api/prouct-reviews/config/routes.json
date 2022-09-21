@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/prouct-reviews",
+      "handler": "prouct-reviews.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/prouct-reviews/count",
+      "handler": "prouct-reviews.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/prouct-reviews/:id",
+      "handler": "prouct-reviews.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/prouct-reviews",
+      "handler": "prouct-reviews.create",
+      "config": {
+        "policies": ["isMe"]
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/prouct-reviews/:id",
+      "handler": "prouct-reviews.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/prouct-reviews/:id",
+      "handler": "prouct-reviews.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

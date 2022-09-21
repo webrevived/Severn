@@ -46,6 +46,10 @@
       "plugin": "upload",
       "required": false,
       "pluginOptions": {}
+    },
+    "prouct_reviews": {
+      "via": "product",
+      "collection": "prouct-reviews"
     }
   }
 }

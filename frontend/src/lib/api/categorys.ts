@@ -1,5 +1,4 @@
-import { checkCache } from "$lib/api/index"
-import type { Cache } from "$lib/api/index"
+import { HOST } from "$lib/api/index"
 import type { BaseApiResponse, Media } from '$lib/api/index'
 import type { BaseProducts, ProductItem } from '$lib/api/products'
 
@@ -28,21 +27,13 @@ export interface CategoryProps {
     items: ProductItem[]
 }
 
-const categoryCache: Cache<CategoriesApi> = {
-    dump: null,
-    lastUpdated: null
-}
-
 export const findOneByID: (number) => Promise<CategoriesApi> = async (id: number) => {
-    await checkCache(categoryCache, "/categories")
-    return categoryCache.dump.find( item => item.id === id )
+    return await fetch(`${HOST}/categories/${id}`).then( res => res.json() )
 }
 export const findOneByTitle: (string) => Promise<CategoriesApi> = async (title: string) => {
-    await checkCache(categoryCache, "/categories")
-    return categoryCache.dump.find( item => item.short_title === title )
+    return (await fetch(`${HOST}/categories?short_title=${title}`).then( res => res.json() ))[0]
 }
 
 export const findAll: () => Promise<CategoriesApi[]> = async () => {
-    await checkCache(categoryCache, "/categories")
-    return categoryCache.dump
+    return await fetch(`${HOST}/categories`).then( res => res.json() )
 }

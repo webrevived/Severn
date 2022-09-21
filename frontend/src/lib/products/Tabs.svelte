@@ -28,11 +28,15 @@
         _left.set(calcLeft.left + Math.floor(button.clientWidth / 2))
     }
 
-    onMount( () => {
+    const onResize = () => {
         const current = Array.from( container.children ).find( (elm) => elm.textContent === value )
         onClick( value, current as HTMLButtonElement )()
-    } )
+    }
+
+    onMount( onResize )
 </script>
+
+<svelte:window on:resize={onResize} />
 
 <div 
     class="relative flex justify-around pb-6"

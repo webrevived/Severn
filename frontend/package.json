@@ -38,6 +38,7 @@
     "fuse.js": "^6.4.6",
     "gsap": "^3.10.4",
     "stripe": "^10.10.0",
+    "svelte-click-outside": "^1.0.0",
     "svelte-local-storage-store": "^0.2.6",
     "zod": "^3.17.10"
   }
