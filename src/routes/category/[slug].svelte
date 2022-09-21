@@ -50,5 +50,11 @@
 		</div>
 	</div>
 {:else}
-	<Products products={$productsQuery.data.data} />
+	<div class="products">
+		<Products products={$productsQuery.data.data} />
+	</div>
 {/if}
+
+<style lang="scss">
+
+</style>

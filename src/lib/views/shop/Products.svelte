@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { CategoryProps } from '$lib/api/categorys';
 	import ItemCarosel from '$lib/global/ItemCarosel.svelte';
 	import type { Product } from '@chec/commerce.js/types/product';
 
@@ -13,7 +12,7 @@
 	export let category: Category;
 </script>
 
-<section class="w-full x-container flex flex-col pb-22">
+<section class="container w-full flex flex-col pb-22">
 	<ItemCarosel
 		button={category.button.text}
 		href={category.button.href}

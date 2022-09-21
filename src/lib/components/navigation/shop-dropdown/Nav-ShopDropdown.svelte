@@ -7,6 +7,7 @@
 
 <script lang="ts">
 	import ShopDropdownBlock from './ShopDropdown-Block.svelte';
+	import ShopDropdownBottomBar from './ShopDropdown-BottomBar.svelte';
 	import ShopDropdownHighlight from './ShopDropdown-Highlight.svelte';
 
 	export let blocks: Block[] = [
@@ -18,19 +19,31 @@
 					href: '/'
 				},
 				{
-					name: 'Shop All',
+					name: 'Thank you',
 					href: '/'
 				},
 				{
-					name: 'Shop all',
+					name: 'Everyday',
 					href: '/'
 				},
 				{
-					name: 'Shop all',
+					name: 'Baby',
 					href: '/'
 				},
 				{
-					name: 'Shop all',
+					name: 'Religious',
+					href: '/'
+				},
+				{
+					name: 'National Parks',
+					href: '/'
+				},
+				{
+					name: 'Blank Card',
+					href: '/'
+				},
+				{
+					name: 'Sale',
 					href: '/'
 				}
 			]
@@ -39,23 +52,23 @@
 			title: 'Shop by scent',
 			items: [
 				{
-					name: 'Shop all',
+					name: 'Birthday',
 					href: '/'
 				},
 				{
-					name: 'Shop All',
+					name: 'Congratulations',
 					href: '/'
 				},
 				{
-					name: 'Shop all',
+					name: 'Wedding',
 					href: '/'
 				},
 				{
-					name: 'Shop all',
+					name: 'Love & Friendship',
 					href: '/'
 				},
 				{
-					name: 'Shop all',
+					name: 'Sympathy & Encourgement',
 					href: '/'
 				}
 			]
@@ -64,23 +77,15 @@
 			title: 'Holiday cards',
 			items: [
 				{
-					name: 'Shop all',
+					name: 'Independence Day',
 					href: '/'
 				},
 				{
-					name: 'Shop All',
+					name: 'Chrismas',
 					href: '/'
 				},
 				{
-					name: 'Shop all',
-					href: '/'
-				},
-				{
-					name: 'Shop all',
-					href: '/'
-				},
-				{
-					name: 'Shop all',
+					name: 'Easter',
 					href: '/'
 				}
 			]
@@ -88,55 +93,63 @@
 	];
 </script>
 
-<div class="dropdown">
-	<div class="blocks">
-		{#each blocks as block}
-			<ShopDropdownBlock {block} />
-		{/each}
+<div class="dropdown-container">
+	<div class="dropdown">
+		<div class="blocks">
+			{#each blocks as block}
+				<ShopDropdownBlock {block} />
+			{/each}
+		</div>
+
+		<div class="highlight">
+			<ShopDropdownHighlight
+				imgSrc="/images/Gallary/2.png"
+				title="get inspired"
+				desc="The Ultimate Guide: What to get a loved one"
+				href="/"
+				imAlt="Highlight"
+			/>
+			<ShopDropdownHighlight
+				imgSrc="/images/Gallary/2.png"
+				title="best sellers"
+				desc="Our BestSellers, Perfect for sending your best wishes."
+				href="/"
+				imAlt="Highlight"
+			/>
+		</div>
 	</div>
 
-	<div class="highlight">
-		<ShopDropdownHighlight
-			imgSrc="/images/Gallary/2.png"
-			title="get inspired"
-			desc="The Ultimate Guide: What to get a loved one"
-			href="/"
-			imAlt="Highlight"
-		/>
-		<ShopDropdownHighlight
-			imgSrc="/images/Gallary/2.png"
-			title="best sellers"
-			desc="Our BestSellers, Perfect for sending your best wishes."
-			href="/"
-			imAlt="Highlight"
-		/>
-	</div>
+	<ShopDropdownBottomBar />
 </div>
 
 <style lang="scss">
-	.dropdown {
-		display: grid;
-		grid-template-columns: 1.2fr 1fr;
-		gap: var(--space-md);
+	.dropdown-container {
+		background-color: var(--color-white-300);
 		position: absolute;
+		width: 100%;
 		left: 0;
 		bottom: 0;
 		transform: translateY(100%);
-		background-color: var(--color-white-300);
+		box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+	}
+	.dropdown {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: var(--space-lg);
 		width: 100%;
-		padding: var(--space-xs);
+		padding: var(--space-sm) var(--space-sm);
 	}
 
 	.blocks {
 		display: flex;
 		justify-content: space-between;
-		flex-basis: 100%;
 		gap: var(--space-md);
 	}
-	
+
 	.highlight {
-		flex-basis: 50%;
-		gap: var(--space-2xs);
+		position: relative;
+		top: -1.5px;
+		gap: var(--space-xs);
 		display: flex;
 		flex: 1 0 auto;
 	}

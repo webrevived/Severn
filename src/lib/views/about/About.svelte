@@ -1,7 +1,7 @@
-<section class="x-container h-min gap-21.5 mb-30" flex="~ col-reverse md:row" justify="center">
+<section class="wrapper section gap-21.5 flex flex-col justify-center md:flex-row">
 	<div class="w-full md:w-2/5 flex flex-col gap-5">
 		<h1 class="text-1 text-brown-1200 uppercase">About Severn Company</h1>
-		<h2 class="heading-1 font-normal leading-[130%]" text="-sm:28px black-600">
+		<h2 class="heading-1 font-normal leading-[130%] text-black-600 -sm:text-[28px]">
 			At Severn, We have Premium Candles along with Self Care Products
 		</h2>
 
@@ -18,7 +18,7 @@
 		</p>
 	</div>
 
-	<div class="relative h-full md:w-558px max-h-460px flex-grow">
+	<div class="image-wrap relative h-full md:w-558px max-h-460px flex-grow">
 		<img
 			pos="absolute left-1/2 md:left-full"
 			transform="~ -translate-x-1/2 -translate-y-1/2"
@@ -28,3 +28,12 @@
 		<img class="w-full max-h-460px object-cover" src="/images/About_Thumbnail.png" alt="" />
 	</div>
 </section>
+
+<style lang="scss">
+	.wrapper {
+		padding-top: var(--space-md);
+	}
+	.image-wrap {
+		padding-top: var(--space-md);
+	}
+</style>

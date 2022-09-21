@@ -1,7 +1,5 @@
 <section
-	class="x-container my-30 md:gap-30 xl:gap-52.5"
-	flex="~ col md:row"
-	justify="center"
+	class="my-30 flex justify-center flex-col md:flex-row md:gap-30 xl:gap-52.5"
 	transition="all duration-200 ease-in-out"
 >
 	<div class="relative h-250px md:h-max">

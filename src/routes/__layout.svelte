@@ -2,12 +2,20 @@
 	import 'virtual:windi.css';
 	import '$lib/styles/root.scss';
 	import '$lib/styles/global.css';
-	import { newsTags } from '$lib/stores';
+	import { navToggles, newsTags } from '$lib/stores';
 	import Footer from '$lib/global/Footer.svelte';
 	import NewsHeader from '$lib/global/NewsHeader.svelte';
 	import { QueryClientProvider, QueryClient } from '@sveltestack/svelte-query';
+	import { afterNavigate, beforeNavigate } from '$app/navigation';
 
 	const client = new QueryClient();
+
+	beforeNavigate(() => {
+		$navToggles.cart = false;
+		$navToggles.search = false;
+		$navToggles.shop = false;
+		$navToggles.mobile = false;
+	})
 </script>
 
 <NewsHeader tags={$newsTags} />

@@ -1,102 +1,140 @@
 <script lang="ts">
-	import CartIcon from '$lib/components/navigation/CartIcon.svelte';
+	import CartIcon from '$lib/components/icons/CartIcon.svelte';
+	import HamburgerIcon from '$lib/components/icons/HamburgerIcon.svelte';
+	import SearchIcon from '$lib/components/icons/SearchIcon.svelte';
 	import Search from '$lib/components/navigation/Search.svelte';
-	import SearchIcon from '$lib/components/navigation/SearchIcon.svelte';
-	import Shop from '$lib/components/navigation/Shop.svelte';
 	import { navToggles } from '$lib/stores';
+	import Shop from '$lib/components/navigation/Shop.svelte';
 	import Cart from './Cart.svelte';
-	import HamburgerIcon from './HamburgerIcon.svelte';
-	import MobileBody from './MobileBody.svelte';
+	import MobileBody from './MobileNavbar.svelte';
 	import NavShopDropdown from './shop-dropdown/Nav-ShopDropdown.svelte';
 
 	export let dark = false;
-	const handleMouseEnter = () => ($navToggles.shop = true);
+	export let position: 'absolute' | 'reletive' | 'fixed' = 'reletive';
+	export let backgroundColor: 'transparent' | 'tan' = 'tan';
 
-	const handleMouseLeave = () => {
-		$navToggles.shop = false;
-	};
+	const handleMouseEnter = () => ($navToggles.shop = true);
+	const handleMouseLeave = () => ($navToggles.shop = false);
 </script>
 
-<div class="relative">
-	<nav
-		grid="~ rows-1 cols-[max-content_1fr_max-content] gap-0 md:gap-15 lg:gap-26"
-		class="relative justify-center"
-		class:dark={dark || $navToggles.shop}
-		class:z-5={$navToggles.shop}
-	>
-		<button
-			class="md:hidden"
-			text="white-100 dark:black-600"
-			grid="col-start-3 col-end-4 row-start-1 row-end-2"
-			on:click={() => ($navToggles.mobile = true)}
-		>
-			<HamburgerIcon />
-		</button>
+<div
+	class="nav-container backgroundColor--{backgroundColor}"
+	style:position
+	class:dark={dark || $navToggles.shop}
+>
+	<div class="nav-inner">
+		<!-- Navbar -->
+		<nav class="justify-center" class:z-5={$navToggles.shop}>
+			<button
+				class="md:hidden text-white-100 dark:text-black-600"
+				on:click={() => ($navToggles.mobile = true)}
+			>
+				<HamburgerIcon />
+			</button>
 
-		<a
-			class="heading-1 text-2xl tracking-[.03em]"
-			text="white-100 dark:black-600 center md:left"
-			grid="-sm:col-start-2 -sm:col-end-3"
-			href="/">Saven ®</a
-		>
+			<a class="logo" href="/"> Saven ® </a>
+			<div class="links text-white-100 dark:black-600 hidden md:flex items-center">
+				<div class="links__shop" on:mouseleave={handleMouseLeave} on:mouseenter={handleMouseEnter}>
+					<a href="/shop">Shop </a>
+					{#if $navToggles.shop}<NavShopDropdown />{/if}
+				</div>
 
-		<div
-			class="hidden md:flex items-center gap-15"
-			text="white-100 dark:black-600"
-			transition="~ colors duration-150"
-		>
-			<div on:mouseleave={handleMouseLeave}>
-				<a class="heading-1 text-lg z-50" href="/shop" on:mouseenter={handleMouseEnter}>Shop </a>
-				<!-- <Shop /> -->
-				<NavShopDropdown />
+				<a href="/about">About</a>
+				<a href="/contact">Contact</a>
+				<a href="/account">My Account</a>
 			</div>
-			<a class="heading-1 text-lg" href="/about">About</a>
-			<a class="heading-1 text-lg" href="/contact">Contact</a>
-			<a class="heading-1 text-lg whitespace-nowrap" href="/account">My Account</a>
-		</div>
 
-		<div
-			class="flex items-center gap-9"
-			text="white-100 dark:black-600"
-			grid="col-start-1 col-end-2 md:col-start-3 md:col-end-4 row-start-1 row-end-2"
-		>
-			<button
-				class="hidden md:block focus:outline-none"
-				on:click={$navToggles.shop
-					? null
-					: () => {
-							$navToggles.search = true;
-					  }}
+			<div
+				class="flex items-center gap-9 text-white-100 dark:text-black-600 col-start-1 col-end-2 md:col-start-3 md:col-end-4 row-start-1 row-end-2"
 			>
-				<SearchIcon />
-			</button>
-			<button
-				class="focus:outline-none"
-				on:click={$navToggles.shop
-					? null
-					: () => {
-							$navToggles.cart = true;
-					  }}
-			>
-				<CartIcon />
-			</button>
-		</div>
-	</nav>
+				<button
+					class="hidden md:block focus:outline-none"
+					on:click={() => ($navToggles.search = true)}
+				>
+					<SearchIcon />
+				</button>
+
+				<button class="focus:outline-none" on:click={() => ($navToggles.shop = true)}>
+					<CartIcon />
+				</button>
+			</div>
+		</nav>
+	</div>
 
 	<Search />
 	<Cart />
 </div>
 
-<!-- Mobile body doesn't need to be relative to the nav bar for now? -->
 <MobileBody />
 
 <style lang="scss">
-	a {
-		position: relative;
+	/* General Navbar Container */
+	.nav-container {
+		padding: var(--space-xs) 0;
+		color: var(--color-black-600);
+		width: 100%;
 		z-index: 10;
 	}
-	a:hover {
-		transition: font-style 0.15s linear;
-		font-style: italic;
+
+	/* Navbar Inner contents container (for spacing absloute positioned elements) */
+	.nav-inner {
+		position: relative;
+		padding: 0 var(--space-sm);
+	}
+
+	nav {
+		display: flex;
+		justify-content: space-between;
+
+		.links {
+			display: flex;
+			align-items: center;
+			transition: color 0.15s linear;
+		}
+
+		.links__shop {
+			display: flex;
+			align-items: center;
+			height: 100%;
+		}
+
+		.links a {
+			@apply heading-1 text-lg whitespace-nowrap whitespace-nowrap;
+			padding: 0 var(--space-sm);
+		}
+
+		a:hover {
+			transition: font-style 0.15s linear;
+			font-style: italic;
+		}
+
+		.logo {
+			@apply text-white-100 dark:black-600 md:left heading-1 text-2xl tracking-[.03em];
+			display: flex;
+			align-items: center;
+		}
+	}
+
+	/* BACKGROUND COLOR */
+	.backgroundColor--tan {
+		background-color: var(--color-white-3000);
+	}
+
+	.backgroundColor--transparent {
+		background-color: transparent;
+	}
+
+	.dark {
+		background-color: var(--color-white-300);
+
+		a {
+			color: var(--color-black-600);
+		}
+	}
+
+	@media only screen and (max-width: 767px) {
+		.links {
+			display: none !important;
+		}
 	}
 </style>

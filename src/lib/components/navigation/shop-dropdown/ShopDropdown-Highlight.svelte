@@ -30,12 +30,13 @@
 			margin: 0;
 			object-fit: cover;
 			width: 100%;
-			height: 200px;
+			height: 250px;
 		}
 
 		&__title {
 			text-transform: uppercase;
 			font-size: 14px;
+            height: 14px;
             font-family: var(--font-lato);
 		}
 

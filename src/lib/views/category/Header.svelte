@@ -1,23 +1,21 @@
 <script lang="ts">
-	import NavBar from '$lib/components/navigation/Bar.svelte';
+	import Bar from '$lib/components/navigation/Bar.svelte';
 
 	export let title: string;
 	export let description: string;
 	export let thumbnailSrc: string;
 </script>
 
-<header class="w-full relative bg-white-300" flex="~ col-reverse md:row" justify="between">
-	<div class="z-1 x-container py-6 w-full absolute top-0 left-0">
-		<NavBar dark />
-	</div>
+<Bar dark backgroundColor="transparent" />
 
+<header class="w-full relative bg-white-300 flex flex-col-reverse justify-between md:flex-row">
 	<div class="header-wrap">
 		<div class="text-wrap mx-7 flex justify-end py-10 md:mx-25.5 md:flex flex-col gap-5">
 			<h1 class="capitalize text-67px text-black-600 font-normal font-tiempos <sm:text-[55px]">
 				{title}
 			</h1>
 			<p class="text-xl text-brown-1200 <sm:text-[16px]">
-				{description} 
+				{description}
 			</p>
 		</div>
 

@@ -2,9 +2,8 @@
 	import Item from '$lib/global/ItemCard.svelte';
 	import type { Product } from '@chec/commerce.js/types/product';
 
+	/* TODO: Add option to show more products & limit visible products */
 	export let products: Product[];
-
-	let showProducts = 4;
 </script>
 
 <main class="x-container flex flex-col gap-7.5 py-17.5">
@@ -18,16 +17,5 @@
 				price={product.price.raw}
 			/>
 		{/each}
-	</div>
-
-	<div class="flex w-full justify-center">
-		<!-- {#if showProducts <= category.products.length}
-			<button
-				class="heading-3 text-black-600 pb-2 border-b-1 w-max hover:(italic font-medium)"
-				on:click={() => (showProducts += 4)}
-			>
-				Load More
-			</button>
-		{/if} -->
 	</div>
 </main>

@@ -1,6 +1,6 @@
 <script lang="ts">
+	import CloseIcon from '$lib/components/icons/CloseIcon.svelte';
 	import { navToggles } from '$lib/stores';
-	import CloseIcon from '$lib/components/navigation/CloseIcon.svelte';
 	const closeCart = () => ($navToggles.cart = false);
 </script>
 

@@ -3,10 +3,10 @@
 	import { newsTags } from '$lib/stores';
 	import NewsHeader from '$lib/global/NewsHeader.svelte';
 	import Input from '$lib/global/Form/Input.svelte';
-	import CloseIcon from './CloseIcon.svelte';
-	import SearchIcon from './SearchIcon.svelte';
 	import { navToggles, searchValue } from '$lib/stores';
 	import { gsap } from '$lib/utils/gsap';
+	import CloseIcon from '../icons/CloseIcon.svelte';
+	import SearchIcon from '../icons/SearchIcon.svelte';
 
 	const navbarInAnimation = (node: HTMLElement) => {
 		const timeline = gsap.timeline();
@@ -54,7 +54,7 @@
 	<div
 		in:navbarInAnimation
 		out:navbarOutAnimation
-		pos="fixed top-0 right-0 w-screen h-screen"
+		pos="fixed top-0 right-0 w-screen h-screen z-20"
 		class="nav-wrapper bg-white-100 z-3 overflow-scroll flex flex-col"
 	>
 		<div class="flex-shrink-0">

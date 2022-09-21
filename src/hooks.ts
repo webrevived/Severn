@@ -1,6 +1,8 @@
 import type { GetSession, Handle } from '@sveltejs/kit';
 
-const parseCookie = (string: string): any =>
+const parseCookie = (string: string): any => {
+	if (!string) return;
+	
 	string
 		.split(';')
 		.map((cookie) => cookie.split('='))
@@ -8,6 +10,7 @@ const parseCookie = (string: string): any =>
 			acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
 			return acc;
 		}, {});
+	}
 
 export const handle: Handle = async ({ event, resolve }) => {
 	const cookie = event.request.headers.get('cookie');

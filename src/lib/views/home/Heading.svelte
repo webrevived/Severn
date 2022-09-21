@@ -6,16 +6,14 @@
 	export let src: string;
 </script>
 
+<NavBar position="absolute" />
+
 <header
-	flex="~ col"
-	class="relative x-container w-full min-h-213 justify-center bg-header"
-	p="t-6"
+	class="flex flex-col relative x-container w-full min-h-213 justify-center bg-header"
 	style="--src: url('{src}')"
 >
-	<NavBar />
-
-	<div class="heading-wrapper max-w-129.5 h-full justify-center" flex="~ grow col">
-		<div class=" gap-2.5" flex="~ col">
+	<div class="heading-wrapper max-w-129.5 h-full justify-center flex flex-col flex-grow">
+		<div class=" gap-2.5 flex flex-col">
 			<h1 class="text-1 text-white-100">NATURE-INSPIRED SKINCARE FOR MEN</h1>
 			<h2 class="heading-1 font-400 text-white-100 mb-2.5 text-[50px] leading-snug italic">
 				Handcrafted candels & self care products made in the USA

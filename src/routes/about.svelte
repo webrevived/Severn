@@ -7,14 +7,14 @@
 </script>
 
 <main>
-	<section class="x-container pt-6">
-		<NavBar dark />
-	</section>
+	<NavBar dark />
 
-	<Header />
-	<About />
-	<Message />
-	<Why />
+	<div class="container">
+		<Header />
+		<About />
+		<Message />
+		<Why />
+	</div>
 
 	<!-- TODO: Add back in -->
 	<!-- <Products /> -->

@@ -46,9 +46,7 @@
 </script>
 
 <main>
-	<section class="x-container pt-6">
-		<NavBar dark />
-	</section>
+	<NavBar dark />
 
 	<ShopHeader />
 

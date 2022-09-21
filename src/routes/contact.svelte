@@ -5,10 +5,10 @@
 </script>
 
 <main>
-	<section class="x-container pt-6">
-		<NavBar dark />
-	</section>
-	
-	<Header />
-	<Gallary --mt="67px" />
+	<NavBar dark />
+
+	<div class="container">
+		<Header />
+		<Gallary --mt="67px" />
+	</div>
 </main>

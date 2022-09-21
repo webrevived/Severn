@@ -1,7 +1,7 @@
 <script lang="ts">
 </script>
 
-<section class="w-full x-container pt-22.5 flex flex-col">
+<section class="container w-full pt-22.5 flex flex-col">
 	<!-- just here for semantic reasons -->
 	<h1 class="opacity-0 w-0 h-0">Shop Our Products</h1>
 

@@ -25,9 +25,7 @@
 	export let product: Product;
 </script>
 
-<header class="x-container pt-6">
-	<NavBar dark />
-</header>
+<NavBar dark />
 
 <main>
 	<ProductPurchase {product} />
