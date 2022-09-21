@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Products from '$lib/views/shop/Products.svelte';
 	import dataAccess from '$lib/data-access';
-	import NavBar from '$lib/global/Navigation/Bar.svelte';
+	import NavBar from '$lib/components/navigation/Bar.svelte';
 	import Deals from '$lib/views/shop/Deals.svelte';
 	import ShopHeader from '$lib/views/shop/ShopHeader.svelte';
 	import type { Category } from '@chec/commerce.js/types/category';

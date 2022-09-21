@@ -1,6 +1,6 @@
 <script>
-	import ActiveOrders from '$lib/orders/Active.svelte';
-	import PreviousOrders from '$lib/orders/Previous.svelte';
+	import ActiveOrders from '$lib/views/account/orders/Active.svelte';
+	import PreviousOrders from '$lib/views/account/orders/Previous.svelte';
 
 	let activeOrders = [...Array(3)];
 	let pastOrders = [];

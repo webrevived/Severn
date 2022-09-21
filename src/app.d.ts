@@ -6,11 +6,11 @@ declare namespace App {
 	interface Locals {
 		cartId: string;
 	}
-	// interface Platform {}
-	// interface PrivateEnv {}
-	// interface PublicEnv {}
 	interface Session {
 		cartId?: string;
 	}
+	// interface Platform {}
+	// interface PrivateEnv {}
+	// interface PublicEnv {}
 	// interface Stuff {}
 }

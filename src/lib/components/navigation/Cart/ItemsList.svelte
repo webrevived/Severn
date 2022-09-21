@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Item from '$lib/global/Navigation/Cart/Item.svelte';
+	import Item from '$lib/components/navigation/Cart/Item.svelte';
 	import type { LineItem } from '@chec/commerce.js/types/line-item';
 	import { flip } from 'svelte/animate';
 

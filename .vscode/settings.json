@@ -1,0 +1,4 @@
+{
+    "cssvar.files": ["./src/lib/styles/root.scss"],
+    "html-css-class-completion.includeGlobPattern": "src/lib/styles/global.css",
+}

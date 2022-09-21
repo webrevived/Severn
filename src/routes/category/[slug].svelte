@@ -19,15 +19,13 @@
 </script>
 
 <script lang="ts">
-	import commerece from '$lib/data-access/index';
-	import Header from '$lib/category/Header.svelte';
-	import Products from '$lib/category/Products.svelte';
-	import type { Product } from '@chec/commerce.js/types/product';
-	import type { Load } from '@sveltejs/kit';
-	import type { CategoryWithAssets } from '$lib/stores/collection.store';
-	import dataAccess from '$lib/data-access/index';
-	import { useQuery } from '@sveltestack/svelte-query';
+	import { default as commerece, default as dataAccess } from '$lib/data-access/index';
 	import ItemCardSkeleton from '$lib/global/Skeletons/ItemCardSkeleton.svelte';
+	import type { CategoryWithAssets } from '$lib/stores/collection.store';
+	import Header from '$lib/views/category/Header.svelte';
+	import Products from '$lib/views/category/Products.svelte';
+	import type { Load } from '@sveltejs/kit';
+	import { useQuery } from '@sveltestack/svelte-query';
 
 	export let categorySlug: string;
 	export let category: CategoryWithAssets;

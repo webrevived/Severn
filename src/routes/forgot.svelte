@@ -2,7 +2,7 @@
 	import Button from '$lib/global/Button.svelte';
 	import Input from '$lib/global/Form/Input.svelte';
 	import Header from '$lib/global/HeaderHR.svelte';
-	import Bar from '$lib/global/Navigation/Bar.svelte';
+	import Bar from '$lib/components/navigation/Bar.svelte';
 </script>
 
 <header class="x-container pt-6">

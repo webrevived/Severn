@@ -1,7 +1,6 @@
 <script lang="ts">
-	import NavBar from '$lib/global/Navigation/Bar.svelte';
-	import Input from '$lib/search/Input.svelte';
-	import Results from '$lib/search/Results.svelte';
+	import Input from '$lib/components/search/Input.svelte';
+	import NavBar from '$lib/components/navigation/Bar.svelte';
 
 	export let term: string;
 	/* TODO: FIX */

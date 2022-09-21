@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation';
-	import Dropdown from '$lib/global/Navigation/Dropdown.svelte';
-	import ShopSeperator from '$lib/global/Navigation/ShopSeperator.svelte';
+	import Dropdown from '$lib/components/navigation/Dropdown.svelte';
+	import ShopSeperator from '$lib/components/navigation/ShopSeperator.svelte';
 	import { navToggles } from '$lib/stores';
 	import { categoriesStore } from '$lib/stores/collection.store';
 

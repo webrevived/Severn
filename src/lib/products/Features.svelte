@@ -1,10 +1,8 @@
 <script lang="ts">
 	import Tabs from '$lib/products/Tabs.svelte';
-	import ProductDetails from './ProductDetails.svelte';
-	import ProductGallery from './ProductGallery.svelte';
-	import WhyUs from './WhyUs.svelte';
-	import type { ProductsApi } from '$lib/api/products';
 	import type { Product } from '@chec/commerce.js/types/product';
+	import ProductDetails from './ProductDetails.svelte';
+	import WhyUs from './WhyUs.svelte';
 
 	export let product: Product;
 

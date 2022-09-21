@@ -1,5 +1,5 @@
 <script lang="ts">
-	import NavBar from '$lib/global/Navigation/Bar.svelte';
+	import NavBar from '$lib/components/navigation/Bar.svelte';
 
 	export let title: string;
 	export let description: string;
@@ -17,7 +17,7 @@
 				{title}
 			</h1>
 			<p class="text-xl text-brown-1200 <sm:text-[16px]">
-				{description}
+				{description} 
 			</p>
 		</div>
 

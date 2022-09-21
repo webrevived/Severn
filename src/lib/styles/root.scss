@@ -1,0 +1,40 @@
+:root {
+
+    /* COLORS */
+    --color-brown-1200: #6D6762; 
+    --color-brown-900: #83612E; 
+    --color-brown-600: #C29653; 
+    --color-black-600: #1F2325; 
+    --color-gray-600: #4D4A4F; 
+    --color-white-600: #DC6062; 
+    --color-white-300: #F5EEE6; 
+    --color-white-100: #FCF8F3; 
+
+    /* TEXT SIZES */
+    --text-sm: .75rem // 12px
+    --text-md: 14px;
+    --text-lg: 1rem // 16px
+    --text-xl: 1.3125rem // 21px
+    --text-2xl: 1.75rem // 28px
+    --text-3xl: 2.3125rem // 37px
+
+    --font-tiempos: 'Tiempos';
+    --font-lato: 'Lato';
+
+    /* SPACING */
+	--space-4xs: 2px;
+	--space-3xs: 4px;
+	--space-2xs: 8px;
+	--space-xs: 16px;
+	--space-sm: 24px;
+	--space-md: 32px;
+	--space-lg: 40px;
+	--space-xl: 56px;
+	--space-2xl: 64px;
+	--space-3xl: 72px;
+	--space-4xl: 80px;
+	--space-5xl: 88px;
+	--space-6xl: 160px;
+	--space-7xl: 216px;
+
+}

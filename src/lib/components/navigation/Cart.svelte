@@ -1,10 +1,10 @@
 <script lang="ts">
 	import dataAccess from '$lib/data-access';
-	import BottomBar from '$lib/global/Navigation/Cart/BottomBar.svelte';
-	import Container from '$lib/global/Navigation/Cart/Container.svelte';
-	import EmptyCart from '$lib/global/Navigation/Cart/EmptyCart.svelte';
-	import ItemsList from '$lib/global/Navigation/Cart/ItemsList.svelte';
-	import TopBar from '$lib/global/Navigation/Cart/TopBar.svelte';
+	import BottomBar from '$lib/components/navigation/Cart/BottomBar.svelte';
+	import Container from '$lib/components/navigation/Cart/Container.svelte';
+	import EmptyCart from '$lib/components/navigation/Cart/EmptyCart.svelte';
+	import ItemsList from '$lib/components/navigation/Cart/ItemsList.svelte';
+	import TopBar from '$lib/components/navigation/Cart/TopBar.svelte';
 	import { navToggles } from '$lib/stores';
 	import { useQuery } from '@sveltestack/svelte-query';
 

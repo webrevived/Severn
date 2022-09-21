@@ -1,12 +1,13 @@
 <script lang="ts">
-	import CartIcon from '$lib/global/Navigation/CartIcon.svelte';
-	import Search from '$lib/global/Navigation/Search.svelte';
-	import SearchIcon from '$lib/global/Navigation/SearchIcon.svelte';
-	import Shop from '$lib/global/Navigation/Shop.svelte';
+	import CartIcon from '$lib/components/navigation/CartIcon.svelte';
+	import Search from '$lib/components/navigation/Search.svelte';
+	import SearchIcon from '$lib/components/navigation/SearchIcon.svelte';
+	import Shop from '$lib/components/navigation/Shop.svelte';
 	import { navToggles } from '$lib/stores';
 	import Cart from './Cart.svelte';
 	import HamburgerIcon from './HamburgerIcon.svelte';
 	import MobileBody from './MobileBody.svelte';
+	import NavShopDropdown from './shop-dropdown/Nav-ShopDropdown.svelte';
 
 	export let dark = false;
 	const handleMouseEnter = () => ($navToggles.shop = true);
@@ -44,12 +45,13 @@
 			text="white-100 dark:black-600"
 			transition="~ colors duration-150"
 		>
-			<a class="heading-1 text-lg" href="/about">About</a>
-			<a class="heading-1 text-lg" href="/contact">Contact</a>
 			<div on:mouseleave={handleMouseLeave}>
 				<a class="heading-1 text-lg z-50" href="/shop" on:mouseenter={handleMouseEnter}>Shop </a>
-				<Shop />
+				<!-- <Shop /> -->
+				<NavShopDropdown />
 			</div>
+			<a class="heading-1 text-lg" href="/about">About</a>
+			<a class="heading-1 text-lg" href="/contact">Contact</a>
 			<a class="heading-1 text-lg whitespace-nowrap" href="/account">My Account</a>
 		</div>
 

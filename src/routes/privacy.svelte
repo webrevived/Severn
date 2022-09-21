@@ -1,5 +1,5 @@
 <script lang="ts">
-	import NavBar from '$lib/global/Navigation/Bar.svelte';
+	import NavBar from '$lib/components/navigation/Bar.svelte';
 	import Content from '$lib/views/terms/Content.svelte';
 	import Header from '$lib/global/HeaderHR.svelte';
 	const contents = [

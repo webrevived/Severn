@@ -1,7 +1,4 @@
 <script lang="ts">
-	import Item from '$lib/global/Navigation/Cart/Item.svelte';
-	import type { Asset } from '@chec/commerce.js/types/asset';
-	import type { CheckoutTokenLineItem } from '@chec/commerce.js/types/checkout-token';
 	import type { LineItem } from '@chec/commerce.js/types/line-item';
 
 	export let lineItems: LineItem[];

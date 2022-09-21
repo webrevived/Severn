@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Dropdown from '$lib/global/Navigation/Dropdown.svelte';
+	import Dropdown from '$lib/components/navigation/Dropdown.svelte';
 	import Input from '$lib/global/Form/Input.svelte';
 	import Button from '$lib/global/Button.svelte';
 	import { goto } from '$app/navigation';

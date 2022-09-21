@@ -1,17 +1,15 @@
 <script lang="ts">
-	import type { ProductsApi } from '$lib/api/products';
-	import { TransformProductsToItem } from '$lib/api/transforms';
 	import ItemCard from '$lib/global/ItemCard.svelte';
 
-	export let items: ProductsApi[];
-	let _items = items?.map((prod) => TransformProductsToItem(prod, prod.category)) ?? [];
+	/* TODO: Fix This */
+	export let items;
 </script>
 
 {#if items?.length > 0}
 	<section class="x-container py-26 gap-13.5" flex="~ wrap" justify="center md:start">
-		{#each _items as item}
+		<!-- {#each _items as item}
 			<ItemCard href="/products/{item.id}" {...item} />
-		{/each}
+		{/each} -->
 	</section>
 {:else}
 	<section class="x-container w-full pt-26 pb-101 gap-5" flex="~ col" align="items-center">

@@ -13,7 +13,7 @@
 
 <script lang="ts">
 	import Button from '$lib/global/Button.svelte';
-	import Bar from '$lib/global/Navigation/Bar.svelte';
+	import Bar from '$lib/components/navigation/Bar.svelte';
 	import type { Load } from '@sveltejs/kit';
 
 	export let message: string;

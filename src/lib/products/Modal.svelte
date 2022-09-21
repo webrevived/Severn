@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CloseIcon from '$lib/global/Navigation/CloseIcon.svelte';
+	import CloseIcon from '$lib/components/navigation/CloseIcon.svelte';
 	export let open = false;
 
 	const onKeyDown = ({ key }: KeyboardEvent) => {

@@ -5,7 +5,7 @@
 
 {#if tags.length > 1}
 	<div
-		class="w-full min-h-11.5 gap-3 justify-center items-center"
+		class="w-full min-h-9 gap-3 justify-center items-center"
 		p="<sm:y-4"
 		bg="black-600"
 		text="center [#E1D5C9]"

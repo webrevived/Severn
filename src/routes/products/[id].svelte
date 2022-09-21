@@ -17,7 +17,7 @@
 </script>
 
 <script lang="ts">
-	import NavBar from '$lib/global/Navigation/Bar.svelte';
+	import NavBar from '$lib/components/navigation/Bar.svelte';
 	import ProductPurchase from '$lib/products/ProductPurchase.svelte';
 	import type { Load } from '@sveltejs/kit';
 	import type { Product } from '@chec/commerce.js/types/product';

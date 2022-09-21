@@ -6,7 +6,7 @@
 
 <script lang="ts">
 	import Header from '$lib/global/HeaderHR.svelte';
-	import Bar from '$lib/global/Navigation/Bar.svelte';
+	import Bar from '$lib/components/navigation/Bar.svelte';
 	import { page } from '$app/stores';
 </script>
 
@@ -20,15 +20,13 @@
 	</Header>
 
 	<nav
-		class="x-container heading-3 w-full capitalize mb-25 gap-5 md:gap-24"
-		flex="~"
-		justify="center"
+		class="flex justify-center x-container heading-3 w-full capitalize mb-25 gap-5 md:gap-24"
 		text="-md:base -lg:lg black-600"
 		font="semibold"
 	>
 		<a
 			class="pb-0.5 border-black-600"
-			class:border-b={$page.path.includes('/account/orders')}
+			class:border-b={$page.url.pathname.includes('/account/orders')}
 			href="/account/orders">Your orders</a
 		>
 		<!-- TODO: Add active state  -->

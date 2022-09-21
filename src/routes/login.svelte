@@ -3,7 +3,7 @@
 	import PasswordInput from '$lib/global/Form/PasswordInput.svelte';
 	import EmailInput from '$lib/global/Form/EmailInput.svelte';
 	import Header from '$lib/global/HeaderHR.svelte';
-	import Bar from '$lib/global/Navigation/Bar.svelte';
+	import Bar from '$lib/components/navigation/Bar.svelte';
 	import { isEmail, CheckPassword } from '$lib/utils/validation';
 	import { session } from '$app/stores';
 	import { goto } from '$app/navigation';

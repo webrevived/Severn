@@ -1,5 +1,4 @@
 <script lang="ts">
-	import About from '$lib/about/About.svelte';
 	import Input from '$lib/global/Form/Input.svelte';
 	import type { ShippingMethod } from '@chec/commerce.js/types/shipping-method';
 

@@ -7,7 +7,7 @@
 	import Input from '$lib/global/Form/Input.svelte';
 	import PasswordInput from '$lib/global/Form/PasswordInput.svelte';
 	import Header from '$lib/global/HeaderHR.svelte';
-	import Bar from '$lib/global/Navigation/Bar.svelte';
+	import Bar from '$lib/components/navigation/Bar.svelte';
 	import Spinner from '$lib/global/Spinner.svelte';
 	import { CheckPassword, isEmail } from '$lib/utils/validation';
 	import * as bcryptjs from 'bcryptjs';

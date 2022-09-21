@@ -1,5 +1,6 @@
 <script lang="ts">
 	import EmptyProducts from '$lib/views/account/orders/EmptyProducts.svelte';
+
 	export let pastOrders: any[];
 </script>
 
