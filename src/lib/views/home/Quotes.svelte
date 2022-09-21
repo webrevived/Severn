@@ -6,6 +6,11 @@
 		rating: number;
 		quote: string;
 		author: string;
+		id: number;
+		published_at: string;
+		updated_at: string;
+		/* Convert to date */
+		created_at: string;
 	}
 
 	export let quotes: Review[];

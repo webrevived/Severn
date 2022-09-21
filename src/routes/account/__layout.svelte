@@ -1,21 +1,7 @@
 <script lang="ts" context="module">
 	import type { Load } from '@sveltejs/kit';
 
-	export const load: Load = ({ session, page }) => {
-		if (session.user && (page.path === '/account' || page.path === '/account/')) {
-			return {
-				status: 300,
-				redirect: '/account/orders'
-			};
-		} else if (session.user) {
-			return { status: 200 };
-		} else {
-			return {
-				status: 300,
-				redirect: '/login'
-			};
-		}
-	};
+	export const load: Load = ({ session }) => {};
 </script>
 
 <script lang="ts">
@@ -45,15 +31,10 @@
 			class:border-b={$page.path.includes('/account/orders')}
 			href="/account/orders">Your orders</a
 		>
-		<a class="pb-0.5" class:border-b={$page.path === '/account/buyagain'} href="/account/buyagain"
-			>Buy again</a
-		>
-		<a class="pb-0.5" class:border-b={$page.path === '/account/settings'} href="/account/settings"
-			>settings</a
-		>
-		<a class="pb-0.5" class:border-b={$page.path === '/account/billing'} href="/account/billing"
-			>Payment Methods</a
-		>
+		<!-- TODO: Add active state  -->
+		<a class="pb-0.5" href="/account/buyagain">Buy again</a>
+		<a class="pb-0.5" href="/account/settings">settings</a>
+		<a class="pb-0.5" href="/account/billing">Payment Methods</a>
 		<a class="pb-0.5" href="/account/signout">Sign out</a>
 	</nav>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import HeaderMailTo from '$lib/contact/HeaderMailTo.svelte';
+	import HeaderMailTo from '$lib/views/contact/HeaderMailTo.svelte';
 	import Input from '$lib/global/Form/Input.svelte';
 	import TextArea from '$lib/global/Form/TextArea.svelte';
 	import Button from '$lib/global/Button.svelte';

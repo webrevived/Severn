@@ -1,11 +1,8 @@
 <script lang="ts">
+	import Button from '$lib/global/Button.svelte';
+	import { checkoutStore } from '$lib/stores/checkout-order.store';
 	import CheckoutBottomTotal from '$lib/views/checkout/CheckoutBottomTotal.svelte';
 	import CheckoutProducts from '$lib/views/checkout/CheckoutProducts.svelte';
-	import Button from '$lib/global/Button.svelte';
-	import Bar from '$lib/global/Navigation/Bar.svelte';
-	import { checkoutStore } from '$lib/stores/checkout-order.store';
-	import type { CheckoutWithPrice } from '$lib/stores/checkout-order.store';
-	import type { Cart } from '@chec/commerce.js/types/cart';
 </script>
 
 <section class="wrapper">

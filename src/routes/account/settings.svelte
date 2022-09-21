@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/global/Button.svelte';
 	import Input from '$lib/global/Form/Input.svelte';
-	import AddressCard from '$lib/settings/AddressCard.svelte';
+	import AddressCard from '$lib/views/account/settings/AddressCard.svelte';
 	import type { Address } from '$lib/interfaces/Address';
 
 	export let mockUserData = {

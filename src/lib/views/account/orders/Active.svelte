@@ -1,5 +1,5 @@
 <script lang="ts">
-	import EmptyProducts from '$lib/orders/EmptyProducts.svelte';
+	import EmptyProducts from '$lib/views/account/orders/EmptyProducts.svelte';
 	import ProductPreview from '$lib/views/account/ProductPreview.svelte';
 
 	export let activeOrders: any[];

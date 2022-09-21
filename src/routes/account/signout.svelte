@@ -12,7 +12,6 @@
 
 <script lang="ts">
 	onMount(() => {
-		$session.user = null;
 		goto('/login');
 	});
 </script>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CreditCard from '$lib/billing/CreditCard.svelte';
+	import CreditCard from '$lib/views/account/billing/CreditCard.svelte';
 
 	/* Secuirty is intersting here */
 	/* TODO: Add Primary & Remove Controls */

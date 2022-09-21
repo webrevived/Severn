@@ -1,5 +1,6 @@
 <script lang="ts">
 	export let rating = 5;
+
 	$: _rating = Array.from({ length: rating }, () => null);
 </script>
 

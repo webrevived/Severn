@@ -1,16 +1,18 @@
 <script lang="ts">
-	import { session } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { session } from '$app/stores';
 	import Button from '$lib/global/Button.svelte';
 	import Checkbox from '$lib/global/Form/Checkbox.svelte';
 	import EmailInput from '$lib/global/Form/EmailInput.svelte';
-	import PasswordInput from '$lib/global/Form/PasswordInput.svelte';
 	import Input from '$lib/global/Form/Input.svelte';
+	import PasswordInput from '$lib/global/Form/PasswordInput.svelte';
 	import Header from '$lib/global/HeaderHR.svelte';
 	import Bar from '$lib/global/Navigation/Bar.svelte';
+	import Spinner from '$lib/global/Spinner.svelte';
 	import { CheckPassword, isEmail } from '$lib/utils/validation';
 	import * as bcryptjs from 'bcryptjs';
-	import Spinner from '$lib/global/Spinner.svelte';
+
+	/* TODO: Fix this whole danm thing. */
 	const { hash } = bcryptjs;
 
 	const inputs = {

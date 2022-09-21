@@ -10,8 +10,8 @@
 <Heading src="/images/Home_Header.png" />
 <main>
 	<DeliverSmile />
-	<!-- <BestSeller /> -->
 	<BestSellersNew />
+	<!-- <BestSeller /> -->
 	<!-- <Explore /> -->
 	<About />
 	<Quotes

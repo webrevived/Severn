@@ -1,9 +1,9 @@
 <script lang="ts">
-	import Products from '$lib/shop/Products.svelte';
+	import Products from '$lib/views/shop/Products.svelte';
 	import dataAccess from '$lib/data-access';
 	import NavBar from '$lib/global/Navigation/Bar.svelte';
-	import Deals from '$lib/shop/Deals.svelte';
-	import ShopHeader from '$lib/shop/ShopHeader.svelte';
+	import Deals from '$lib/views/shop/Deals.svelte';
+	import ShopHeader from '$lib/views/shop/ShopHeader.svelte';
 	import type { Category } from '@chec/commerce.js/types/category';
 	import type { Product } from '@chec/commerce.js/types/product';
 	import { useQuery } from '@sveltestack/svelte-query';
