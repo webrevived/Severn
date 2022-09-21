@@ -37,6 +37,7 @@
     "felte": "^1.2.2",
     "fuse.js": "^6.4.6",
     "gsap": "^3.10.4",
+    "sass": "^1.54.9",
     "stripe": "^10.10.0",
     "svelte-click-outside": "^1.0.0",
     "svelte-local-storage-store": "^0.2.6",
