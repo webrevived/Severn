@@ -40,13 +40,13 @@
 	import { createForm } from 'felte';
 	import { onMount } from 'svelte';
 	import * as zod from 'zod';
-	import type {
+	import {
 		Appearance,
+		loadStripe,
 		PaymentMethod,
 		Stripe as StripeType,
 		StripeElements
 	} from '@stripe/stripe-js';
-	import { element } from 'svelte/internal';
 
 	export let cart: Cart;
 	export let checkout: CheckoutWithPrice;
@@ -56,48 +56,29 @@
 	/** Stripe Card Elements*/
 	let elements: StripeElements;
 	/** Stripe client secret returned from payment capture*/
-	let clientSecret: string;
 	let stripe: StripeType;
 
-	const getClientSecret = async () => {
-		const response = await fetch('/api/checkout', {
-			method: 'POST',
-			body: JSON.stringify({
-				sir: false
-			})
-		});
-
-		const result = await response.json();
-		if (!result?.clientSecret) return;
-
-		return result.clientSecret;
-	};
-
 	const initalize = async () => {
-		const _clientSecret = await getClientSecret();
-
 		const publicApiKey =
 			'pk_test_51IcuFiCSxYE2vN3ep4QThULYBVzBfcJcKkYSEJrQSTWyxjxkzTfWDLKm6eZWB47o8U4kWGy2LmsEDYEkgMAcje5H00enMWZzN1';
 
-		// @ts-ignore
-		const _stripe = Stripe(publicApiKey) as StripeType;
+		const stripeConstructor = await loadStripe(publicApiKey);
 
-		stripe = _stripe;
-
-		/* TODO: Return some error, stripe isn't working */
-		if (!_clientSecret) return;
-
-		clientSecret = _clientSecret;
+		stripe = stripeConstructor;
 
 		const appearance: Appearance = {
-			theme: 'stripe',
-			labels: 'floating'
+			theme: 'stripe'
 		};
 
-		elements = _stripe.elements({ appearance, clientSecret });
+		elements = stripeConstructor.elements({ appearance });
 
-		const paymentElements = elements.create('payment');
-		paymentElements.mount('#payment-element');
+		const cardNumberElement = elements.create('cardNumber', { showIcon: true, iconStyle: 'solid' });
+		const cardCvcElement = elements.create('cardCvc');
+		const cardExpElement = elements.create('cardExpiry');
+
+		cardNumberElement.mount('#card-number');
+		cardCvcElement.mount('#card-cvc');
+		cardExpElement.mount('#card-exp');
 	};
 
 	const captureCheckout = async (params: { paymentMethod: string }) => {
@@ -132,7 +113,10 @@
 
 	const handleOrder = async () => {
 		const response = await stripe.createPaymentMethod({
-			payment_method: 'card',
+			type: 'card',
+			card: {
+				token: (await stripe.createToken(elements.getElement('cardNumber'))).token.id
+			}
 		});
 
 		if (response.error) {
@@ -231,8 +215,30 @@
 
 			<div class="payment">
 				<h3 class="heading-3 font-semibold">Payment Information</h3>
-				<div id="payment-element">
-					<!--Stripe.js injects the Payment Element-->
+
+				<div class="card-wrapper">
+					<div class="card-number-wrap">
+						<label for="card-number">Card number</label>
+						<div id="card-number">
+							<!--Stripe.js injects the Card number here-->
+						</div>
+					</div>
+
+					<div class="card-column">
+						<div class="card-exp-wrap">
+							<label for="card-exp">Expiration</label>
+							<div id="card-exp">
+								<!--Stripe.js injects the card EXP here-->
+							</div>
+						</div>
+
+						<div class="card-cvc-warp">
+							<label for="card-cvc">CVC</label>
+							<div id="card-cvc">
+								<!--Stripe.js injects the Card cvc here-->
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div id="payment-message" class="hidden" />
@@ -262,9 +268,33 @@
 		position: sticky;
 		top: 1rem;
 	}
+
 	.payment {
 		display: flex;
 		flex-direction: column;
 		gap: 1em;
+
+		label {
+			display: block;
+			color: #30313d;
+			padding-bottom: 4px;
+			padding-left: 4px;
+		}
+	}
+
+	#card-number,
+	#card-cvc,
+	#card-exp {
+		padding: 1rem;
+		background-color: white;
+		border: 1px solid #e6e6e6;
+		border-radius: 5px;
+	}
+
+	.card-column {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1rem;
+		margin-top: 1rem;
 	}
 </style>
