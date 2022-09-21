@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "prouct_reviews",
+  "info": {
+    "name": "ProductReviews",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "product": {
+      "model": "products",
+      "via": "prouct_reviews"
+    },
+    "review": {
+      "type": "text"
+    },
+    "rating": {
+      "type": "integer",
+      "min": 1,
+      "max": 5,
+      "default": 5
+    }
+  }
+}
