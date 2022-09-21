@@ -5,7 +5,6 @@
 
 	export let shippingMethods: ShippingMethod[];
 	export let title: string = 'Shipping Method';
-
 </script>
 
 <div class="flex flex-col gap-5">
@@ -15,7 +14,13 @@
 		{#each shippingMethods as method, i}
 			<div class="flex justify-between border-b border-brown-1200 pb-3">
 				<div class="flex gap-3">
-					<input checked={i == 0} type="radio" name='shipping_method' value={method.id} class="w-4" />
+					<input
+						checked={i == 0}
+						type="radio"
+						name="shipping_method"
+						value={method.id}
+						class="w-4"
+					/>
 					<h4>{method.description}</h4>
 				</div>
 

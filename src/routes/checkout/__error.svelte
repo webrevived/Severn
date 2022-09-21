@@ -33,7 +33,7 @@
 		href: '/shop',
 		description: 'You must add items into your cart before checking out.'
 	});
-    
+
 	const getActionFromCode = (httpStatus: number): ErrorData => {
 		const DEFAULT_ERROR_DATA: ErrorData = {
 			text: 'Shop Products',

@@ -14,11 +14,11 @@ interface ProductData {
 export const addToCart = async ({ productId, quantity, variantData }: ProductData) => {
 	const cart = await commerce.cart.add(productId, quantity, variantData);
 
-    return cart;
+	return cart;
 };
 
 export const removeFromCart = async (lineItemId: string) => {
-    const cart = await commerce.cart.remove(lineItemId);
+	const cart = await commerce.cart.remove(lineItemId);
 
-    return cart;
-}
+	return cart;
+};

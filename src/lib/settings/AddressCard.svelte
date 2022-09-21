@@ -10,7 +10,7 @@
 	/* Temp data storage to override address only on save */
 	let temp = { ...data };
 
-    const disptach = createEventDispatcher();
+	const disptach = createEventDispatcher();
 
 	const saveData = () => {
 		data = temp;
@@ -24,9 +24,8 @@
 		if (!editMode || (!isEscape && !isEnter)) return;
 		editMode = false;
 
-		isEnter ? data = temp : temp = {...data}
+		isEnter ? (data = temp) : (temp = { ...data });
 	};
-
 </script>
 
 <svelte:body on:keydown={handleKeyDown} />
@@ -59,7 +58,9 @@
 					<img class="inline mr-1" src="/icons/Checkmark.svg" alt="Checkmark Icon" />Primary
 				</span>
 			{:else}
-				<button class="text-brown-600" on:click={() => disptach('markPrimary', data.id)}>Make Primary</button>
+				<button class="text-brown-600" on:click={() => disptach('markPrimary', data.id)}
+					>Make Primary</button
+				>
 			{/if}
 			<button class="w-max text-brown-600 self-end" on:click={() => (editMode = true)}>Edit</button>
 		</div>

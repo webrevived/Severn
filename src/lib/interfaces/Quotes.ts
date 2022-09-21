@@ -1,6 +1,5 @@
-
 export interface Quotes {
-    quote: string;
-    auther: string;
-    rating: number;
+	quote: string;
+	auther: string;
+	rating: number;
 }

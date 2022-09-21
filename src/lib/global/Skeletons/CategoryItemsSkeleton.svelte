@@ -26,25 +26,25 @@
 </div>
 
 <style lang="scss">
-    .wrapper {
-        display: flex;
-        overflow-x: hidden;
-        gap: 5.8rem;
-    }
-    .items {
-        display: flex;
-        gap: 2.5rem;
-    }
+	.wrapper {
+		display: flex;
+		overflow-x: hidden;
+		gap: 5.8rem;
+	}
+	.items {
+		display: flex;
+		gap: 2.5rem;
+	}
 	.category {
 		display: flex;
 		flex-direction: column;
 		gap: 40px;
-        
+
 		&__desc {
-            display: flex;
+			display: flex;
 			flex-direction: column;
 			gap: 12px;
-            margin-bottom: 30px;
+			margin-bottom: 30px;
 		}
 	}
 </style>

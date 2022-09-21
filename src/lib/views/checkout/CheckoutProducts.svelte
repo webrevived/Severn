@@ -1,7 +1,7 @@
 <script lang="ts">
-import Item from '$lib/global/Navigation/Cart/Item.svelte';
-import type { Asset } from '@chec/commerce.js/types/asset';
-import type { CheckoutTokenLineItem } from '@chec/commerce.js/types/checkout-token';
+	import Item from '$lib/global/Navigation/Cart/Item.svelte';
+	import type { Asset } from '@chec/commerce.js/types/asset';
+	import type { CheckoutTokenLineItem } from '@chec/commerce.js/types/checkout-token';
 	import type { LineItem } from '@chec/commerce.js/types/line-item';
 
 	export let lineItems: LineItem[];
@@ -10,7 +10,7 @@ import type { CheckoutTokenLineItem } from '@chec/commerce.js/types/checkout-tok
 <div class="flex flex-col gap-5">
 	{#each lineItems as item}
 		<div class="item">
-			<img src="{item.image.url}" alt="" />
+			<img src={item.image.url} alt="" />
 
 			<div class="w-full flex flex-col">
 				<div class="flex justify-between w-full">

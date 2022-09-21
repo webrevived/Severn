@@ -10,7 +10,7 @@
 		<!-- Card Number -->
 		<span class="text-1 text-brown-1200 text-2xl"> *** **** **** {cardData.last} </span>
 		<span class="text-1">
-			{Object.values(cardData.name).join(' ')} 
+			{Object.values(cardData.name).join(' ')}
 			<span class="ml-7">{cardData.exp}</span>
 		</span>
 	</div>
@@ -24,7 +24,11 @@
 			<span class="text-brown-600">Make Primary</span>
 			<span>Remove</span>
 		{/if}
-		
-		<img src="/icons/Mastercard_icon.svg" alt="Credit Card Icon" class="max-w-60px mt-auto self-end" />
+
+		<img
+			src="/icons/Mastercard_icon.svg"
+			alt="Credit Card Icon"
+			class="max-w-60px mt-auto self-end"
+		/>
 	</div>
 </div>

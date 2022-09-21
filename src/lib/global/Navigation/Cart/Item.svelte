@@ -1,13 +1,9 @@
 <script lang="ts">
-	import { HOST } from '$lib/api/index';
-	import { cartItems } from '$lib/stores';
-	import QuantityInput from '$lib/products/QuantityInput.svelte';
-	import type { ProductsApi } from '$lib/api/products';
-	import type { LineItem } from '@chec/commerce.js/types/line-item';
 	import dataAccess from '$lib/data-access';
-	import { createEventDispatcher } from 'svelte';
-	import { useQueryClient } from '@sveltestack/svelte-query';
+	import QuantityInput from '$lib/products/QuantityInput.svelte';
 	import type { Cart } from '@chec/commerce.js/types/cart';
+	import type { LineItem } from '@chec/commerce.js/types/line-item';
+	import { useQueryClient } from '@sveltestack/svelte-query';
 
 	export let item: LineItem;
 	let isRemovingItem: boolean = false;

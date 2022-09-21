@@ -3,7 +3,7 @@
 	export let icon: IconType;
 	export let color: string = 'black';
 	export let size: number = 20;
-    export let transform: number = 0;;
+	export let transform: number = 0;
 </script>
 
 <div class="icon-wrap" style="width: {size}px; height: {size}px; transform: rotate({transform}deg)">

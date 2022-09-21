@@ -1,7 +1,7 @@
 <script lang="ts">
 	export let title: string;
 	export let total: string | number;
-    export let bold: boolean = false;
+	export let bold: boolean = false;
 </script>
 
 <div class="flex justify-between w-full" class:bold>
@@ -14,11 +14,11 @@
 </div>
 
 <style lang="scss">
-    .bold {
-        font-weight: 700;
-        
-        span {
-            font-weight: 600;
-        }
-    }
+	.bold {
+		font-weight: 700;
+
+		span {
+			font-weight: 600;
+		}
+	}
 </style>

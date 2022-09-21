@@ -13,12 +13,15 @@ interface AsyncStoreReturn<T> {
 
 const LOCAL_STORAGE_KEY = 'categories';
 
-export type CategoryWithAssets = Category & {assets?: Asset[]};
+export type CategoryWithAssets = Category & { assets?: Asset[] };
 
 const createCategoriesStore = () => {
-	const store = writable<AsyncStoreReturn<CategoryWithAssets[]>>({ data: [], status: 'loading' }, () => {
-		fetchCategories();
-	});
+	const store = writable<AsyncStoreReturn<CategoryWithAssets[]>>(
+		{ data: [], status: 'loading' },
+		() => {
+			fetchCategories();
+		}
+	);
 
 	const status = derived(store, ($store) => {
 		$store.status;

@@ -1,5 +1,4 @@
 <script>
-
 </script>
 
-<input type="checkbox"  id="">
+<input type="checkbox" id="" />

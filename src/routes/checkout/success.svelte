@@ -1,6 +1,6 @@
 <script lang="ts">
-	import CheckoutBottomTotal from '$lib/checkout/CheckoutBottomTotal.svelte';
-	import CheckoutProducts from '$lib/checkout/CheckoutProducts.svelte';
+	import CheckoutBottomTotal from '$lib/views/checkout/CheckoutBottomTotal.svelte';
+	import CheckoutProducts from '$lib/views/checkout/CheckoutProducts.svelte';
 	import Button from '$lib/global/Button.svelte';
 	import Bar from '$lib/global/Navigation/Bar.svelte';
 	import { checkoutStore } from '$lib/stores/checkout-order.store';
@@ -23,8 +23,7 @@
 				<h2 class="heading-2 text-black-600">Your order is confirmed</h2>
 				<p class="mb-5">
 					We've accepted your order, and we're getting it ready. A confirmation email has been sent
-					to {$checkoutStore.customer.email} Come back to the page for updates on your order
-					status
+					to {$checkoutStore.customer.email} Come back to the page for updates on your order status
 				</p>
 				<Button>Continue Shopping</Button>
 			</div>

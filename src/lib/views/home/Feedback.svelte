@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Rating from '$lib/home/Rating.svelte';
+	import Rating from '$lib/views/home/Rating.svelte';
 	export let rating = 5;
 </script>
 
@@ -18,9 +18,9 @@
 	@media only screen and (max-width: 768px) {
 		.feedback {
 			width: 100%;
-            gap: 0.5rem;
-            padding-left:  1rem;
-            padding-right: 1rem;
+			gap: 0.5rem;
+			padding-left: 1rem;
+			padding-right: 1rem;
 		}
 	}
 </style>

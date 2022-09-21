@@ -64,7 +64,8 @@
 {/if}
 
 <style>
-	button, a {
+	button,
+	a {
 		outline: none;
 		-webkit-appearance: none;
 		appearance: none;
@@ -79,8 +80,9 @@
 	}
 
 	@media only screen and (max-width: 425px) {
-		button, a {
-			@apply px-5 py-2
+		button,
+		a {
+			@apply px-5 py-2;
 		}
 	}
 </style>

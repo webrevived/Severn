@@ -15,7 +15,6 @@ export const getAllProducts = async (params?: AllProductsParams) => {
 	return products;
 };
 
-
 /**
  * Get all products by a category slug
  *
@@ -48,10 +47,10 @@ interface GetAllCategories {
 }
 
 export const getAllCategories = async (params?: GetAllCategories) => {
-	const categories = await commerce.categories.list({})
+	const categories = await commerce.categories.list({});
 
 	return categories;
-}
+};
 
 export const getProduct = async (
 	indentifer: string,

@@ -90,11 +90,11 @@
 {/if}
 
 <style>
-    .nav-wrapper {
-        will-change: contents;
-        text-rendering: optimizeSpeed;
-        shape-rendering: optimizeSpeed;
-    }
+	.nav-wrapper {
+		will-change: contents;
+		text-rendering: optimizeSpeed;
+		shape-rendering: optimizeSpeed;
+	}
 	a {
 		@apply heading-1 font-medium max-w-max;
 	}

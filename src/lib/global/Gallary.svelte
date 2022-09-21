@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte';
 </script>
 
-
 <section class="relative mt-$mt mb-30 min-h-225 gap-6.25" flex="~ col" align="items-center">
 	<img id="spinning" class="w-max h-max mb-2.5" src="/images/Gallary_Circle.png" alt="" />
 	<h1 class="text-1 text-brown-1200">Our Gallery</h1>

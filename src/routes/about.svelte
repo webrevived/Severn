@@ -1,12 +1,11 @@
 <script lang="ts">
 	import NavBar from '$lib/global/Navigation/Bar.svelte';
-	import Header from '$lib/about/Header.svelte';
-	import About from '$lib/about/About.svelte';
-	import Message from '$lib/about/Message.svelte';
-	import Why from '$lib/about/Why.svelte';
-	import Products from '$lib/about/Products.svelte';
-	import { onMount } from 'svelte';
+	import Header from '$lib/views/about/Header.svelte';
+	import Message from '$lib/views/about/Message.svelte';
+	import Why from '$lib/views/about/Why.svelte';
+	import About from '$lib/views/about/About.svelte';
 
+	import { onMount } from 'svelte';
 </script>
 
 <main>

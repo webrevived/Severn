@@ -1,12 +1,10 @@
 <script lang="ts">
-	import Heading from '$lib/home/Heading.svelte';
-	import DeliverSmile from '$lib/home/DeliverSmile.svelte';
-	import Explore from '$lib/home/Explore.svelte';
-	import Quotes from '$lib/home/Quotes.svelte';
-	import About from '$lib/home/About.svelte';
-	import BestSeller from '$lib/home/BestSeller.svelte';
 	import Gallary from '$lib/global/Gallary.svelte';
-	import BestSellersNew from '$lib/home/BestSellers-New.svelte';
+	import About from '$lib/views/home/About.svelte';
+	import BestSellersNew from '$lib/views/home/BestSellers-New.svelte';
+	import DeliverSmile from '$lib/views/home/DeliverSmile.svelte';
+	import Heading from '$lib/views/home/Heading.svelte';
+	import Quotes from '$lib/views/home/Quotes.svelte';
 </script>
 
 <Heading src="/images/Home_Header.png" />

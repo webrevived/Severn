@@ -1,8 +1,6 @@
 <script lang="ts">
 	import dataAccess from '$lib/data-access';
 	import FocusItemCard from '$lib/global/FocusItemCard.svelte';
-	import ItemCard from '$lib/global/ItemCard.svelte';
-	import Item from '$lib/global/Navigation/Cart/Item.svelte';
 	import { useQuery } from '@sveltestack/svelte-query';
 
 	const bestSellers = useQuery('best-seller', async () => {
@@ -21,7 +19,7 @@
 						imgSrc="images/products/mock_product_image-0{i + 1}.png"
 						category="Candel"
 						price={20}
-                        href='/products/{product.permalink}'
+						href="/products/{product.permalink}"
 						title="White Gardina"
 					/>
 					<!-- <ItemCard

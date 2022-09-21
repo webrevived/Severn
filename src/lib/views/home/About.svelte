@@ -19,8 +19,8 @@
 			We founded Servern Company in 2021 with the idea of providing quality products such as
 			fragranced candles, mens and womens self car products.
 			<br /><br />
-			We love this planet and we believe it’s incredibility important to take care of it. Our decision
-			to go green was a no-brainer but we also want to make it something that’s easy for everyone to
+			We love this planet and we believe it's incredibility important to take care of it. Our decision
+			to go green was a no-brainer but we also want to make it something that's easy for everyone to
 			do.
 		</p>
 

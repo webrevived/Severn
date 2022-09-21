@@ -3,7 +3,7 @@
 	import Arrow from '$lib/global/Arrow.svelte';
 
 	let previousPage: string;
-    
+
 	afterNavigate((navigation) => {
 		if (!navigation?.from?.pathname) return (previousPage = '/shop');
 		previousPage = navigation.from.pathname;

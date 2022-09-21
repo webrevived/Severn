@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/global/Button.svelte';
 	import NavBar from '$lib/global/Navigation/Bar.svelte';
-	import Feedback from '$lib/home/Feedback.svelte';
+	import Feedback from '$lib/views/home/Feedback.svelte';
 
 	export let src: string;
 </script>

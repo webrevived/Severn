@@ -26,21 +26,17 @@
 </script>
 
 <script lang="ts">
-	import CheckoutBottomTotal from '$lib/checkout/CheckoutBottomTotal.svelte';
-	import CheckoutProducts from '$lib/checkout/CheckoutProducts.svelte';
-	import CheckoutShippingAddress from '$lib/checkout/CheckoutShippingAddress.svelte';
-	import CheckoutShippingMethod from '$lib/checkout/CheckoutShippingMethod.svelte';
-	import ContactInformation from '$lib/checkout/ContactInformation.svelte';
+	import CheckoutBottomTotal from '$lib/views/checkout/CheckoutBottomTotal.svelte';
+	import CheckoutProducts from '$lib/views/checkout/CheckoutProducts.svelte';
+	import CheckoutShippingAddress from '$lib/views/checkout/CheckoutShippingAddress.svelte';
+	import CheckoutShippingMethod from '$lib/views/checkout/CheckoutShippingMethod.svelte';
+	import ContactInformation from '$lib/views/checkout/ContactInformation.svelte';
 	import Button from '$lib/global/Button.svelte';
 	import ErrorModal from '$lib/global/modal/ErrorModal.svelte';
 	import type { CheckoutWithPrice } from '$lib/stores/checkout-order.store';
 	import type { Cart } from '@chec/commerce.js/types/cart';
 	import { validator } from '@felte/validator-zod';
-	import {
-		Appearance,
-		loadStripe, Stripe as StripeType,
-		StripeElements
-	} from '@stripe/stripe-js';
+	import { Appearance, loadStripe, Stripe as StripeType, StripeElements } from '@stripe/stripe-js';
 	import { createForm } from 'felte';
 	import { onMount } from 'svelte';
 	import * as zod from 'zod';

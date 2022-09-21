@@ -11,7 +11,6 @@
 	const cartQuery = useQuery('cart', async () => {
 		return dataAccess.cart.getCart();
 	});
-
 </script>
 
 <Container show={navToggles} key="cart">
@@ -27,8 +26,8 @@
 			{:else}
 				<EmptyCart />
 			{/if}
-		{:else} 
-      <h2>Error</h2>
-    {/if}
+		{:else}
+			<h2>Error</h2>
+		{/if}
 	</div>
 </Container>

@@ -4,13 +4,13 @@
 
 declare namespace App {
 	interface Locals {
-        cartId: string;
-    }
+		cartId: string;
+	}
 	// interface Platform {}
 	// interface PrivateEnv {}
 	// interface PublicEnv {}
 	interface Session {
-        cartId?: string;
-    }
+		cartId?: string;
+	}
 	// interface Stuff {}
 }

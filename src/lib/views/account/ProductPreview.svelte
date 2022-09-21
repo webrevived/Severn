@@ -52,7 +52,9 @@
 				<button class="w-max capitalize font-bold">Request refund</button>
 			{:else}
 				<button class="w-full sm:w-max capitalize font-bold text-brown-600">Track Package</button>
-				<button class="w-full sm:w-max capitalize font-bold text-brown-600">Request Cancellation</button>
+				<button class="w-full sm:w-max capitalize font-bold text-brown-600"
+					>Request Cancellation</button
+				>
 			{/if}
 		</div>
 

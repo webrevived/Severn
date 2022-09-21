@@ -4,17 +4,16 @@
 	export let quantity: number = 1;
 
 	const dispatch = createEventDispatcher();
-	
+
 	const handleQuanityIncrease = () => {
 		quantity++;
-		dispatch('quantityInc')
-	}
-	
+		dispatch('quantityInc');
+	};
+
 	const handleQuanityDecrease = () => {
 		quantity--;
-		dispatch('quantityDec')
-	}
-	
+		dispatch('quantityDec');
+	};
 </script>
 
 <div class="w-max flex gap-6 h-min" p="x-3 y-2.5" border="1px rounded-30px">

@@ -47,12 +47,9 @@
 	const removeCard = () => {};
 </script>
 
-
 <section class="x-container">
 	<h1 class="heading-2 font-medium text-black-600">Payment Methods</h1>
-	<p class="text-1 text-brown-1200">
-		Add or Remove payment methods for quick checkout
-	</p>
+	<p class="text-1 text-brown-1200">Add or Remove payment methods for quick checkout</p>
 
 	<div class="card-grid gap-1.5rem" grid="~ flow-row" m="t-17.5 b-25">
 		{#each mockCardData as card}

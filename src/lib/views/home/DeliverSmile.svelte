@@ -44,15 +44,15 @@
 	@media only screen and (max-width: 425px) {
 		section {
 			img:nth-child(1) {
-                top: 2rem;
-            }
+				top: 2rem;
+			}
 			img:nth-child(2) {
-                top: unset;
-                left: 0;
-                bottom: 2.5rem;
+				top: unset;
+				left: 0;
+				bottom: 2.5rem;
 			}
 			img:nth-child(3) {
-                top: 0;
+				top: 0;
 			}
 		}
 	}

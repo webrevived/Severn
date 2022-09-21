@@ -1,9 +1,5 @@
 <script lang="ts">
-	import type { CategoriesApi } from '$lib/api/categorys';
-	import { HOST } from '$lib/api/index';
-	import IconHR from '$lib/global/IconHR.svelte';
 	import Item from '$lib/global/ItemCard.svelte';
-	import ItemCardSkeleton from '$lib/global/Skeletons/ItemCardSkeleton.svelte';
 	import type { Product } from '@chec/commerce.js/types/product';
 
 	export let products: Product[];

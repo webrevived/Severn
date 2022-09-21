@@ -1,5 +1,5 @@
 <script>
-	import ProductPreview from '$lib/account/ProductPreview.svelte';
+	import ProductPreview from '$lib/views/account/ProductPreview.svelte';
 </script>
 
 <section class="x-container">
