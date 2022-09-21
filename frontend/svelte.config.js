@@ -8,16 +8,14 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		// hydrate the <div id="svelte"> element in src/app.html
-		target: '#svelte',
-		vite: {
-			plugins: [ WindiCSS() ],
-			server: {
-				watch: {
-					usePolling: true,
-				}
-			},
-		},
+		// vite: {
+		// 	plugins: [ WindiCSS() ],
+		// 	server: {
+		// 		watch: {
+		// 			usePolling: true,
+		// 		}
+		// 	},
+		// },
 	}
 };
 

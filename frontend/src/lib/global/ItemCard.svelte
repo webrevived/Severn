@@ -5,7 +5,7 @@
     export let title: string;
     export let price: number;
     
-    $: _price = price.toFixed(2)
+    $: prettyPrice = price.toFixed(2)
 </script>
 
 <a 
@@ -21,7 +21,7 @@
     </div>
     <h1 class="text-2 text-brown-1200 mb-7px">{category}</h1>
     <h2 class="heading-3 text-lg group-hover:italic">{title}</h2>
-    <p class="text-1" text="brown-1200 14px">${_price}</p>
+    <p class="text-1" text="brown-1200 14px">${prettyPrice}</p>
 </a>
 
 <style>

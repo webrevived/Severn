@@ -1,21 +1,23 @@
 <script lang="ts">
-    import Item from "$lib/global/Navigation/Cart/Item.svelte"
-    import { flip } from "svelte/animate"
-    import type { ProductsApi } from "$lib/api/products";
+	import Item from '$lib/global/Navigation/Cart/Item.svelte';
+	import type { LineItem } from '@chec/commerce.js/types/line-item';
+	import { flip } from 'svelte/animate';
 
-    interface item {
-        uid: string
-        item: ProductsApi;
-        quantity: number;
-    }
-
-    export let items: item[];
+	export let items: LineItem[];
 </script>
 
-<div class="flex flex-col w-full px-10 pt-10 gap-y-7.5">
-    {#each items as item (item.uid)}
-        <div animate:flip={{ duration: 200 }}>
-            <Item {...item} />
-        </div>
-    {/each}
+<div class="item-wrap flex flex-col w-full px-10 pt-10 gap-y-7.5">
+	{#each items as item (item.id)}
+		<div animate:flip={{ duration: 200 }}>
+			<Item on:cartAction {item} />
+		</div>
+	{/each}
 </div>
+
+<style>
+	@media only screen and (max-width: 425px) {
+		.item-wrap {
+			padding: 1em;
+		}
+	}
+</style>

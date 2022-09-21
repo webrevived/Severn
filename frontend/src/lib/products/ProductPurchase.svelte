@@ -1,110 +1,211 @@
 <script lang="ts">
-    import Button from "$lib/global/Button.svelte"
-    import QuantityInput from "$lib/products/QuantityInput.svelte"
-    import GoBack from '$lib/products/BackButton.svelte'
-    import ProductsIcon from "$lib/products/ProductsIcons.svelte"
-    import Dropdown from '$lib/products/Dropdown.svelte'
-    import { HOST } from '$lib/api/index'
-    import { cartItems, navToggles } from "$lib/stores"
-    import type { ProductsApi } from '$lib/api/products'
-    export let product: ProductsApi
+	import dataAccess from '$lib/data-access';
+	import Button from '$lib/global/Button.svelte';
+	import GoBack from '$lib/products/BackButton.svelte';
+	import ProductsIcon from '$lib/products/ProductsIcons.svelte';
+	import QuantityInput from '$lib/products/QuantityInput.svelte';
+	import { navToggles } from '$lib/stores';
+	import type { Product } from '@chec/commerce.js/types/product';
+	import { useQueryClient } from '@sveltestack/svelte-query';
+	import Features from './Features.svelte';
+	import MobileProductSlider from './MobileProductSlider.svelte';
+	import ProductDetails from './ProductDetails.svelte';
 
-    let quantity = 1
-    let colors: string
+	export let product: Product;
 
-    const addToCart = () => {
-        $navToggles.cart = true
-        cartItems.update( cart => [
-            ...cart, 
-            { uid: Math.floor(Math.random()*16777215).toString(16), id: product.id, quantity } 
-        ] )
-    }
+	let quantity = 1;
+	let isAddingToCart: boolean = false;
+
+	const queryClient = useQueryClient();
+
+	const addToCart = async () => {
+		isAddingToCart = true;
+
+		try {
+			const cart = await dataAccess.cart.addToCart({ productId: product.id, quantity });
+			await queryClient.invalidateQueries();
+
+			$navToggles.cart = true;
+			console.debug(`[CART] - Added item ${product.id} to cart`, cart);
+		} catch (error) {
+			console.error('[CART] - Failed to add item to cart', error);
+		} finally {
+			isAddingToCart = false;
+		}
+	};
+
+	const categoriesToString = (
+		categories: Array<{
+			id: string;
+			slug: string;
+			name: string;
+		}>
+	) => {
+		return categories.map((category) => category.name).join(', ');
+	};
 </script>
 
-<section class="x-container pt-10 lg:(px-40 pt-25)">
-    <GoBack />
-    
-    <div class="w-full mt-5 product-areas" grid="~ gap-y-5 gap-x-10">
-        <img class="w-full h-250px lg:h-478px img-1 object-cover" src="{HOST}{product.cover.url}" alt="">
-        <img class="w-full h-250px lg:h-478px img-2 object-cover" src="{HOST}{product.cover.url}" alt="">
-    
+<div class="w-full mt-5 product-areas container">
+	<section class="header-container">
+		<div class="go-back">
+			<GoBack />
+		</div>
 
-        <div class="text-black-600 information">
-            <h1 class="text-1 text-brown-1200">{product.category.short_title}</h1>
-            <h2 class="heading-1 text-black-600">{product.title}</h2>
-            
-            <div class="pb-4 border-b border-black-600 mt-9.5">
-                <p class="text-1 text-xl text-black-600">${product.price}</p>
-            </div>
+		<div class="mobile-slider">
+			<MobileProductSlider images={product.assets.map((image) => image.url)} />
+		</div>
 
-            <p class="text-1 text-1.125rem text-grey-600 mt-3 leading-[1.75rem]">{product.description ?? "This Item doesn't seem to have a description"}</p>
-        
-            <div class="flex -lg:flex-wrap gap-17.5 mt-12.5">
-                <ProductsIcon src="/icons/GiftPack.svg">
-                    free gift pack
-                </ProductsIcon>
-                <ProductsIcon src="/icons/HighQuality.svg">
-                    high quality
-                </ProductsIcon>
-                <ProductsIcon src="/icons/FastShipping.svg">
-                    fast shipping
-                </ProductsIcon>
-                <ProductsIcon src="/icons/Support.svg">
-                    24/7 support
-                </ProductsIcon>
-            </div>
-        </div>
+		<div class="image-container">
+			{#each product.assets as asset}
+				<img class="w-full h-250px lg:h-478px img-1 object-cover" src={asset.url} alt="" />
+			{/each}
+		</div>
+	</section>
 
-        <form class="mt-6.25 buying-area" on:submit|preventDefault>            
-            <p class="text-2 text-black-600 mb-2.5">Free Gift Pack Envelope Color</p>
-            <Dropdown bind:value={colors} list={{ "Pink": "pink", "Red": "red", "Black": "black" }} />
+	<section class="product-container pt-12">
+		<div class="details">
+			<div class="text-black-600 information">
+				<h1 class="text-1 text-brown-1200">{categoriesToString(product.categories)}</h1>
+				<h2 class="heading-1 text-black-600">{product.name}</h2>
 
-            <p class="text-2 text-black-600 mt-12 mb-2.5">No of Quantity</p>
-            <div class="w-full flex flex-col md:(flex-row items-center) gap-y-5">
-                <div class="mr-5">
-                    <QuantityInput bind:value={quantity} />
-                </div>
-                <div class="w-full grid">
-                    <Button on:click={ addToCart }>Add to Cart</Button>
-                </div>
-            </div>
+				<div class="pb-4 border-b border-black-600 mt-9.5">
+					<p class="text-1 text-xl text-black-600">${product.price.raw}</p>
+				</div>
 
-            <div class="grid w-full mt-8">
-                <Button outline>
-                    Quick Checkout - Pay with PayPal
-                    <img src="/images/Paypal-Logo.png" alt="PayPal Logo">
-                </Button>
-            </div>
-        </form>
+				<p class="text-1 text-1.125rem text-grey-600 mt-3 leading-[1.75rem]">
+					{@html product.description ?? "This item doesn't seem to have a description"}
+				</p>
 
-    </div>
-</section>
+				<div class="flex gap-10 mt-12.5 <sm:gap-5">
+					<ProductsIcon src="/icons/GiftPack.svg">free gift</ProductsIcon>
+					<ProductsIcon src="/icons/HighQuality.svg">high quality</ProductsIcon>
+					<ProductsIcon src="/icons/FastShipping.svg">fast shipping</ProductsIcon>
+					<ProductsIcon src="/icons/Support.svg">USA support</ProductsIcon>
+				</div>
+			</div>
 
-<style>
-    .img-1 { grid-area: img-1; }
-    .img-2 { grid-area: img-2; }
-    .information { grid-area: information; }
-    .buying-area { grid-area: buying-area; }
-    
-    .product-areas {
-        grid-auto-rows: max-content;
-        grid-template-columns: 1fr;
+			<form class="buying-area" on:submit|preventDefault>
+				<QuantityInput on:quantityInc={() => quantity++} on:quantityDec={() => quantity--} />
+				<Button minWidth="0px" on:click={addToCart} isLoading={isAddingToCart} width="100%"
+					>Add to Cart
+				</Button>
+			</form>
+		</div>
+	</section>
+</div>
 
-        grid-template-areas: 
-            "img-1"
-            "img-2"
-            "information"
-            "buying-area";
-    }
+<!-- <div class="m-auto pt-10 pb-20 px-4">
+	<Features {product} />
+</div> -->
+<style lang="scss">
+	.details {
+		position: sticky;
+		top: 2rem;
+		height: min-content;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+	.image-container {
+		gap: 3rem;
+		display: grid;
+		grid-template-columns: auto;
+	}
 
-    @screen lg {
-        .product-areas {
-            grid-template-rows: repeat(2, 478px);
-            grid-template-columns: minmax(78px, 478px) 1fr;
-    
-            grid-template-areas: 
-                "img-1 information"
-                "img-2 buying-area";
-        }
-    }
+	.product-areas {
+		display: grid;
+		grid-template-columns: minmax(400px, 1fr) 1fr;
+		gap: 2rem;
+	}
+
+	.mobile-slider {
+		display: none;
+	}
+
+	.container {
+		max-width: 1200px;
+		padding: 2rem 0;
+		margin: 0 auto;
+	}
+
+	.header-container,
+	.product-container {
+		padding: 0 1rem;
+	}
+	.product-container {
+		padding-top: 3rem;
+	}
+	.header-container {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.buying-area {
+		display: flex;
+		justify-items: center;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	@media only screen and (max-width: 1024px) {
+		.header-container {
+			padding-right: 0rem;
+		}
+
+		.image-container {
+			img {
+				display: block;
+				min-height: 300px;
+				min-width: 300px;
+			}
+		}
+		.product-areas {
+			grid-template-columns: auto 1fr;
+		}
+	}
+
+	@media only screen and (max-width: 780px) {
+		.product-areas {
+			gap: 1rem;
+		}
+		.image-container {
+			img {
+				min-height: 250px;
+				min-width: 250px;
+			}
+		}
+	}
+
+	@media only screen and (max-width: 720px) {
+		.mobile-slider {
+			display: block;
+		}
+
+		.header-container {
+			padding-right: 0rem;
+		}
+
+		.image-container {
+			display: none;
+		}
+
+		.go-back {
+			padding-left: 1rem;
+		}
+		.product-areas {
+			grid-template-columns: 1fr;
+			grid-template-rows: 1fr;
+		}
+	}
+
+	@media only screen and (max-width: 475px) {
+		.header-container {
+			padding-left: 0;
+			padding-right: 0;
+		}
+		.product-container {
+			padding: 1rem;
+		}
+	}
 </style>
