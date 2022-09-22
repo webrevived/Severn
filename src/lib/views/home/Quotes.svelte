@@ -17,7 +17,7 @@
 
 	export let quotes: Review[];
 	let quotesImage: HTMLImageElement;
-	let reviewWrapperElement: HTMLDivElement;
+	let reviewWrapperElement: HTMLElement;
 
 	let index = 0;
 
@@ -40,7 +40,7 @@
 				start: 'top bottom-=20%',
 				end: 'bottom bottom-=20%',
 				trigger: reviewWrapperElement,
-				toggleActions: 'play none none reverse',
+				toggleActions: 'play none none reverse'
 			}
 		});
 
@@ -62,7 +62,7 @@
 </script>
 
 <section
-	class="mt-36.75"
+	class="my-[4em]"
 	on:focus
 	on:blur
 	bind:this={reviewWrapperElement}
@@ -115,6 +115,7 @@
 		position: relative;
 		width: 100%;
 		height: 100%;
+		overflow: hidden;
 
 		.review-image {
 			position: absolute;
@@ -124,12 +125,13 @@
 			left: 0;
 			object-fit: cover;
 			object-position: center;
+			@include imageZoom;
 		}
 	}
 
 	@media only screen and (max-width: 767.9px) {
 		.review {
-			padding: var(--space-md) 0;
+			padding: var(--space-xl) 0;
 		}
 		section {
 			grid-template-columns: 1fr;

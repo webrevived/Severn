@@ -6,7 +6,7 @@
 	export let thumbnailSrc: string;
 </script>
 
-<Bar dark backgroundColor="transparent" />
+<Bar dark position="absolute" backgroundColor="transparent" />
 
 <header class="w-full relative bg-white-300 flex flex-col-reverse justify-between md:flex-row">
 	<div class="header-wrap">

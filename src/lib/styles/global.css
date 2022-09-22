@@ -19,8 +19,8 @@
 }
 
 .section {
-	padding-top: 5rem;
-	padding-bottom: 5rem;
+	padding-top: 6rem;
+	padding-bottom: 6rem;
 }
 .section--lg {
 	padding-top: 7rem;
@@ -31,10 +31,22 @@
 	padding-bottom: 3rem;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 768px) {
 	.container {
 		padding-left: 1rem;
 		padding-right: 1rem;
+	}
+
+	.section {
+		padding-top: 3rem;
+		padding-bottom: 3rem;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	.container {
+		padding-left: 0.4rem;
+		padding-right: 0.4rem;
 	}
 
 	.section {

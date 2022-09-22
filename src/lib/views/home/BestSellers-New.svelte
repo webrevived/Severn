@@ -22,16 +22,10 @@
 						href="/products/{product.permalink}"
 						title="White Gardina"
 					/>
-					<!-- <ItemCard
-						href="/"
-						src={product.image.url}
-						category="Candel"
-						title={product.name}
-						price={product.price.raw}
-					/> -->
 				{/each}
 			{/if}
 		</div>
+
 		<div class="grid__highlight">
 			<img src="/images/Why_Thumbnail_1.png" alt="" />
 		</div>
@@ -43,8 +37,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
-		padding-bottom: 0;
-		padding-top: 7rem;
 	}
 
 	.grid {
@@ -61,19 +53,15 @@
 
 		&__highlight {
 			height: 100%;
+			overflow: hidden;
 
 			img {
 				display: block;
 				object-fit: cover;
 				height: 100%;
+				@include imageZoom;
 			}
 		}
-	}
-
-	.product {
-		width: 100%;
-		height: 150px;
-		background-color: black;
 	}
 
 	@media only screen and (max-width: 1024px) {

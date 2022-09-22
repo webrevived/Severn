@@ -3,9 +3,7 @@
 </script>
 
 <section
-	class="relative w-full gap-7.5 items-center justify-center overflow-hidden pb-5 flex flex-col <sm:gap-4"
-	p="x-12 t-40"
-	text="center"
+	class="wrapper container section relative w-full gap-7.5 items-center justify-center pb-5 flex flex-col text-center <sm:gap-4"
 >
 	<img
 		class="CircleImg w-24.5 h-24.5"
@@ -39,6 +37,23 @@
 <style lang="scss">
 	.CircleImg {
 		@apply rounded-full lg:w-33.5 lg:h-33.5 z-1;
+	}
+
+	.wrapper {
+		overflow-x: hidden;
+		overflow-y: hidden;
+	}
+
+	@media only screen and (max-width: 1024px) {
+		.wrapper {
+			padding-bottom: 0;
+		}
+	}
+	
+	@media only screen and (max-width: 639px) {
+		img {
+			display: none;
+		}
 	}
 
 	@media only screen and (max-width: 425px) {

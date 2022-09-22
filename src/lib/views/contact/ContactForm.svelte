@@ -2,9 +2,12 @@
 	import Button from '$lib/global/Button.svelte';
 	import Input from '$lib/global/Form/Input.svelte';
 	import TextArea from '$lib/global/Form/TextArea.svelte';
+	import { imageSlide } from '$lib/actions/imageSlide';
+
+	let imageWrapElement: HTMLFormElement;
 </script>
 
-<form class="form section">
+<form class="form section" bind:this={imageWrapElement}>
 	<div class="inputs">
 		<h1 class="inputs__title">You can also fill out the form and We will get back to you soon.</h1>
 
@@ -17,8 +20,19 @@
 		</div>
 	</div>
 
-	<div class="img-wrap">
-		<img class="img-wrap__img" src="/images/contact_us_letters.webp" alt="" />
+	<div class="img-wrap" id="wrapper">
+		<img
+			use:imageSlide={{
+				scrollTrigger: {
+					trigger: '#wrapper',
+					start: 'top bottom-=20%',
+					end: 'bottom bottom-=20%'
+				}
+			}}
+			class="img-wrap__img"
+			src="/images/contact_us_letters.webp"
+			alt=""
+		/>
 	</div>
 </form>
 
@@ -32,7 +46,7 @@
 		justify-content: center;
 		display: flex;
 		flex-direction: column;
-        width: 100%;
+		width: 100%;
 		gap: var(--space-md);
 
 		&__title {
@@ -46,11 +60,19 @@
 		position: relative;
 		max-width: max-content;
 		justify-self: center;
-        
-        &__img {
-            display: block;
-            object-fit: cover;
-        }
+		min-width: 50%;
+		height: 600px;
+		overflow: hidden;
+
+		&__img {
+			right: 0;
+			position: absolute;
+			width: 100%;
+			display: block;
+			object-fit: cover;
+			height: 600px;
+			@include imageZoom;
+		}
 	}
 
 	@media only screen and (max-width: 767px) {
@@ -60,11 +82,11 @@
 
 		.img-wrap {
 			width: 100%;
-            max-width: none;
+			max-width: none;
 
 			&__img {
 				max-height: 300px;
-                width: 100%;
+				width: 100%;
 			}
 		}
 	}

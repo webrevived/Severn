@@ -3,16 +3,16 @@
 	import About from '$lib/views/home/About.svelte';
 	import BestSellersNew from '$lib/views/home/BestSellers-New.svelte';
 	import DeliverSmile from '$lib/views/home/DeliverSmile.svelte';
+	import Explore from '$lib/views/home/Explore.svelte';
 	import Heading from '$lib/views/home/Heading.svelte';
 	import Quotes from '$lib/views/home/Quotes.svelte';
 </script>
 
-<Heading src="/images/Home_Header.png" />
+<Heading src="/images/oct_hero.jpg" />
 <main>
 	<DeliverSmile />
 	<BestSellersNew />
-	<!-- <BestSeller /> -->
-	<!-- <Explore /> -->
+	<Explore />
 	<About />
 	<Quotes
 		quotes={[

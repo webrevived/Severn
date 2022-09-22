@@ -3,9 +3,7 @@
 </script>
 
 <section
-	class="container gap-12 w-full min-h-167 items-center justify-center overflow-x-hidden"
-	flex="~ col-reverse md:row"
-	p="t-35 md:t-55"
+	class="container section gap-12 w-full min-h-167 items-center justify-center overflow-x-hidden flex flex-col-reverse md:flex-row"
 >
 	<div class="flex flex-col gap-5 text-center md:text-left">
 		<h1 class="text-1 text-brown-1200">ABOUT SEVERN COMPANY</h1>

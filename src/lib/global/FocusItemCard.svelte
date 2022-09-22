@@ -8,8 +8,8 @@
 </script>
 
 <a {href} class="card">
-	<div class="thumbnail">
-		<img src={imgSrc} alt={imgAlt} />
+	<div class="thumbnail" style="--imgSrc: {imgSrc}">
+		<!-- <img src={imgSrc} alt={imgAlt} /> -->
 	</div>
 
 	<div class="card__details">
@@ -21,10 +21,16 @@
 
 <style lang="scss">
 	.thumbnail {
-		width: 100%;
+		width:  100%;
+		overflow: hidden;
+		background-image: url('https://cdn.chec.io/merchants/45459/assets/ybc5YcEe5jLXLuij%7CFlannel%203-Wick%20Candle.jpg');
+		background-position: bottom;
+		background-size: 100%;
+		background-repeat: no-repeat;
 
 		img {
 			width: 100%;
+			@include imageZoom;
 		}
 	}
 	.card {

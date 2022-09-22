@@ -11,7 +11,7 @@
 
 	export let dark = false;
 	export let position: 'absolute' | 'reletive' | 'fixed' = 'reletive';
-	export let backgroundColor: 'transparent' | 'tan' = 'tan';
+	export let backgroundColor: 'transparent' | 'tan' = 'transparent';
 
 	const handleMouseEnter = () => ($navToggles.shop = true);
 	const handleMouseLeave = () => ($navToggles.shop = false);
@@ -20,10 +20,10 @@
 <div
 	class="nav-container backgroundColor--{backgroundColor}"
 	style:position
-	class:dark={dark || $navToggles.shop}
+	class:dark
+	class:dropdownOpen={$navToggles.shop}
 >
 	<div class="nav-inner">
-		<!-- Navbar -->
 		<nav class="justify-center" class:z-5={$navToggles.shop}>
 			<button
 				class="md:hidden text-white-100 dark:text-black-600"
@@ -109,9 +109,17 @@
 		}
 
 		.logo {
-			@apply text-white-100 dark:black-600 md:left heading-1 text-2xl tracking-[.03em];
+			@apply text-white-100 heading-1 text-2xl tracking-[.03em];
 			display: flex;
 			align-items: center;
+		}
+	}
+
+	.dark {
+		background-color: var(--color-white-300);
+
+		a {
+			color: var(--color-black-600);
 		}
 	}
 
@@ -124,9 +132,9 @@
 		background-color: transparent;
 	}
 
-	.dark {
+	.dropdownOpen {
 		background-color: var(--color-white-300);
-
+		
 		a {
 			color: var(--color-black-600);
 		}

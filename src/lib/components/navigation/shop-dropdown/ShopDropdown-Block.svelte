@@ -16,31 +16,37 @@
 
 <style lang="scss">
 	.block {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-xs);
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-xs);
 		color: var(--color-black-600);
 
 		&__title {
 			text-transform: uppercase;
-            font-family: var(--font-lato);
-            font-size: 14px;
-            line-height: 1em;
+			font-family: var(--font-lato);
+			font-size: 14px;
+			line-height: 1em;
 		}
 	}
 
-    .links {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-2xs);
+	.links {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2xs);
 
-        &__link {
+		&__link {
 			text-transform: capitalize;
+            font-weight: 400;
+            font-family: var(--font-lato);
 		}
-    }
 
-    .links {
-        display: flex;
-        flex-direction: column;
-    }
+		&__link:hover {
+			font-style: italic;
+		}
+	}
+
+	.links {
+		display: flex;
+		flex-direction: column;
+	}
 </style>

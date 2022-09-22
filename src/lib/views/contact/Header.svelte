@@ -21,12 +21,10 @@
 		</HeaderMailTo>
 
 		<HeaderMailTo title="Message from Owner">
-			Hi, This is Isreal. It’s been a pleasure for me to provide the service we always wanted to
+			Hi, This is Isreal. It's been a pleasure for me to provide the service we always wanted to
 			provide you. Send me an email if you got some questions
 		</HeaderMailTo>
 	</div>
-
-	<ContactForm />
 </section>
 
 <style class="scss">

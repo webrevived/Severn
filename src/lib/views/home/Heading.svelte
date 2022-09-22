@@ -24,24 +24,27 @@
 		</div>
 	</div>
 
-	<div
-		class="feedback absolute bottom-0 left-50/100"
-		transform="~ -translate-x-50/100 translate-y-50/100"
-	>
+	<div class="feedback absolute bottom-0 left-50/100">
 		<Feedback />
 	</div>
 </header>
 
 <style lang="scss">
+	header {
+		margin-bottom: 40px;
+	}
+
 	.bg-header {
 		background: var(--src) no-repeat;
 		background-size: cover;
-		background-position: 70%;
+		background-position: left;
 		background-color: #b1a28d;
 	}
 
 	.feedback {
 		width: 80%;
+		left: 50%;
+		transform: translate(-50%, 50%);
 	}
 
 	@media only screen and (max-width: 1024px) {
@@ -56,9 +59,9 @@
 
 	@media only screen and (max-width: 768px) {
 		.bg-header {
-			background-size: 200%;
-			background-position: 100%;
-			background-position-y: 75%;
+			// background-size: 200%;
+			background-position: 60%;
+			// background-position-y: 75%;
 		}
 		.feedback {
 			left: 0;
