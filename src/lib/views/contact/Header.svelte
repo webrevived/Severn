@@ -2,10 +2,9 @@
 	import HeaderMailTo from '$lib/views/contact/HeaderMailTo.svelte';
 	import ContactForm from './ContactForm.svelte';
 	import ContactHeader from './ContactHeader.svelte';
-
 </script>
 
-<section class="section">
+<section class="section--md">
 	<div class="contact-header">
 		<ContactHeader
 			title="Contact Us"

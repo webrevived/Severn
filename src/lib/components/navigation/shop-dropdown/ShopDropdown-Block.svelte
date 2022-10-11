@@ -49,4 +49,12 @@
 		display: flex;
 		flex-direction: column;
 	}
+
+	@media only screen and (min-width: 1440px) {
+		.links {
+			&__link {
+				font-size: 23px;
+			}
+		}
+	}
 </style>

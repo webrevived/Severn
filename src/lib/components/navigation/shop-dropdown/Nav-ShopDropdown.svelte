@@ -5,89 +5,67 @@
 	}
 </script>
 
+<!-- <script lang="ts">
+	let name: string = undefined;
+
+	name= 10
+</script> -->
 <script lang="ts">
+	import { fade, fly, slide } from 'svelte/transition';
 	import ShopDropdownBlock from './ShopDropdown-Block.svelte';
 	import ShopDropdownBottomBar from './ShopDropdown-BottomBar.svelte';
 	import ShopDropdownHighlight from './ShopDropdown-Highlight.svelte';
 
 	export let blocks: Block[] = [
 		{
-			title: 'shop by type',
+			title: 'shop candels',
 			items: [
 				{
 					name: 'Shop all',
-					href: '/'
+					href: '/category/candels'
 				},
 				{
-					name: 'Thank you',
-					href: '/'
+					name: 'Best Selling',
+					href: '/category/candels'
 				},
 				{
-					name: 'Everyday',
-					href: '/'
-				},
-				{
-					name: 'Baby',
-					href: '/'
-				},
-				{
-					name: 'Religious',
-					href: '/'
-				},
-				{
-					name: 'National Parks',
-					href: '/'
-				},
-				{
-					name: 'Blank Card',
-					href: '/'
-				},
-				{
-					name: 'Sale',
-					href: '/'
+					name: 'Recommended',
+					href: '/category/candels?sort_by=created'
 				}
 			]
 		},
 		{
-			title: 'Shop by scent',
+			title: 'Shop self care',
 			items: [
 				{
-					name: 'Birthday',
-					href: '/'
+					name: 'Shop all',
+					href: '/category/self-care'
 				},
 				{
-					name: 'Congratulations',
-					href: '/'
+					name: 'Best Selling',
+					href: '/category/self-care'
 				},
 				{
-					name: 'Wedding',
-					href: '/'
+					name: 'Face Wash',
+					href: '/category/self-care?subcategory=face-wash'
 				},
 				{
-					name: 'Love & Friendship',
-					href: '/'
-				},
-				{
-					name: 'Sympathy & Encourgement',
-					href: '/'
+					name: 'Moisturizer',
+					href: '/category/self-care?subcategory=moisturizer'
 				}
 			]
 		},
 		{
-			title: 'Holiday cards',
+			title: 'Shop By Type',
 			items: [
 				{
-					name: 'Independence Day',
+					name: 'Self care',
 					href: '/'
 				},
 				{
-					name: 'Chrismas',
+					name: 'Candels',
 					href: '/'
 				},
-				{
-					name: 'Easter',
-					href: '/'
-				}
 			]
 		}
 	];
@@ -153,5 +131,11 @@
 		gap: var(--space-xs);
 		display: flex;
 		flex: 1 0 auto;
+	}
+
+	@media only screen and (min-width: 1440px) {
+		.dropdown {
+			gap: var(--space-6xl);
+		}
 	}
 </style>

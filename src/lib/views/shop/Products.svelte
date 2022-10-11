@@ -12,7 +12,7 @@
 	export let category: Category;
 </script>
 
-<section class="container w-full flex flex-col pb-22">
+<section class="container section w-full flex flex-col ">
 	<ItemCarosel
 		button={category.button.text}
 		href={category.button.href}

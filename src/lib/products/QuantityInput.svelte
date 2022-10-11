@@ -11,6 +11,8 @@
 	};
 
 	const handleQuanityDecrease = () => {
+		if (quantity <= 0) return;
+
 		quantity--;
 		dispatch('quantityDec');
 	};

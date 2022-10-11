@@ -22,7 +22,7 @@ export const getAllProducts = async (params?: AllProductsParams) => {
  * @returns {Product[]} A list of products within a category or undefined
  * @throws 404 Error not found;
  */
-export const getProductsByCategorySlug = async (slug: string) => {
+export const getProductsByCategorySlug = async (slug: string | string[]) => {
 	const products = await commerce.products.list({
 		category_slug: slug
 	});
@@ -30,14 +30,27 @@ export const getProductsByCategorySlug = async (slug: string) => {
 	return products;
 };
 
+interface GetProductsParams {
+	type: 'best-selling' | "recomended"
+}
+
+export const getProductsByParms = async () => {
+
+}
+
+interface CategoryBySlugParams {
+	depth?: 0 | 1 | 2 | 3;
+	include?: boolean;
+}
+
 /**
  * Get a category by slug.
  *
  * @param slug Category slug
  * @returns
  */
-export const getCategoryBySlug = async (slug: string) => {
-	const category = await commerce.categories.retrieve(slug, { type: 'slug' });
+export const getCategoryBySlug = async (slug: string, params?: CategoryBySlugParams) => {
+	const category = await commerce.categories.retrieve(slug, { type: 'slug', ...params });
 	return category;
 };
 

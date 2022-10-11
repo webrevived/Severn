@@ -7,6 +7,7 @@
 	export let href = undefined;
 	export let width: string = 'auto';
 	export let minWidth: string = '50px';
+	export let isDisabled: boolean = false;
 </script>
 
 {#if href}
@@ -35,7 +36,7 @@
 	</a>
 {:else}
 	<button
-		disabled={isLoading}
+		disabled={isDisabled || isLoading}
 		on:click
 		class="text-1 font-bold gap-2 items-center"
 		style="min-width: {minWidth}"
@@ -63,13 +64,17 @@
 	</button>
 {/if}
 
-<style>
+<style lang="scss">
 	button,
 	a {
 		outline: none;
 		-webkit-appearance: none;
 		appearance: none;
 		padding: 0.5rem 2rem;
+
+		&:disabled {
+			opacity: 0.8;
+		}
 	}
 	.outline {
 		@apply bg-[transparent] hover:bg-black-600 text-black-600 hover:text-white-100;

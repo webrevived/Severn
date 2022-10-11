@@ -41,7 +41,6 @@
 
 				<a href="/about">About</a>
 				<a href="/contact">Contact</a>
-				<a href="/account">My Account</a>
 			</div>
 
 			<div
@@ -54,7 +53,7 @@
 					<SearchIcon />
 				</button>
 
-				<button class="focus:outline-none" on:click={() => ($navToggles.shop = true)}>
+				<button class="focus:outline-none" on:click={() => ($navToggles.cart = true)}>
 					<CartIcon />
 				</button>
 			</div>

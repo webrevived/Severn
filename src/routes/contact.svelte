@@ -10,7 +10,6 @@
 
 	<div class="container">
 		<Header />
-		<Gallary --mt="67px" />
 		<ContactForm />
 	</div>
 </main>

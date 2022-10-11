@@ -3,12 +3,12 @@
 </script>
 
 <section
-	class="wrapper container section relative w-full gap-7.5 items-center justify-center pb-5 flex flex-col text-center <sm:gap-4"
+	class="wrapper container section relative w-full gap-7.5 items-center justify-center  flex flex-col text-center <sm:gap-4"
 >
 	<img
 		class="CircleImg w-24.5 h-24.5"
 		pos="absolute -left-27px lg:left-101px top-63px lg:top-123px"
-		src="/images/CircleImg-1.jpg"
+		src="/images/candel_hero.jpg"
 		alt="Candle being burned"
 	/>
 	<img
@@ -20,13 +20,13 @@
 	<img
 		class="CircleImg w-22 h-22"
 		pos="absolute -right-20px lg:right-162px top-220px lg:top-191px"
-		src="/images/CircleImg-1.jpg"
+		src="/images/About_Thumbnail.png"
 		alt="Candle being burned"
 	/>
 
-	<h1 class="text-1 <sm:text-13px text-brown-1200 z-2">DELIEVER SMILE TO YOUR LOVED ONES</h1>
+	<h1 class="text-1 <sm:text-13px text-brown-1200 z-2">THE TRUE MAGIC IS IN OUR BLEND</h1>
 	<h2 class="heading-2 <sm:text-xl max-w-131.5 <sm:max-w-80.5 md:mb-12.5 text-black-600 z-2">
-		Our smallest choices have the potential for the biggest impact. Let's make good ones together.
+		Timeless candles, with scents to lift the mood, and made with the best, clean ingredients.
 	</h2>
 
 	<div class="z-2">
@@ -44,7 +44,7 @@
 		overflow-y: hidden;
 	}
 
-	@media only screen and (max-width: 1024px) {
+	@media only screen and (min-width: 767.9px) {
 		.wrapper {
 			padding-bottom: 0;
 		}

@@ -7,7 +7,7 @@
 	let imageWrapElement: HTMLFormElement;
 </script>
 
-<form class="form section" bind:this={imageWrapElement}>
+<form class="form section--md" bind:this={imageWrapElement}>
 	<div class="inputs">
 		<h1 class="inputs__title">You can also fill out the form and We will get back to you soon.</h1>
 
@@ -70,7 +70,7 @@
 			width: 100%;
 			display: block;
 			object-fit: cover;
-			height: 600px;
+			height: 100%;
 			@include imageZoom;
 		}
 	}
@@ -82,6 +82,7 @@
 
 		.img-wrap {
 			width: 100%;
+			height: 300px;
 			max-width: none;
 
 			&__img {

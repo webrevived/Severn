@@ -3,7 +3,7 @@
 </script>
 
 <section
-	class="container section gap-12 w-full min-h-167 items-center justify-center overflow-x-hidden flex flex-col-reverse md:flex-row"
+	class="container section gap-12 w-full min-h-167 items-center justify-center flex flex-col-reverse md:flex-row"
 >
 	<div class="flex flex-col gap-5 text-center md:text-left">
 		<h1 class="text-1 text-brown-1200">ABOUT SEVERN COMPANY</h1>
@@ -12,7 +12,7 @@
 			At Saven, We have Premium Candles along with Self Care Products
 		</h2>
 
-		<p class="text-1 text-brown-1200 max-w-123 leading-[150%] mb-15">
+		<p class="text-1 text-brown-1200 max-w-123 leading-[150%] mb-5">
 			Saven Company is know of its premium products and all time positive reviews by the customers.
 			We founded Servern Company in 2021 with the idea of providing quality products such as
 			fragranced candles, mens and womens self car products.
@@ -27,7 +27,7 @@
 		</div>
 	</div>
 
-	<div class="relative min-w-320px h-75 md:h-587px">
+	<div class="relative min-w-320px h-75 <md:mt-10 md:h-587px">
 		<img id="spinning" class="absolute right-1/2 md:right-0" src="/images/About_Title.png" alt="" />
 
 		<img class="w-full h-full object-cover" src="/images/About_Thumbnail.png" alt="" />
@@ -37,6 +37,10 @@
 <style>
 	#spinning {
 		animation: spin 4s infinite linear;
+	}
+	section {
+		overflow: hidden;
+		height: 100%;
 	}
 	@keyframes spin {
 		from {

@@ -1,8 +1,46 @@
+<script lang="ts" context="module">
+	export let load: Load = ({ url }) => {
+		const query = url.searchParams;
+
+		const firstName = query.get('first_name');
+		const lastName = query.get('last_name');
+		const email = query.get('email');
+		const street = query.get('street');
+		const state = query.get('state');
+		const city = query.get('city');
+		const zip = query.get('zip');
+		const shipping = query.get('shippinh');
+
+		return {
+			props: {
+				firstName,
+				lastName,
+				email,
+				street,
+				state,
+				city,
+				zip,
+				shipping
+			}
+		};
+	};
+</script>
+
 <script lang="ts">
 	import Button from '$lib/global/Button.svelte';
 	import { checkoutStore } from '$lib/stores/checkout-order.store';
 	import CheckoutBottomTotal from '$lib/views/checkout/CheckoutBottomTotal.svelte';
 	import CheckoutProducts from '$lib/views/checkout/CheckoutProducts.svelte';
+	import type { Load } from '@sveltejs/kit';
+
+	export let firstName: string;
+	export let lastName: string;
+	export let email: string;
+	export let street: string;
+	export let state: string;
+	export let city: string;
+	export let zip: string;
+	export let shipping: string;
 </script>
 
 <section class="wrapper">
@@ -15,14 +53,14 @@
 
 			<div class="confirmation">
 				<h4 class="heading-3 text-brown-1200">
-					Thank you {$checkoutStore.customer.firstName}!
+					Thank you {firstName}!
 				</h4>
 				<h2 class="heading-2 text-black-600">Your order is confirmed</h2>
 				<p class="mb-5">
 					We've accepted your order, and we're getting it ready. A confirmation email has been sent
-					to {$checkoutStore.customer.email} Come back to the page for updates on your order status
+					to <b>{email}</b> Come back to the page for updates on your order status
 				</p>
-				<Button>Continue Shopping</Button>
+				<Button href="/shop">Continue Shopping</Button>
 			</div>
 		</div>
 
@@ -34,15 +72,14 @@
 					<div class="customer__data customer__data--address">
 						<h3>Shipping Address</h3>
 						<p>
-							{$checkoutStore.customer.firstName}
-							{$checkoutStore.customer.lastName}
+							{firstName}
+							{lastName}
 						</p>
-						<p>{$checkoutStore.customer.shippingAddress.street}</p>
+						<p>{street}</p>
 						<p>
-							{$checkoutStore.customer.shippingAddress.city}, {$checkoutStore.customer
-								.shippingAddress.state}
+							{city}, {state}
 						</p>
-						<p>{$checkoutStore.customer.shippingAddress.zip}</p>
+						<p>{zip}</p>
 						<!-- <p>407 924 6902</p> -->
 					</div>
 					<div class="customer__data customer__data--payment">
@@ -52,7 +89,7 @@
 
 					<div class="customer__data customer__data--shipping">
 						<h3>Shipping Method</h3>
-						<p>{$checkoutStore.customer.shippingMethod}</p>
+						<p>{shipping}</p>
 					</div>
 				</div>
 			</div>
@@ -60,13 +97,13 @@
 			<!-- <hr class=" my-8 text-brown-1200" /> -->
 
 			<div class="details flex flex-col gap-5 mt-10">
-				<CheckoutProducts lineItems={$checkoutStore.cart.line_items} />
+				<!-- <CheckoutProducts lineItems={$checkoutStore.cart.line_items} /> -->
 				<hr />
-				<CheckoutBottomTotal
+				<!-- <CheckoutBottomTotal
 					tax={$checkoutStore.checkout.tax.amount.formatted_with_symbol}
 					subtotal={$checkoutStore.checkout.total_due.formatted_with_symbol}
 					total={$checkoutStore.checkout.total_due.formatted_with_symbol}
-				/>
+				/> -->
 			</div>
 		</div>
 	</div>
@@ -74,7 +111,7 @@
 
 <style lang="scss">
 	.wrapper {
-		height: 100%;
+		height: 100vh;
 	}
 	.customer {
 		display: flex;
@@ -132,6 +169,10 @@
 		flex-direction: column;
 		gap: 0.3em;
 		max-width: 40ch;
+	}
+
+	b {
+		font-weight: medium;
 	}
 
 	@media only screen and (max-width: 768px) {

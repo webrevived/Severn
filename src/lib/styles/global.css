@@ -26,6 +26,10 @@
 	padding-top: 7rem;
 	padding-bottom: 7rem;
 }
+.section--md {
+	padding-top: 4.5rem;
+	padding-bottom: 4.5rem;
+}
 .section--sm {
 	padding-top: 3rem;
 	padding-bottom: 3rem;

@@ -1,26 +1,29 @@
 <script lang="ts">
-	import Products from '$lib/views/shop/Products.svelte';
-	import dataAccess from '$lib/data-access';
 	import NavBar from '$lib/components/navigation/Bar.svelte';
+	import dataAccess from '$lib/data-access';
+	import CategoryItemsSkeleton from '$lib/global/Skeletons/CategoryItemsSkeleton.svelte';
 	import Deals from '$lib/views/shop/Deals.svelte';
+	import Products from '$lib/views/shop/Products.svelte';
 	import ShopHeader from '$lib/views/shop/ShopHeader.svelte';
 	import type { Category } from '@chec/commerce.js/types/category';
 	import type { Product } from '@chec/commerce.js/types/product';
 	import { useQuery } from '@sveltestack/svelte-query';
-	import { categoriesStore } from '$lib/stores/collection.store';
-	import CategoryItemsSkeleton from '$lib/global/Skeletons/CategoryItemsSkeleton.svelte';
 
 	interface Collection {
 		category: Category;
 		products: Product[];
 	}
 
+	const categoriesQuery = useQuery('categories', () => {
+		return dataAccess.products.getAllCategories({ depth: 1 });
+	});
+
 	const fetchProductsByCategory = async (): Promise<Collection[]> => {
 		let collection: Collection[] = [];
 		let categories: Category[];
 
-		if ($categoriesStore.status === 'sucess') {
-			categories = $categoriesStore.data;
+		if ($categoriesQuery.isSuccess) {
+			categories = $categoriesQuery.data.data;
 		} else {
 			categories = (await dataAccess.products.getAllCategories({ depth: 1 })).data;
 		}
@@ -42,7 +45,7 @@
 
 	const collectionQuery = useQuery('collections', async () => {
 		return fetchProductsByCategory();
-	});
+	}, {staleTime: 1000 * 60 * 10});
 </script>
 
 <main>
@@ -51,7 +54,7 @@
 	<ShopHeader />
 
 	{#if $collectionQuery.status === 'loading'}
-		<section class="w-full x-container flex flex-col gap-10 pb-22">
+		<section class="container flex flex-col gap-10 pb-22">
 			<CategoryItemsSkeleton />
 			<CategoryItemsSkeleton />
 		</section>

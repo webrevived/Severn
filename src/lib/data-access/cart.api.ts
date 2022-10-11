@@ -22,3 +22,12 @@ export const removeFromCart = async (lineItemId: string) => {
 
 	return cart;
 };
+
+interface UpdateQuanityParams {
+	quanity: number;
+}
+export const updateItemQuanitty = async (itemId: string, params: UpdateQuanityParams) => {
+	const updatedCart = await commerce.cart.update(itemId, { quantity: params.quanity });
+
+	return updatedCart;
+};

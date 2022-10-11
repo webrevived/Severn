@@ -13,9 +13,9 @@
 		<p class="text-1 text-xl text-black-600">${$_total.toFixed(2)}</p>
 	</div>
 
-	<Button outline>
+	<!-- <Button outline>
 		Pay with <img src="/images/PayPal-Logo.png" alt="PayPal" />
-	</Button>
+	</Button> -->
 	<Button href="/checkout">Continue to Checkout</Button>
 	<a class="w-max self-center text-2 text-brown-900 font-bold mb-7.5 underline" href="/shop"
 		>Shop More Products</a

@@ -23,6 +23,7 @@
 
 		try {
 			const cart = await dataAccess.cart.addToCart({ productId: product.id, quantity });
+			/* TODO: Invalide single query */
 			await queryClient.invalidateQueries();
 
 			$navToggles.cart = true;
@@ -43,6 +44,8 @@
 	) => {
 		return categories.map((category) => category.name).join(', ');
 	};
+
+	/* TODO: Break this componenet up */
 </script>
 
 <div class="w-full mt-5 product-areas container">
@@ -57,7 +60,7 @@
 
 		<div class="image-container">
 			{#each product.assets as asset}
-				<img class="w-full h-250px lg:h-478px img-1 object-cover" src={asset.url} alt="" />
+				<img class="w-full object-cover" src={asset.url} alt={asset.description} />
 			{/each}
 		</div>
 	</section>
@@ -65,7 +68,7 @@
 	<section class="product-container pt-12">
 		<div class="details">
 			<div class="text-black-600 information">
-				<h1 class="text-1 text-brown-1200">{categoriesToString(product.categories)}</h1>
+				<h1 class="text-1 text-brown-1200 mb-2">{categoriesToString(product.categories)}</h1>
 				<h2 class="heading-1 text-black-600">{product.name}</h2>
 
 				<div class="pb-4 border-b border-black-600 mt-9.5">
@@ -76,7 +79,7 @@
 					{@html product.description ?? "This item doesn't seem to have a description"}
 				</p>
 
-				<div class="flex gap-10 mt-12.5 <sm:gap-5">
+				<div class="flex gap-10 mt-12.5 justify-between <sm:gap-5">
 					<ProductsIcon src="/icons/GiftPack.svg">free gift</ProductsIcon>
 					<ProductsIcon src="/icons/HighQuality.svg">high quality</ProductsIcon>
 					<ProductsIcon src="/icons/FastShipping.svg">fast shipping</ProductsIcon>
@@ -156,12 +159,15 @@
 		.image-container {
 			img {
 				display: block;
-				min-height: 300px;
-				min-width: 300px;
+				width: 100%;
+				height: 100%;
+				max-height: 400px;
+				max-width: 450px;
 			}
 		}
+
 		.product-areas {
-			grid-template-columns: auto 1fr;
+			grid-template-columns: 1fr 1fr;
 		}
 	}
 
@@ -169,6 +175,7 @@
 		.product-areas {
 			gap: 1rem;
 		}
+
 		.image-container {
 			img {
 				min-height: 250px;
@@ -190,9 +197,6 @@
 			display: none;
 		}
 
-		.go-back {
-			padding-left: 1rem;
-		}
 		.product-areas {
 			grid-template-columns: 1fr;
 			grid-template-rows: 1fr;

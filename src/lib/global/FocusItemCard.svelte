@@ -8,31 +8,31 @@
 </script>
 
 <a {href} class="card">
-	<div class="thumbnail" style="--imgSrc: {imgSrc}">
-		<!-- <img src={imgSrc} alt={imgAlt} /> -->
+	<div class="thumbnail">
+		<img src={imgSrc} alt={imgAlt} />
 	</div>
 
 	<div class="card__details">
-		<h6 class="text-brown-1200">{category}</h6>
-		<h4 class="font-tiempos text-black-600 text-18px">{title}</h4>
-		<h6 class="text-brown-1200">${price}</h6>
+		<h6 class="card__subtitle text-brown-1200">{category}</h6>
+		<h4 class="card__title font-tiempos text-black-600 text-18px">{title}</h4>
+		<h6 class="card__price text-brown-1200">${price}</h6>
 	</div>
 </a>
 
 <style lang="scss">
 	.thumbnail {
-		width:  100%;
+		width: 100%;
 		overflow: hidden;
-		background-image: url('https://cdn.chec.io/merchants/45459/assets/ybc5YcEe5jLXLuij%7CFlannel%203-Wick%20Candle.jpg');
-		background-position: bottom;
-		background-size: 100%;
-		background-repeat: no-repeat;
 
 		img {
+			object-fit: cover;
+			object-position: center;
+			height: 100%;
 			width: 100%;
-			@include imageZoom;
+			// @include imageZoom;
 		}
 	}
+
 	.card {
 		display: flex;
 		flex-direction: column;
@@ -46,6 +46,10 @@
 			align-items: center;
 			gap: 0.5rem;
 		}
+
+		&__title {
+			font-size: 18px;
+		}
 	}
 
 	@media only screen and (max-width: 425px) {
@@ -54,6 +58,10 @@
 
 			&__details {
 				gap: 0.1rem;
+			}
+
+			&__title {
+				font-size: 16px;
 			}
 		}
 	}

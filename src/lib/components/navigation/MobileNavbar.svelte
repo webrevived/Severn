@@ -62,8 +62,8 @@
 		</div>
 
 		<div class="w-full h-full" p="x-7 y-6">
-			<div class="w-full flex flex-wrap justify-between" m="b-10.5">
-				<h1 class="heading-2 font-semibold">Seven</h1>
+			<div class="w-full flex flex-wrap items-center justify-between" m="b-10.5">
+				<a href="/" class="logo heading-2 font-semibold">Seven</a>
 				<button on:click={() => ($navToggles.mobile = false)}>
 					<CloseIcon />
 				</button>
@@ -73,7 +73,6 @@
 				<a class="text-black-600" href="/about">About</a>
 				<a class="text-black-600" href="/contact">Contact</a>
 				<a class="text-black-600" href="/shop">Shop</a>
-				<a class="text-black-600" href="/account">My Account</a>
 				<hr class="text-brown-1200" />
 				<a class="text-brown-1200" href="/contact">Contact Us</a>
 				<a class="text-brown-1200" href="/return">Returns & Exchanges</a>
@@ -95,7 +94,10 @@
 		text-rendering: optimizeSpeed;
 		shape-rendering: optimizeSpeed;
 	}
-	a {
+	.logo {
+		line-height: 1em;
+	}
+	a:not(.logo) {
 		@apply heading-1 font-medium max-w-max;
 	}
 </style>

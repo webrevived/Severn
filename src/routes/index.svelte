@@ -8,7 +8,8 @@
 	import Quotes from '$lib/views/home/Quotes.svelte';
 </script>
 
-<Heading src="/images/oct_hero.jpg" />
+<Heading src="/images/skin_care_hero.jpg" />
+
 <main>
 	<DeliverSmile />
 	<BestSellersNew />

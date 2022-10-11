@@ -6,7 +6,8 @@
 	import ItemsList from '$lib/components/navigation/Cart/ItemsList.svelte';
 	import TopBar from '$lib/components/navigation/Cart/TopBar.svelte';
 	import { navToggles } from '$lib/stores';
-	import { useQuery } from '@sveltestack/svelte-query';
+	import { useMutation, useQuery } from '@sveltestack/svelte-query';
+
 
 	const cartQuery = useQuery('cart', async () => {
 		return dataAccess.cart.getCart();
@@ -21,7 +22,10 @@
 			<h2>Loading...</h2>
 		{:else if $cartQuery.isSuccess}
 			{#if $cartQuery.data.total_items > 0}
-				<ItemsList items={$cartQuery.data.line_items} />
+				<ItemsList
+					items={$cartQuery.data.line_items}
+					on:quantityChange={() => $cartQuery.refetch()}
+				/>
 				<BottomBar total={$cartQuery.data.subtotal.raw} />
 			{:else}
 				<EmptyCart />

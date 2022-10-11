@@ -17,10 +17,10 @@
 
 <style lang="scss">
 	.highlight {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-xs);
-        line-height: 1em;
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-xs);
+		line-height: 1em;
 		color: var(--color-black-600);
 		max-width: 200px;
 
@@ -36,18 +36,24 @@
 		&__title {
 			text-transform: uppercase;
 			font-size: 14px;
-            height: 14px;
-            font-family: var(--font-lato);
+			height: 14px;
+			font-family: var(--font-lato);
 		}
 
-        &__desc {
-            font-size: 14px;
-        }
+		&__desc {
+			font-size: 14px;
+		}
 	}
 
-    .image-wrap {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-2xs);
-    }
+	.image-wrap {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-2xs);
+	}
+
+	@media only screen and (min-width: 1440px) {
+		.highlight {
+			max-width: 400px;
+		}
+	}
 </style>

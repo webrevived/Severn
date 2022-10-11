@@ -12,7 +12,9 @@
 	.header {
 		&__title {
 			font-size: var(--text-3xl);
+			font-family: var(--font-tiempos);
 			font-weight: 400;
+			color: #1F2325;
 		}
 
 		&__desc {

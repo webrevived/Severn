@@ -47,7 +47,7 @@
 		&__products {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			grid-template-rows: 1fr 1fr;
+			grid-template-rows: repeat(2, 1fr);
 			gap: 1rem;
 		}
 
@@ -64,12 +64,18 @@
 		}
 	}
 
-	@media only screen and (max-width: 1024px) {
+	@media only screen and (max-width: 768px) {
 		.grid {
 			grid-template-columns: 1fr;
 			&__highlight {
 				display: none;
 			}
+		}
+	}
+
+	@media only screen and (max-width: 425px) {
+		h1 {
+			font-size: 30px;
 		}
 	}
 </style>

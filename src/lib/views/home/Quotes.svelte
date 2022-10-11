@@ -62,7 +62,7 @@
 </script>
 
 <section
-	class="my-[4em]"
+	class="my-[5em]"
 	on:focus
 	on:blur
 	bind:this={reviewWrapperElement}

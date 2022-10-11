@@ -1,8 +1,8 @@
 <script lang="ts">
 	import NavBar from '$lib/components/navigation/Bar.svelte';
 	import Header from '$lib/global/HeaderHR.svelte';
-	import Answers from '$lisrc/routes/account/return/Answers.svelte
 	import MailToCard from '$lib/global/MailTo/Card.svelte';
+	import Answers from '$lib/views/account/return/Answers.svelte';
 </script>
 
 <main>

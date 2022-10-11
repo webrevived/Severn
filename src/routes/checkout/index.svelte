@@ -36,15 +36,26 @@
 	import type { CheckoutWithPrice } from '$lib/stores/checkout-order.store';
 	import type { Cart } from '@chec/commerce.js/types/cart';
 	import { validator } from '@felte/validator-zod';
-	import { Appearance, loadStripe, Stripe as StripeType, StripeElements } from '@stripe/stripe-js';
+	import {
+		Appearance,
+		loadStripe,
+		Stripe as StripeType,
+		StripeElements,
+		StripeError
+	} from '@stripe/stripe-js';
 	import { createForm } from 'felte';
 	import { onMount } from 'svelte';
 	import * as zod from 'zod';
+	import { encodeSuccessQuery } from '$lib/utils/query.utils';
+	import { goto } from '$app/navigation';
+	import { StripeErrorInstance } from '$lib/errors/stripe.error';
 
 	export let cart: Cart;
 	export let checkout: CheckoutWithPrice;
 
+	let gatewayErrorMessage = undefined;
 	let errorModal: boolean;
+	let paymentWrapperElement: HTMLElement;
 
 	/** Stripe Card Elements*/
 	let elements: StripeElements;
@@ -112,22 +123,15 @@
 		const response = await stripe.createPaymentMethod({
 			type: 'card',
 			card: {
-				token: (await stripe.createToken(elements.getElement('cardNumber'))).token.id
+				token: (await stripe.createToken(elements.getElement('cardNumber'))).token?.id
 			}
 		});
 
-		if (response.error) {
-			console.error(response.error);
-			return;
-		}
+		if (response.error) throw new StripeErrorInstance(response.error);
 
-		try {
-			const checkout = await captureCheckout({ paymentMethod: response.paymentMethod.id });
+		const checkout = await captureCheckout({ paymentMethod: response.paymentMethod.id });
 
-			console.log(checkout);
-		} catch (error) {
-			console.error(error);
-		}
+		return checkout;
 	};
 
 	const schema = zod.object({
@@ -142,7 +146,7 @@
 		country: zod.string().default('US')
 	});
 
-	const { form, errors, data, isSubmitting } = createForm<zod.infer<typeof schema>>({
+	const { form, errors, data, isSubmitting, isValid } = createForm<zod.infer<typeof schema>>({
 		initialValues: {
 			city: 'Longwood',
 			country: 'US',
@@ -156,30 +160,36 @@
 		extend: validator({ schema }),
 		onSubmit: async (values) => {
 			const response = await handleOrder();
-
 			console.log(response);
 		},
-		onError: async (error) => {
-			console.log('Form submit error', error);
+		onError: async (error: any) => {
+			if (error?.data?.error?.type === 'gateway_error') {
+				gatewayErrorMessage =
+					'Their was an issue with your payment, please check the information and try again.';
+				paymentWrapperElement.scrollIntoView({ behavior: 'smooth' });
+				return;
+			}
+
+			if (error instanceof StripeErrorInstance) {
+				gatewayErrorMessage = 'Please check your card details are entered correctly.';
+				return;
+			}
+
+			errorModal = true;
 		},
 		onSuccess: async (values: zod.infer<typeof schema>, context) => {
-			// $checkoutStore = {
-			// 	cart,
-			// 	checkout,
-			// 	customer: {
-			// 		email: values.email,
-			// 		firstName: values.first_name,
-			// 		lastName: values.last_name,
-			// 		shippingAddress: {
-			// 			city: values.city,
-			// 			state: values.state,
-			// 			street: values.street,
-			// 			zip: values.zip
-			// 		},
-			// 		shippingMethod: 'Domestic'
-			// 	}
-			// };
-			// goto('/checkout/success');
+			const queryParams = encodeSuccessQuery({
+				firstName: $data.first_name,
+				lastName: $data.last_name,
+				city: $data.city,
+				email: $data.email,
+				shipping: 'Standard',
+				state: $data.state,
+				street: $data.street,
+				zip: $data.zip
+			});
+
+			goto(`/checkout/success?${queryParams}`);
 		}
 	});
 
@@ -208,9 +218,14 @@
 		<form use:form method="post" class="flex flex-col gap-10">
 			<ContactInformation {errors} />
 			<CheckoutShippingAddress {errors} />
-			<CheckoutShippingMethod shippingMethods={checkout.shipping_methods} />
+			{#if checkout?.shipping_methods}
+				<CheckoutShippingMethod shippingMethods={checkout.shipping_methods} />
+			{/if}
 
-			<div class="payment">
+			<div class="payment" bind:this={paymentWrapperElement}>
+				{#if gatewayErrorMessage}
+					<span class="gateway-error">{gatewayErrorMessage}</span>
+				{/if}
 				<h3 class="heading-3 font-semibold">Payment Information</h3>
 
 				<div class="card-wrapper">
@@ -239,7 +254,7 @@
 				</div>
 			</div>
 			<div id="payment-message" class="hidden" />
-			<Button isLoading={$isSubmitting}>Place Order</Button>
+			<Button isLoading={$isSubmitting} isDisabled={!$isValid}>Place Order</Button>
 		</form>
 	</div>
 
@@ -259,6 +274,9 @@
 		position: relative;
 		display: grid;
 		grid-template-columns: 1fr 0.9fr;
+	}
+	.gateway-error {
+		color: var(--color-white-600);
 	}
 	.details {
 		height: min-content;
