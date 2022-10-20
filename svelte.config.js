@@ -11,6 +11,7 @@ const config = {
 		}
 	}),
 	kit: {
+		outDir: 'build',
 		adapter: { adapt: adapter }
 	}
 };
