@@ -1,11 +1,5 @@
 <script lang="ts">
-	import { HOST } from '$lib/api/index';
 	import { session } from '$app/stores';
-
-	// tempory product selection for image url
-	const product = $session.products[0];
-
-	/* TODO: Parse data */
 
 	type Status = 'processing' | 'shipped' | 'delivered' | 'refunded';
 	export let date = 'September, 17 2020';
@@ -18,11 +12,7 @@
 <!-- TODO: Add order again button for dilevred products -->
 
 <div class="flex flex-col text-center sm:flex-row items-center">
-	<img
-		src="{HOST}{product.cover.url}"
-		alt="Candle product"
-		class="max-h-40 w-full object-cover sm:max-w-45 "
-	/>
+	<img src="" alt="Candle product" class="max-h-40 w-full object-cover sm:max-w-45 " />
 
 	<div class="flex flex-col w-auto py-5 px-8 sm:items-start">
 		<span class="text-1 text-grey-600 sm:mb-2.5">{date}</span>

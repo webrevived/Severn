@@ -60,11 +60,11 @@
 			items: [
 				{
 					name: 'Self care',
-					href: '/'
+					href: '/category/self-care'
 				},
 				{
 					name: 'Candels',
-					href: '/'
+					href: '/category/candels'
 				},
 			]
 		}
@@ -88,9 +88,9 @@
 				imAlt="Highlight"
 			/>
 			<ShopDropdownHighlight
-				imgSrc="/images/Gallary/2.png"
-				title="best sellers"
-				desc="Our BestSellers, Perfect for sending your best wishes."
+				imgSrc="/images/france_candels.png"
+				title="best seller"
+				desc="Our BestSeller, Perfect for sending your best wishes."
 				href="/"
 				imAlt="Highlight"
 			/>

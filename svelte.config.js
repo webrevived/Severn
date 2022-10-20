@@ -1,5 +1,5 @@
 import preprocess from 'svelte-preprocess';
-import WindiCSS from 'vite-plugin-windicss';
+import adapter from '@sveltejs/adapter-vercel'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -10,16 +10,8 @@ const config = {
 			prependData: "@import './src/lib/styles/mixins.scss';"
 		}
 	}),
-
 	kit: {
-		// vite: {
-		// 	plugins: [ WindiCSS() ],
-		// 	server: {
-		// 		watch: {
-		// 			usePolling: true,
-		// 		}
-		// 	},
-		// },
+		adapter: { adapt: adapter }
 	}
 };
 
