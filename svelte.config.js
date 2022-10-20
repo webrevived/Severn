@@ -1,5 +1,5 @@
 import preprocess from 'svelte-preprocess';
-import adapter from '@sveltejs/adapter-vercel'
+import adapter from '@sveltejs/adapter-auto'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -11,7 +11,6 @@ const config = {
 		}
 	}),
 	kit: {
-		outDir: 'build',
 		adapter: { adapt: adapter }
 	}
 };
