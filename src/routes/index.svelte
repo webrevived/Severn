@@ -8,7 +8,7 @@
 	import Quotes from '$lib/views/home/Quotes.svelte';
 </script>
 
-<!-- TODO: Change image to CDN -->
+<!-- TODO: Change image -->
 <Heading src="/images/skin_care_hero.jpg" />
 
 <main>
