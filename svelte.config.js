@@ -11,7 +11,7 @@ const config = {
 		}
 	}),
 	kit: {
-		adapter: { adapt: adapter() }
+		adapter: adapter()
 	}
 };
 
