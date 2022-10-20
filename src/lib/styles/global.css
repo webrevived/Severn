@@ -1,0 +1,60 @@
+.container,
+.container--lg {
+	width: 100%;
+	margin: 0 auto;
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
+
+.container {
+	max-width: 1200px;
+}
+
+.container--lg {
+	max-width: 1400px;
+}
+
+.container--md {
+	max-width: 1000px;
+}
+
+.section {
+	padding-top: 6rem;
+	padding-bottom: 6rem;
+}
+.section--lg {
+	padding-top: 7rem;
+	padding-bottom: 7rem;
+}
+.section--md {
+	padding-top: 4.5rem;
+	padding-bottom: 4.5rem;
+}
+.section--sm {
+	padding-top: 3rem;
+	padding-bottom: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+	.container {
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+
+	.section {
+		padding-top: 3rem;
+		padding-bottom: 3rem;
+	}
+}
+
+@media screen and (max-width: 425px) {
+	.container {
+		padding-left: 0.4rem;
+		padding-right: 0.4rem;
+	}
+
+	.section {
+		padding-top: 3rem;
+		padding-bottom: 3rem;
+	}
+}

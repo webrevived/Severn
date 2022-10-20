@@ -1,0 +1,7 @@
+@mixin imageZoom {
+	transition: transform 0.65s ease-in-out;
+
+	&:hover {
+		transform: scale(1.1);
+	}
+}
